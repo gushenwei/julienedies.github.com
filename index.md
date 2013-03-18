@@ -5,6 +5,13 @@ tagline: Supporting tagline
 ---
 {% include JB/setup %}
 
+s blog is built with Github + Jekyll + Jekyll-Bootstrap
+
+<h4>我的RSS地址：<a href="/atom.xml">RSS订阅</a></h4>
+<br>
+{% assign posts_collate = site.posts %}
+{% include JB/posts_collate %}
+
 Read [Jekyll Quick Start](http://jekyllbootstrap.com/usage/jekyll-quick-start.html)
 
 Complete usage and documentation available at: [Jekyll Bootstrap](http://jekyllbootstrap.com)
