@@ -1,8 +1,10 @@
 ---
 layout: page
-title: I'm Julien
+title: hello world
 tagline: A beginner's blog
 ---
 {% include JB/setup %}
 
-hello world
+如果你连要去的地方都不知道，那么又如何到达那里？
+
+<img src="../assets/img/a.jpg" />
