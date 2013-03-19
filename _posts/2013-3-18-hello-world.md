@@ -1,6 +1,5 @@
 ---
 layout: post
-category: other 
 title: hello world
 ---
 {% include JB/setup %}
