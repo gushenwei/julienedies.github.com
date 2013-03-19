@@ -1,5 +1,5 @@
 ---
-lyout: page
+layout: page
 title: I'm Julien
 tagline: A beginner's blog
 ---
