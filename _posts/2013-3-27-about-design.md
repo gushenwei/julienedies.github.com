@@ -1,6 +1,8 @@
 ---
 layout: post
+category: design
 title: about design
+tags: [design]
 ---
 {% include JB/setup %}
 
