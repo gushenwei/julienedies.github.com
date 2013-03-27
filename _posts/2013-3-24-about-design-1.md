@@ -1,6 +1,6 @@
 ---
 layout: post
-title: about design 2
+title: about design 1
 category: design
 tags: [design]
 ---
@@ -103,4 +103,5 @@ tags: [design]
 
 
 <img src="/assets/img/a.jpg" />
+
 如果你连要去的地方都不知道，那么又如何到达那里？
