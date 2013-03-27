@@ -1,8 +1,8 @@
 ---
 layout: post
-title: hello world
+title: about english learning
 category: english
-tags: [English]
+tags: [english]
 ---
 {% include JB/setup %}
 
