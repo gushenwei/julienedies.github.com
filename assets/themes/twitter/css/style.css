@@ -82,8 +82,16 @@
 /* ******************************************************************* */
 /* ******************************************************************* */
 /* ******************************************************************* */
-
-/* overwrite default style */
+.nav-container{
+	margin-top:30px;
+}
+.nav {
+	padding-top:20px;
+}
+.nav li{
+	padding:6px;
+}
+/* overwrite default style  < by Julien198414 > */
 h1,h2,h3{
 	font-weight:normal;
 	font-family: Microsoft YaHei, Arial,Helvetica,Garuda,sans-serif;
@@ -93,7 +101,10 @@ h1{
 	font-size:28px;
 }
 h2{
-	font-size:20px;
+	font-size:22px;
+}
+h3{
+	font-size:18px;
 }
 .navbar-inner{
 	background:none;
@@ -102,4 +113,12 @@ h2{
 
 .navbar .nav>.active>a, .navbar {
 	background:none;
+}
+
+.content{
+	padding-bottom:24px;
+}
+
+.post-full .date {
+	color: rgb(211, 29, 29);
 }

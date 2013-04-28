@@ -17,7 +17,6 @@
     <!-- Le styles -->
     <link href="{{ ASSET_PATH }}/bootstrap/css/bootstrap.2.2.2.min.css" rel="stylesheet">
     <link href="{{ ASSET_PATH }}/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
-	<link href="{{ ASSET_PATH }}/css/pygment_trac.css?body=1" rel="stylesheet" type="text/css" media="all">
 
     <!-- Le fav and touch icons -->
   <!-- Update these with your own images
@@ -34,34 +33,34 @@
   </head>
 
   <body>
-  	
-  <div class="container-fluid">
-      <div class="row-fluid">
-          <div class="span2 offset1">
-              <div class="nav-container">
-                  <a class="brand" href="{{ HOME_PATH }}">{{ site.title }}</a>
-                  <ul class="nav">
-                      {% assign pages_list = site.pages %}
-                      {% assign group = 'navigation' %}
-                      {% include JB/pages_list %}
-                  </ul>
-              </div>
-          </div>  
-		      	
-          <div class="span9">
-              {{ content }}
-			  {% include JB/analytics %}
-          </div>
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container-narrow">
+          <a class="brand" href="{{ HOME_PATH }}">{{ site.title }}</a>
+          <ul class="nav">
+            {% assign pages_list = site.pages %}
+            {% assign group = 'navigation' %}
+            {% include JB/pages_list %}
+          </ul>
+        </div>
       </div>
-  <hr>
-  <footer>
-      <p>
-          &copy; {{ site.time | date: '%Y' }} {{ site.author.name }} 
+    </div>
+
+    <div class="container-narrow">
+
+      <div class="content">
+        {{ content }}
+      </div>
+      <hr>
+      <footer>
+        <p>&copy; {{ site.time | date: '%Y' }} {{ site.author.name }}
           with help from <a href="http://jekyllbootstrap.com" target="_blank" title="The Definitive Jekyll Blogging Framework">Jekyll Bootstrap</a>
           and <a href="http://twitter.github.com/bootstrap/" target="_blank">Twitter Bootstrap</a>
-      </p>
-  </footer>  	  
-  </div>
-  
+        </p>
+      </footer>
+
+    </div>
+
+    {% include JB/analytics %}
   </body>
 </html>
