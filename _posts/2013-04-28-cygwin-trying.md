@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "cygwin trying"
+title: "cygwin环境试用"
 description: ""
 category: tool
 tags: [cygwin]

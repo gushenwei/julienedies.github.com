@@ -32,7 +32,7 @@
 /* post-full*/
 .post-full .date {
     margin-bottom: 20px;
-    font-weight: bold;
+	color:rgb(150,150,150);
 }
 
 /* tag_box */
@@ -86,12 +86,43 @@
 	margin-top:30px;
 }
 .nav {
-	padding-top:20px;
+	margin-top:45px;
+	padding:10px 0;
+	color:white;
+	background-color:rgb(132, 161, 184);
+	border-radius:5px;
 }
 .nav li{
-	padding:6px;
+	padding:3px 0;
+}
+
+.nav>li>a{
+	padding:4px 0 1px 12px;
+	color:white;
+	font-size:1.2em;
+}
+.nav>li>a:hover{
+	color:white;
+	background-color:rgb(122, 151, 174);
+}
+.nav>li.active>a{
+	color:rgb(168, 46, 16);
 }
 /* overwrite default style  < by Julien198414 > */
+html{height:100%;}
+body{min-height:100%;}
+body#{
+background: #dcdcd2; /* Old browsers */
+background: -moz-linear-gradient(top,  #dcdcd2 0%, #e9e9e3 52%, #cfcfc1 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#dcdcd2), color-stop(52%,#e9e9e3), color-stop(100%,#cfcfc1)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  #dcdcd2 0%,#e9e9e3 52%,#cfcfc1 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  #dcdcd2 0%,#e9e9e3 52%,#cfcfc1 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  #dcdcd2 0%,#e9e9e3 52%,#cfcfc1 100%); /* IE10+ */
+background: linear-gradient(to bottom,  #dcdcd2 0%,#e9e9e3 52%,#cfcfc1 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#dcdcd2', endColorstr='#cfcfc1',GradientType=0 ); /* IE6-9 */
+
+min-height:100%;
+}
 h1,h2,h3{
 	font-weight:normal;
 	font-family: Microsoft YaHei, Arial,Helvetica,Garuda,sans-serif;
@@ -99,6 +130,7 @@ h1,h2,h3{
 }
 h1{
 	font-size:28px;
+	color:#99003f;
 }
 h2{
 	font-size:22px;
@@ -119,6 +151,6 @@ h3{
 	padding-bottom:24px;
 }
 
-.post-full .date {
-	color: rgb(211, 29, 29);
+.page-header{
+	margin-bottom:20px;
 }

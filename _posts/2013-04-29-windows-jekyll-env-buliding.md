@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "windows jekyll env buliding"
+title: "在windows上快速建立jekyll环境"
 description: ""
 category: 
 tags: []

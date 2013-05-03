@@ -1,6 +1,7 @@
 ---
 layout: page
-title: only exist
+title: 首页
+group: navigation
 ---
 {% include JB/setup %}
 
