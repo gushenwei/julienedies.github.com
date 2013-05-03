@@ -30,9 +30,9 @@
     <hr>
     <div class="pagination">
       {% if page.previous %}
-        <p class="prev">上一篇：<a href="{{ BASE_PATH }}{{ page.previous.url }}" title="{{ page.previous.title }}">{{ page.previous.title }}</a></p>
+        <p class="prev"><a href="{{ BASE_PATH }}{{ page.previous.url }}" title="{{ page.previous.title }}">{{ page.previous.title }}</a></p>
       {% else %}
-        <p class="prev disabled"><a>null.</a></p>
+        <p class="prev disabled"><a>not.</a></p>
       {% endif %}
 	  <br />
       {% if page.next %}
