@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=100%; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+<title>简单拼图游戏</title>
+<style>
+body{overflow:hidden;}
+*{margin:0; padding:0;}
+#control{margin:5px 0;}
+button{font-size:14px; line-height:2; padding:0 10px; -webkit-transition: all .25s linear;}
+button:hover{-webkit-transform:scale(1.1);}
+#view{width:300px; height:450px; background:url(img/a.png) no-repeat 0 0 rgba(0 0 0 0.2);}
+#view div{position:absolute; width:150px; height:150px; cursor:move; -webkit-transition: all .25s linear;}
+#view div:hover{z-index:10; box-shadow:inset 0 0 3px white; -webkit-transition:none;}
+#x_01{left:0; top:0; background:url(img/x_01.png) no-repeat 0 0;}
+#x_02{left:150px; top:0; background:url(img/x_02.png) no-repeat 0 0;}
+#x_03{left:0; top:150px; background:url(img/x_03.png) no-repeat 0 0;}
+#x_04{left:150px; top:150px; background:url(img/x_04.png) no-repeat 0 0;}
+#x_05{left:0; top:300px; background:url(img/x_05.png) no-repeat 0 0;}
+#x_06{left:150px; top:300px; background:url(img/x_06.png) no-repeat 0 0;}
+#drag{position:absolute;top:0;right:10px; width:300px; height:450px;background:url(img/a.png) no-repeat 0 0; display:none;}
+</style>
+</head>
+
+<body>
+<div id="view">
+<div id="x_01"></div>
+<div id="x_02"></div>
+<div id="x_03"></div>
+<div id="x_04"></div>
+<div id="x_05"></div>
+<div id="x_06"></div>
+<!--
+<img src="img/x_01.png" id="x_01" />
+<img src="img/x_02.png" id="x_02" />
+<img src="img/x_03.png" id="x_03" />
+<img src="img/x_04.png" id="x_04" />
+<img src="img/x_05.png" id="x_05" />
+<img src="img/x_06.png" id="x_06" />
+-->
+</div>
+<div id="control"><button onClick="recover()">恢复</button> <button onClick="start()">打散</button></div>
+<div id="drag"></div>
+<script>
+//取得鼠标事件中光标相对于页面的位置
+ function getPageX(e){
+	 e.preventDefault();
+	 if(e.touches){
+	   var touch = e.touches[0];
+	   return touch.clientX;
+	 }
+	 return e.pageX || e.clientX + document.body.scrollLeft;
+ }
+ function getPageY(e){
+	 e.preventDefault();
+	 if(e.touches){
+	   var touch = e.touches[0];
+	   return touch.clientY;
+	 }
+	 return e.pageY || e.clientY + document.body.scrollTop;
+ }
+ //取得鼠标事件中光标相对于事件目标元素的位置
+ function getElementX(e){
+	 return e.layerX || e.offsetX;
+ }
+ function getElementY(e){
+	 return e.layerY || e.offsetY;
+ }
+ 
+var $ = function(id){
+	return document.getElementById(id);
+}
+ 
+var moveHandler = function(e){
+	var x = getPageX(e) - ex; 
+	var y = getPageY(e) - ey;
+	//alert(x + ' ' + y);
+	this.style['left'] = Math.round(x) + 'px';
+	this.style['top'] = Math.round(y) + 'px';
+}
+//添加事件处理器
+var addEventHandler = function(id,type,func){
+	$(id).addEventListener(type,func,false);
+}
+
+//随机打乱数组
+function randomsort(a, b) {
+        return Math.random()>.5 ? -1 : 1;//用Math.random()函数生成0~1之间的随机数与0.5比较，返回-1或1
+}
+//恢复图片
+function recover(){
+	for(var i = 0; i<elements.length; i++){
+		elements[i].style['left'] = position[i].x;
+		elements[i].style['top'] = position[i].y;
+	}
+}
+//打散图片
+function start(){
+    position2.sort(randomsort);
+	for(var i = 0; i<elements.length; i++){
+		elements[i].style['left'] = position2[i].x;
+		elements[i].style['top'] = position2[i].y;
+	}
+}
+//游戏初始化
+window.onload = function(){
+	window.element = ['x_01','x_02','x_03','x_04','x_05','x_06'];
+	window.position = [];
+	window.position2 = [];
+	window.elements = [];
+	for(var i = 0 ; i< element.length; i++){
+	var posi = {};
+	var posi2 = {};
+	posi.x = posi2.x = window.getComputedStyle($(element[i]),null).left;
+	posi.y = posi2.y = window.getComputedStyle($(element[i]),null).top;
+	position.push(posi);
+	position2.push(posi2);
+	elements.push($(element[i]));
+    addEventHandler(element[i],'mousedown',function(e){
+								   window.ex = getElementX(e);
+								   window.ey = getElementY(e);
+							       this.addEventListener('mousemove',moveHandler,false);
+								});	
+
+    addEventHandler(element[i],'mouseup',function(e){
+								   this.removeEventListener('mousemove',moveHandler,false);
+								   addmoveHandler();
+								});
+	////添加touch事件
+    addEventHandler(element[i],'touchstart',function(e){
+								   window.ex = 0;
+								   window.ey = 0;
+							       this.addEventListener('touchmove',moveHandler,false);
+								});	
+
+    addEventHandler(element[i],'touchend',function(e){
+								   this.removeEventListener('touchmove',moveHandler,false);
+								   addmoveHandler();
+								});
+	
+	////////////////
+	
+     }
+	 
+	var text = document.createTextNode('');
+	document.body.appendChild(text);
+	$('view').onmousemove = function(e){
+	    var e = e || window.event;
+		text.nodeValue = getPageX(e) + '-' + getPageY(e) + '-' + getElementX(e) + '-' + getElementY(e);
+	}
+}
+</script>
+</body>
+</html>

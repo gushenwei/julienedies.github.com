@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> CSS3标签文字</title>
+<style>
+ul.starbursts {
+	list-style:none;
+	margin:20px 0;
+	padding:0;
+	overflow:hidden;
+}
+ul.starbursts li {
+	float:left;
+	width:15em;
+	height:15em;
+	position:relative;
+}
+ul.starbursts * {
+	margin:0;
+	padding:0;
+	line-height:1.2em;
+}
+ul.starbursts li a,ul.starbursts li span{
+	display:block;
+	text-decoration:none;
+	color:#fff;
+	font-size:1em;
+	text-align:center;
+	font-weight:bold;
+}
+/* Starburst 5 */
+.starburst5 {
+	width:6em;
+	height:6em;
+	background:#7e00df;
+	position:relative;
+	top:2em;
+	left:2em;
+	text-shadow:0 0 5em #04b3df, 0 0 4px #ff0;
+	-webkit-transform:rotate(-56.5deg);
+}
+.starburst5 span {
+	width:6em;
+	height:6em;
+	background:#7e00df;
+	-webkit-transform:rotate(-45deg);
+	-webkit-transition: -webkit-transform 1s ease;
+	-webkit-animation:a1 2s ease 1s 1;
+}
+.starburst5:hover span {
+	-webkit-transform:rotate(11.25deg);
+}
+
+@-webkit-keyframes a1{
+	0%{ -webkit-transform:rotate(-45deg); }
+	50%{ -webkit-transform:rotate(11.25deg); }
+	100%{ -webkit-transform:rotate(-45deg); }
+}
+
+/* Starburst 6 */
+.starburst6 {
+	display:block;
+	width:8em;
+	height:2.5em;
+	-webkit-transform:rotate(180deg);
+	position:relative;
+	top:3.75em;
+	left:2em;
+}
+.starburst6 span {
+	margin:0 auto;
+	width:6em;
+	height:2.5em;
+	background:#f00;
+	text-shadow:0 0 3em #04b3df, 0 0 4px #0077e5;
+	-webkit-transform:rotate(45deg);
+	-webkit-transition:all 0.6s ease-out;
+	-webkit-animation:a2 1.2s ease 1s 2;
+}
+.starburst6:hover span {
+	background:#f90;
+	width:8em;
+	-webkit-border-radius:2.5em;
+	text-shadow:0 0 3em #f00, 0 0 4px #f88;
+}
+.starburst6:hover {
+	left:2em;
+	width:8em;
+	background:transparent;
+}
+@-webkit-keyframes a2{
+	0%{ background:#f00; width:6em; text-shadow:0 0 3em #04b3df, 0 0 4px #0077e5;}
+	50%{ background:#f90; width:8em; text-shadow:0 0 3em #f00, 0 0 4px #f88; -webkit-border-radius:2.5em; }
+	100%{ background:#f00; width:6em; text-shadow:0 0 3em #04b3df, 0 0 4px #0077e5; }
+}
+
+/* Starburst 7 */
+.starburst7 {
+	width:8em;
+	height:3em;
+	position:relative;
+	top:3.75em;
+	left:1em;
+}
+.starburst7 span {
+	width:8em;
+	height:2.5em;
+	background:#00cd00;
+	-webkit-transform:rotate(-45deg);
+	-webkit-transition: all 0.8s ease-out;
+	-webkit-border-radius:2em;
+	text-shadow:1px 1px 1px #000;
+	-webkit-animation:a3 1.6s ease-out 1s 1;
+}
+.starburst7:hover {
+	background:transparent;
+}
+.starburst7:hover span {
+	-webkit-transform:rotate(52.5deg);
+	-webkit-transform:translate(1em, 0)
+}
+@-webkit-keyframes a3{
+	0%{ -webkit-transform:rotate(-45deg);}
+	50%{ -webkit-transform:rotate(52.5deg);-webkit-transform:translate(1em, 0); }
+	100%{ -webkit-transform:rotate(-45deg); }
+}
+</style>
+</head>
+<body>
+
+<ul class="starbursts">
+	<li>
+		<a href="#" class="starburst1"><span><br />文字<br />CSS3<br />广告!</span></a>
+	</li>
+	<li>
+		<a href="#" class="starburst2"><span><span><span><br />文字<br />CSS3<br />广告!</span></span></span></a>
+	</li>
+	<li>
+		<a href="#" class="starburst3"><span><span><span><span><span><span><span><span><br />文字<br />CSS3<br />广告!</span></span></span></span></span></span></span></span></a>
+	</li>
+	<li>
+		<a href="#" class="starburst4"><span><span><span><span><br />文字<br />CSS3<br />广告!</span></span></span></span></a>
+	</li>
+	<li>
+		<a href="#" class="starburst5"><span><span><span><span><span><span><span><br />文字<br />CSS3<br />广告!</span></span></span></span></span></span></span></a>
+	</li>
+	<li>
+		<a href="#" class="starburst6"><span><span><span><span>文字 CSS3<br />广告!</span></span></span></span></a>
+	</li>
+	<li>
+		<a href="#" class="starburst7"><span><span><span><span><span><span><span><span><span><span><span><span><span><span><span><span>文字 CSS3<br />广告!</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></a>
+	</li>
+</ul>
+
+</body>
+</html>

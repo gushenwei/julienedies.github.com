@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title> CSS3图片幻灯</title>
+<style>
+body {
+	background-color: #3f3f3f;
+}
+@-webkit-keyframes slide{
+	0%{-webkit-transform:scale(1) translate(-700px,0);}
+	50%{-webkit-transform:scale(1) translate(0px,0);}
+	100%{-webkit-transform:scale(1) translate(-700px,0);}
+}
+@-webkit-keyframes fade{
+	0%{opacity:1;}
+	50%{opacity:0;}
+	100%{opacity:1;}
+}
+#test{
+	position:relative;
+}
+#test img{
+	position:absolute;
+}
+#test img:nth-child(1){
+	-webkit-animation:fade 3s ease 1.5s infinite;
+}
+#test img:nth-child(2){
+	-webkit-animation:fade 3s ease 0 infinite;
+}
+
+</style>
+</head>
+<body>
+<div id="test"> <img src="img/megatron.png" alt="Megatron"> <img src="img/optimus.png" alt="optimus"> </div>
+</body>
+</html>

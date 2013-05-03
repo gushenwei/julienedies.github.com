@@ -2,479 +2,98 @@
 <html>
 <head>
 <meta charset="utf-8">
-<script src="js/jquery-1.7.1.js"></script>
-<script src="js/jquery.ui.core.js"></script>
-<script src="js/jquery.ui.widget.js"></script>
-<script src="js/jquery.ui.mouse.js"></script>
-<script src="js/jquery.ui.draggable.js"></script>
-<script src="js/jquery.easing.min.js"></script>
+<meta name="viewport" content="width=100%; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="cache-control" content="no-cache" />
+<meta http-equiv="expires" content="0" />
+<title> demo index </title>
 <style>
-*{margin;0;padding:0;list-style:none;}
-
-#view{
-	position:relative;
-	width:345px;
-	height:345px;
-	border:solid 3px gray;
-	overflow:hidden;
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote, th, td {
+	padding: 0;
+	margin: 0;
 }
-#box{
-	position:absolute;
-	width:720px;
-	height:340px;
-	top:0;
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
 }
-.list {
-	position:absolute;
-	width:340px;
-	height:340px;
+fieldset, img {
+	border: 0;
 }
-.item {
-	position:absolute;
-	background:#FFF9D5;
-	width:80px;
-	height:80px;
+address, caption, cite, code, dfn, em, strong, th, var {
+	font-weight: normal;
+	font-style: normal;
+}
+ol, ul {
+	list-style: none;
+}
+caption, th {
+	text-align: left;
+}
+h1, h2, h3, h4, h5, h6 {
+	font-weight: normal;
+	font-size: 100%;
+}
+q:before, q:after {
+	content:'';
+}
+abbr, acronym {
+	border: 0;
+}
+a {
+	text-decoration:none;
+}
+/*样式重置 end*/
+li {
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(184, 198, 223, 1)), color-stop(100%, rgba(109, 136, 183, 1))); 
+	background: -webkit-linear-gradient(top, rgba(184, 198, 223, 1) 0%, rgba(109, 136, 183, 1) 100%);
+	background: linear-gradient(top, rgba(184, 198, 223, 1) 0%, rgba(109, 136, 183, 1) 100%); 
+}
+li {
+	height:3em;
+	line-height:3em;
 	border-radius:5px;
-	cursor: move;
-	overflow:hidden;
+	margin:1px;
+	font-family:"微软雅黑";
+	font-weight:bold;
 }
-.item img {
-	width:100%;
-	opacity:0;
+li a {
+	color:#fff;
+	padding:0 0 0 10px;
+	text-shadow: 0px 0px 20px #3995bd;
+    -webkit-transition: all .1s ease-in-out;
 }
-.v{}
-.active{-webkit-box-shadow: 5px 5px 7px #999, -5px -5px 7px #999;z-index:1000;border:solid 1px blue;}
+li a:hover {
+	padding-left:30px;
+	text-shadow: 0px 0px 40px #3995bd;
+}
+.explain{line-height:2; color:black; background-color:#FC6; text-align:center; border:solid 1px black; margin:5px;}
 </style>
 </head>
 <body>
-<div id="view">
-<div id="box">
-	<div class="list" id="a">
-		<div class="item" id="az">a</div>
-		<div class="item" id="b">b</div>
-		<div class="item" id="c">c</div>
-		<div class="item" id="d">d</div>
-		<div class="item" id="e">e</div>
-		<div class="item" id="f">f</div>
-		<div class="item" id="g">g</div>
-		<div class="item" id="h">h</div>	
-		<div class="item"></div>	
-		<div class="item"></div>			
-	</div>
-	<div class="list" id="b">
-		<div class="item" id="a">i</div>
-		<div class="item" id="b">j</div>
-		<div class="item" id="c">k</div>
-		<div class="item" id="d">m</div>
-		<div class="item" id="e">n</div>
-		<div class="item" id="f">o</div>
-		<div class="item" id="g">p</div>
-		<div class="item" id="h">q</div>	
-		<div class="item"></div>
-		<div class="item"></div>	
-		<div class="item"></div>	
-	</div>
-	
-	<div class="list" id="c">
-		<div class="item" id="a">i1</div>
-		<div class="item" id="b">j1</div>
-		<div class="item" id="c">k1</div>
-		<div class="item" id="d">m1</div>
-		<div class="item" id="e">n1</div>
-		<div class="item" id="f">o1</div>
-		<div class="item" id="g">p1</div>
-		<div class="item" id="h">q1</div>	
-		<div class="item"></div>
-		<div class="item"></div>	
-		<div class="item"></div>	
-	</div>	
-	
-	<div class="list" id="d">
-		<div class="item" id="a">i2</div>
-		<div class="item" id="b">j2</div>
-		<div class="item" id="c">k2</div>
-		<div class="item" id="d">m2</div>
-		<div class="item" id="e">n2</div>
-		<div class="item" id="f">o2</div>
-		<div class="item" id="g">p2</div>
-		<div class="item" id="h">q2</div>	
-		<div class="item"></div>
-		<div class="item"></div>	
-		<div class="item"></div>	
-	</div>				
-</div>	
-</div>
-<script>
-
-/*
- * 可拖动
- */
-$.fn.dragOrderAble = function(){
-	var $th = $(this);
-	var parent = $th.parent();
-	var overLeft = parent.data('data-overLeft');
-	var overRight = parent.data('data-overRight');
-	var delay = parent.data('data-delay') || 10;
-	
-    $th.draggable({
-        delay: delay,
-        start: function(){
-            $th.trigger('dragOrder.dragStart');
-        },
-        drag: function(){
-            var position = $th.position();
-            var x = position.left;
-            var y = position.top;
-            
-            if (x > overRight && !$th.data('data-overFlowRight')) {
-                $th.data('data-overFlowRight', 1);
-                $th.trigger('dragOrder.overFlow', [{
-                    direction: 'right'
-                }]);
-            }
-            if (x < overLeft && !$th.data('data-overFlowLeft')) {
-                $th.data('data-overFlowLeft', 1);
-                $th.trigger('dragOrder.overFlow', [{
-                    direction: 'left'
-                }]);
-            }
-        },
-        stop: function(){
-            $th.trigger('dragOrder.dragStop');
-        }
-    });
-	
-	return this;
-};
-
-/*
- * 拖动排序
- */
-$.fn.dragOrder = function(conf){
-	var count = 0;
-	var index = conf.index;
-	var line = conf.line;
-	var column = conf.column;
-	var layout = conf.layout;
-	var delay = conf.delay || 10;
-	var isDrag = conf.isDrag || function(){return true;};
-	var overLeft = -layout/2.5;
-	var overRight = (column-0.5) * layout;
-	var dragOverFlowCall = conf.dragOverFlowCall;
-	var dragStopCall = conf.dragStopCall;
-	var dragStartCall = conf.dragStartCall;
-	
-	var guid = this.data('data-guid');
-	
-	this.data('data-delay',delay);
-	this.data('data-layout',layout);
-	this.data('data-column',column);
-	
-	this.data('data-overLeft',overLeft);
-	this.data('data-overRight',overRight);
-	
-	this.data('data-dragOverFlowCall',dragOverFlowCall);
-	this.data('data-dragStopCall',dragStopCall);
-	this.data('data-dragStartCall',dragStartCall);	
-	
-    if (!guid) {
-		guid = (function(){
-            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c){
-                var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
-                return v.toString(16);
-            }).toUpperCase();
-        })();
-		
-        this.data('data-guid', guid);
-    }
-	
-	
-    this.find('.item').each(function(i){
-		var that = $(this);
-		var x, y;
-        var aniType = '';
-		var aniTime = 500;
-		
-		that.data('data-order', i);
-		
-		
-        if (i === index) {
-            aniType = 'easeOutBounce';
-            aniTime = 1000;
-        }
-        
-        x = i % column * layout + 'px';
-        y = Math.floor(i/column) * layout + 'px';
-        
-        that.animate({
-            'left': x,
-            'top': y 
-        }, aniTime, aniType, function(){
-        });
-		
-		if(!isDrag(that)){
-			return;
-		}
-		
-		count += 1;
-		that.data('data-parentGuid',guid);
-		
-		dragStartCall && that.bind('dragOrder.dragStart',dragStartCall);
-		dragStopCall && that.bind('dragOrder.dragStop',dragStopCall);
-		dragOverFlowCall && that.bind('dragOrder.overFlow',dragOverFlowCall); 
-		       
-        that.dragOrderAble();
-        
-    });
-	
-	this.data('data-count',count);
-	return this;
-};
-
-/*
- * 添加项
- */
-$.fn.dragOrderAddItem = function(dragItem){
-	var count = this.data('data-count');	
-	var dragOverFlowCall = this.data('data-dragOverFlowCall');
-	var dragStopCall = this.data('data-dragStopCall');
-	var dragStartCall = this.data('data-dragStartCall');
-	
-	dragItem.insertAfter(this.find('.item').eq(count-1));
-		
-    if (dragItem.data('data-order') === undefined) {
-        dragStartCall && dragItem.bind('dragOrder.dragStart', dragStartCall);
-        dragStopCall && dragItem.bind('dragOrder.dragStop', dragStopCall);
-        dragOverFlowCall && dragItem.bind('dragOrder.overFlow', dragOverFlowCall);
-		dragItem.dragOrderAble();
-    }
-	
-    dragItem.removeData('data-overFlowLeft');
-    dragItem.removeData('data-overFlowRight');
-    dragItem.removeData('data-isOverFlow');
-	
-	dragItem.data('data-order',count);
-	dragItem.data('data-parentGuid',this.data('data-guid'));
-	
-	this.data('data-count',count+1);
-	
-	this.dragOrderReOrder(dragItem);
-	
-	return this;
-};
-
-
-/*
- * 移出项
- */
-$.fn.dragOrderRemoveItem = function(dragItem){
-    var that = this;
-    var count = this.data('data-count');
-    
-    this.find(dragItem).fadeOut(200, function(){
-        dragItem.remove();
-        that.dragOrderReOrder();
-    });
-    
-    this.data('data-count', count - 1);
-    
-    this.dragOrderReOrder();
-    
-    return this;
-};
-
-/*
- * 移出项恢复
- */
-$.fn.dragOrderRecoverItem = function(dragItem){
-	var order = dragItem.data('data-order');
-	var count = dragItem.data('data-count');
-	var sib = this.find('.item').eq(order);
-	
-	dragItem.removeData('data-overFlowLeft');
-    dragItem.removeData('data-overFlowRight');
-    dragItem.removeData('data-isOverFlow');
-	
-	if(sib.length){
-		dragItem.insertBefore(sib);
-	}else{
-		dragItem.appendTo(this);
-	}
-	
-	this.dragOrderReOrder(dragItem);
-};
-
-/*
- * 排序
- */
-$.fn.dragOrderReOrder = function(dragItem){
-	
-    var guid = this.data('data-guid');
-    var layout = this.data('data-layout');
-    var column = this.data('data-column');
-    var count = this.data('data-count');
-    var position;
-    var x;
-    var y;
-    var order;
-    var order2;
-    var sib;
-    var lab;
-	
-    if (dragItem) {
-		
-        position = dragItem.position();
-        x = position.left;
-        y = position.top;
-        order = dragItem.data('data-order');
-        
-
-        x = Math.ceil(x / layout);
-        y = Math.round(y / layout);
-        
-        order2 = y * column + x - 1;
-        
-        if (order2 >= 0) {
-            sib = this.find('.item').eq(order2);
-            if (order > order2) {
-                order2 += 1;
-            }
-        }
-        else {
-            sib = this.find('.item').eq(0);
-            order2 = 0;
-            lab = 1;
-        }
-        
-        if (sib.length && sib[0] !== dragItem[0] && sib.data('data-parentGuid')) {
-            if (!lab) {
-                dragItem.insertAfter(sib);
-            }
-            else {
-                dragItem.insertBefore(sib);
-            }
-        }
-        else {
-            x = order % column * layout + 'px';
-            y = Math.floor(order / column) * layout + 'px';
-            dragItem.animate({
-                'left': x,
-                'top': y
-            }, 1000, 'easeOutBounce', function(){
-            });
-			
-        }
-    }
- 
-    this.find('.item').each(function(i){
-        var $th = $(this);
-        var x, y;
-        var aniType = '';
-        var aniTime = 500;
-        
-        $th.data('data-order', i);
-        
-        if (i === order2) {
-            aniType = 'easeOutBounce';
-            aniTime = 1000;
-        }
-        
-        x = i % column * layout + 'px';
-        y = Math.floor(i / column) * layout + 'px';
-        
-        $th.animate({
-            'left': x,
-            'top': y
-        }, aniTime, aniType, function(){
-        });
-    });
-    
-    return this;
-};
-
-
-/*
- * 程序初始化
- */
-
-var app = {};
-app.activeList = $('.list').eq(0);
-
-$('.list').each(function(i){
-
-    $(this).data('data-index', i).css({
-        'left': i * 345 + 5 + 'px',
-        'top': '5px'
-    }).dragOrder({
-        column: 4, //列数
-        layout: 85,//布局间隔
-        delay:10,  //按下多少毫秒响应
-        isDrag:function(dragItem){ //列表项是否可以拖动，返回布尔值，参数为拖动对象
-			return !!dragItem.attr('id');
-		},
-        dragOverFlowCall: function(e, param){ //拖动对象拖动溢出回调函数，回调函数会传入溢出方向参数，this是拖动对象
-            var dragObj = $(this);
-            var direction = param.direction;
-            var activeList = app.activeList;
-            var index;
-            var w = $('#view').width();
-            var $sib;
-            
-            if (direction == 'left') {
-                $sib = activeList.prev();
-            }
-            else {
-                $sib = activeList.next();
-            }
-            
-            if ($sib.length) {
-				!app.parentList && (app.parentList = dragObj.parent());
-                dragObj.appendTo('#view');
-                app.activeList = $sib;
-                dragObj.data('data-isOverFlow', 1);
-                
-                $('#box').animate({
-                    'left': -($sib.data('data-index') * w) + 'px'
-                }, 1000, '', function(){
-                    dragObj.removeData('data-overFlowLeft');
-                    dragObj.removeData('data-overFlowRight');
-                });
-            }
-        },
-		dragStartCall: function(){  //拖动开始回调函数，this是拖动对象
-			$(this).addClass('active');
-		},		
-		dragStopCall: function(e,param){  //拖动停止回调函数，this是拖动对象
-				var dragObj = $(this);
-				
-				dragObj.removeClass('active');
-				
-				if (!dragObj.data('data-isOverFlow')) {
-					//拖动项排序
-					dragObj.parent().dragOrderReOrder(dragObj);
-				}
-				else {
-                    if ((app.parentList && app.parentList[0]) === (app.activeList && app.activeList[0])) {
-						//拖动项恢复
-                        app.activeList.dragOrderRecoverItem(dragObj);						
-                    }
-                    else {
-						//从一个列表中移除拖动项，如果还要继续使用此拖动项，移除前需要从父元素中插入到其它位置，否则会被彻底删除
-                        app.parentList && app.parentList.dragOrderRemoveItem(dragObj);
-						//添加到另一个列表中
-                        app.activeList.dragOrderAddItem(dragObj);
-                    }
-					delete app.parentList;
-				}
-		}
-
-    }).delegate('.item','dblclick',function(){
-		//彻底删除拖动项
-		$(this).parent().dragOrderRemoveItem($(this));
-	});
-    
-});
-
-</script>
+<div class="explain"> 说明：因为所有示例强调概念，主要通过html5和css3实现，请用webkit内核浏览器浏览。</div>
+<ul id="nav">
+  <li><a href="star.html">星形文本1</a>&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;<a href="star_1.html">星形文本2</a></li>
+  <li><a href="transformers.html">变形1</a></li>
+  <li><a href="box.html">盒子</a></li>
+  <li><a href="3d_txt.html">立体文字</a></li>
+  <li><a href="touch.html">触摸事件模型测试</a></li>
+  <li><a href="jigsaw.html">拼图游戏</a></li>
+  <li><a href="css3_animation.html">CSS3 banner</a></li>
+  <li><a href="ball.html">小球</a></li>
+  <li><a href="txt.html">文本动画</a></li>
+  <li><a href="meow.html">说话的猫</a></li>
+  <li><a href="draw.html">绘画板</a></li>
+  <li><a href="transform.html">变形2</a></li>
+  <li><a href="unlock.html">滑动解锁</a></li>
+  <li><a href="dj.html">手动DJ</a></li>
+  <li><a href="view.html">看图</a></li>
+  <li><a href="guess.html">猜猜</a></li>
+  <li><a href="hacker.html">流动文字</a></li>
+  <li><a href="animation.html">css3动画</a></li>
+  <li><a href="clock.html">css时钟</a></li>
+  <li><a href="crash.html">射击</a>&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;<a href="crash2.html">碰撞</a></li>
+  <li><a href="threed.html">立体展示</a></li>
+  <li><a href="movie.html">图片视频</a></li>
+</ul>
 </body>
 </html>

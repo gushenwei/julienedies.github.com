@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title> </title>
+<style>
+body {
+	background-color:#000;
+}
+#test{
+/*	-webkit-transition-property: all;
+	-webkit-transition-duration: 1s;
+	-webkit-transition-timing-function:linear;
+	-webkit-transition-delay:0s;
+*/	-webkit-transition:all 1s linear 0;
+}
+#test.active {
+/*	-webkit-animation-name: slide;
+	-webkit-animation-duration: 3s;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-timing-function: ease-in-out; 
+	-webkit-animation-delay:0s;
+*/	-webkit-animation:pulsate 2s ease 0 infinite;
+}
+@-webkit-keyframes slide{
+	0%{-webkit-transform:scale(1) translate(-100px,0);}
+	50%{-webkit-transform:scale(1) translate(200px,0);}
+	100%{-webkit-transform:scale(1) translate(-100px,0);}
+}
+</style>
+</head>
+<body>
+<div id="container">
+
+</div>
+<script>
+
+</script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=100%; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+<title>图片视频</title>
+<style>
+@-webkit-keyframes title {
+0% {
+text-shadow:0px 0px 15px #000;
+left:-240px;
+}
+5% {
+text-shadow: 0px 0px 70px #0066CC;
+color: #0066CC;
+opacity:0.9;
+left:60px;
+}
+90% {
+text-shadow: 10px 10px 70px #0066CC;
+left:60px;
+opacity:0.9;
+/*-webkit-transform: rotate(30deg) skewY(-30deg) scaleY(2);*/
+}
+100% {
+text-shadow: 0px 0px 15px #aac7d4;
+opacity:0;
+left:-240px;
+/*-webkit-transform: rotate(30deg) skewY(-30deg) scaleY(2);*/
+}
+}
+#container {
+	width:320px;
+	height:240px;
+	position:absolute;
+	-webkit-transition:all 1s linear 0;
+}
+h1 {
+    color: #0066CC;
+	background-color:rgba(0,0,0,1);
+	position:absolute;
+	left:-240px;
+	top:40px;
+	padding:10px 20px;
+	-webkit-animation: title 4s ease-out 1;
+	opacity:0;
+}
+#container:hover {
+	/*-webkit-transform: rotate(90deg) skewY(-0deg);*/
+}
+</style>
+</head>
+<body>
+<div id="container">
+  <h1>hello world</h1>
+  <img id="frame" src="img7/movie0001.png" /> </div>
+<script>
+  var x =1, 
+      c = '', 
+      frame = 1403,
+	  timer = null,
+	  l = function(){x = x-- > 0 ? (function(){return x})() : (function(){return frame})();},
+	  r = function(){x = x++ < frame ? (function(){return x})() : (function(){timer && clearTimeout(timer); return 1})();};
+	  
+  //计算帧数  
+  var count = function(func){
+	  func();
+	  if(x<10) return c = '000'+ x;
+	  if(x<100) return c = '00'+ x;
+	  if(x<1000) return c = '0'+ x;
+	  return c = x;
+	  }
+ //播放	  
+ var play = function(l,d){
+	 for(var i = 0; i < l; ++i){
+		 window.timer = setTimeout(function(){
+						count(d);
+						document.getElementById('frame').src = 'img7/movie' + c + '.png';		 
+							 },i*50);
+	 }
+ }
+ 
+ play(1403,r);
+</script>
+</body>
+</html>

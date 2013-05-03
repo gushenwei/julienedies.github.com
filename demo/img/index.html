@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width" />
+<title>猜猜</title>
+<style>
+*{margin:0;padding:0; }
+body {
+	background-color:#000;
+	color:#9F0;
+}
+#game {
+	width:440px;
+	height:440px;
+	overflow:hidden;
+}
+#game div {
+	width:100px;
+	height:100px;
+	float:left;
+	margin:5px;
+	background:url(images/bg.png) no-repeat 0 0;
+	-webkit-transition:all 0.5s ease;
+	overflow:hidden;
+}
+#game div img {
+	width:100px;
+	height:100px;
+	opacity:0;
+	-webkit-transition:all 0.5s ease;
+}
+#game div.none {
+	width:0!important;
+	margin:0!important;
+}
+.explain {
+	padding:15px 0;
+}
+</style>
+</head>
+<body>
+<div style="display:none;">
+<img src="images/a.png" id="_a">
+<img src="images/b.png" id="_b">
+<img src="images/c.png" id="_c">
+<img src="images/d.png" id="_d">
+<img src="images/e.png" id="_e">
+<img src="images/f.png" id="_f">
+<img src="images/g.png" id="_g">
+<img src="images/h.png" id="_h">
+<img src="images/i.png" id="_i">
+<img src="images/j.png" id="_j">
+</div>
+<div class="explain">选择相同的图片点击，打掉。成功打掉4对及以上，即可获取本公司产品免费试用机会一次。</div>
+<div id="game"> </div>
+<div id="info"></div>
+<script>
+
+ /***********************/
+ 	var width = function(){
+		return self.innerWidth || document.body.clientWidth;
+	};
+	
+	var height = function(){
+		return self.innerHeight || document.body.clientHeight;
+	} ;
+ 
+    var $ = function(selector){
+		return new _$(selector);
+		}
+	var _$ = function(selector){
+		this.dom = document.getElementById(selector.replace(/^\#/,''));
+	}
+		
+	_$.prototype = {
+		css:function(option){
+			for (var i in option){
+				this.dom.style[i] = option[i];
+			}
+			},
+		attr:function(name,value){
+			if(typeof value != 'undefined'){
+				this.dom.setAttribute(name,value);
+			}
+			return this.dom.getAttribute('name') || '';
+			},
+		width:function(){
+			return 480;
+		},
+		height:function(){
+			return 480;
+		}
+	}
+ 
+	  	  //定义容器适配函数				 
+	  var adaptive = function(wrap){
+		  var x = arguments.callee;
+		  var browser_p = ['-webkit-','-moz-','-ms-','-o-',''],transform = 'transform:',css = {},css2 = [],scale;
+		  var w_w = width(),
+			  w_h = height();
+		  if(w_w && w_h){
+				
+		  }else{
+				setTimeout(function(){x(wrap);},50);
+				return;
+		  }
+		  var stage = $(wrap),
+			  stage_w = stage.width(),
+			  stage_h = stage.height();
+		  if(stage_w - w_w >= 0){
+			  scale = (w_w / stage_w).toFixed(2), 
+				   x = '-' + ((stage_w - stage_w * scale)/2) + 'px',
+				   y = '-' + ((stage_h - stage_h * scale)/2) + 'px';
+		  }else{
+			  scale = (w_w / stage_w).toFixed(2),
+				   x = (stage_w * scale - stage_w)/2 + 'px',
+				   y = (stage_h * scale - stage_h)/2 + 'px';
+		  }
+		  var style = 'translate(' + x + ',' + y + ') scale(' + scale + ');';
+		  for(var i in browser_p){
+			  //css[browser_p[i] + transform] = style;
+			  css2.push(browser_p[i] + transform + style);
+		  }
+		  //stage.css(css);
+		  var s = stage.attr('style') != undefined ? stage.attr('style')+css2.join('') : css2.join('');
+		  stage.attr('style',s);
+	  }	
+	  
+	  adaptive('game');
+	 /************************************上面部分完成适配****************************************/
+	/****************************下面是游戏实现************************************************/
+var arr = new Array('a','b','c','d','e','f','g','h','i','j');
+var arr2 = [];
+var p = null;
+var that = null;
+var p1 = null;
+var geme = document.getElementById('game');
+var info = document.getElementById('info');
+function compare(e){
+	if(p){
+		  this.getElementsByTagName('img')[0].style['opacity'] = '1';
+		  that = this;
+		  p1 = p;
+		  if(this != p && this.title ==  p.title){
+			  setTimeout(function(){that.className = 'none'; p1.className = 'none';},500);
+			  var c = compare.count =  (compare.count || 0 ) + 1;
+			  if(c >= 4){
+				top.mInterface.goToAdTarget();  
+			  }
+		  }else{
+			  setTimeout(function(){ that.getElementsByTagName('img')[0].style['opacity'] = '0'; p1.getElementsByTagName('img')[0].style['opacity'] = '0';},500);
+		  }
+	  	  p = null;
+	}else{
+		  p = this;
+		  p.querySelector('img').style['opacity'] = '1';
+	}
+}
+function createElem(id,cl){
+	var elem = document.createElement('div');
+	var img = document.getElementById('_' + id).cloneNode(false);
+	append(elem,img);
+	elem.title = id;
+	elem.className = cl;
+	elem.addEventListener('click',compare,false);
+	return elem;
+}
+function append(parent,elem){
+	var parent = parent || document.body;
+	parent.appendChild(elem);
+}
+	
+for(var i = 0; i<16; i++){
+	var elem = createElem(arr2[i] = arr[Math.round(Math.random()*9)], 'box');
+	append(game,elem);
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=100%; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+<title>猜猜</title>
+<style>
+body {
+	background-color:#000;
+	color:#9F0;
+}
+#game {
+	width:440px;
+	height:440px;
+}
+#game div {
+	width:100px;
+	height:100px;
+	float:left;
+	margin:5px;
+	background:url(img3/bg.png) no-repeat 0 0;
+	-webkit-transition:all 0.5s ease;
+	overflow:hidden;
+}
+#game div img {
+	width:100px;
+	height:100px;
+	opacity:0;
+	-webkit-transition:all 0.5s ease;
+}
+#game div.none {
+	width:0!important;
+	margin:0!important;
+}
+.explain {
+	padding:15px 0;
+}
+</style>
+</head>
+<body>
+<div class="explain">选择相同的图片点击，打掉。</div>
+<div id="game"> </div>
+<div id="info"></div>
+<script>
+var arr = new Array('a','b','c','d','e','f','g','h','i','j');
+var arr2 = [];
+var p = null;
+var that = null;
+var p1 = null;
+var geme = document.getElementById('game');
+var info = document.getElementById('info');
+function compare(e){
+	if(p){
+		  this.querySelector('img').style['opacity'] = '1';
+		  that = this;
+		  p1 = p;
+		  if(this != p && this.title ==  p.title){
+			  setTimeout(function(){that.className = 'none'; p1.className = 'none';},500);
+		  }else{
+			  setTimeout(function(){ that.querySelector('img').style['opacity'] = '0'; p1.querySelector('img').style['opacity'] = '0';},500);
+		  }
+	  	  p = null;
+	}else{
+		  p = this;
+		  p.querySelector('img').style['opacity'] = '1';
+	}
+}
+function createElem(id,cl){
+	var elem = document.createElement('div');
+	var img = new Image();
+	img.src = 'img3/' + id + '.png';
+	append(elem,img);
+	elem.title = id;
+	elem.className = cl;
+	elem.addEventListener('click',compare,false);
+	return elem;
+}
+function append(parent,elem){
+	var parent = parent || document.body;
+	parent.appendChild(elem);
+}
+	
+for(var i = 0; i<16; i++){
+	var elem = createElem(arr2[i] = arr[Math.round(Math.random()*9)], 'box');
+	append(game,elem);
+}
+</script>
+</body>
+</html>

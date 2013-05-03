@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=100%; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+<title>盒子</title>
+<style>
+#game{width:180px; height:180px;}
+.box{width:50px; height:50px; float:left; margin:5px; background-color:#9C0; -webkit-transition:all 0.5s ease;}
+.box:hover{background-color:rgba(0,0,0,0);}
+#box0{cursor: url(cursor/0031.cur), default;}
+#box1{cursor: url(cursor/DOLPHIN.ICO), default;}
+#box2{cursor: url(cursor/hzm_GM2.ico), default;}
+#box3{cursor: url(cursor/01415.ico), default;}
+#box4{cursor: url(cursor/sor_GM1.ico), default;}
+#box5{cursor: url(cursor/0135.ico), default;}
+#box6{cursor: url(cursor/0036.cur), default;}
+#box7{cursor: url(cursor/0034.cur), default;}
+#box8{cursor: url(cursor/0032.cur), default;}
+</style>
+</head>
+<body>
+<div id="game">
+
+</div>
+<script>
+function createElem(id,cl){
+	var elem = document.createElement('div');
+	elem.id = id;
+	elem.className = cl;
+	return elem;
+}
+function append(parent,elem){
+	var parent = parent || document.body;
+	parent.appendChild(elem);
+}
+	
+for(var i = 0; i<9; i++){
+	var elem = createElem('box' + i, 'box');
+	append(document.getElementById('game'),elem);
+}
+</script>
+</body>
+</html>

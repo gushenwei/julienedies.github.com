@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>̬小球</title>
+<style type="text/css">
+html, body {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	width: 100%;
+}
+.ball {
+	border-radius:25px;
+	margin-top:-50px;
+}
+.ball:hover {
+-webkit-animation:;
+}
+@-webkit-keyframes fall {
+ 0% {
+top:0;
+}
+ 100% {
+top:100%;
+}
+}
+.ball {
+	-webkit-animation:fall 2s ease-in-out 0 1;
+}
+#tips{
+	font-size:36px;
+	-webkit-transition:all 0.5s ease;
+	}
+#tips:hover{
+	opacity:0;
+}
+</style>
+</head>
+<body>
+<div id="media_box" style="position:absolute;">
+  <audio id="media" src="img/b.mp3" preload="preload" controls="controls" onended="this.currentTime = 0;this.pause();"></audio>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <p id="tips">随意点击</p>
+</div>
+<script>
+var audio = document.getElementById('media');
+//audio.addEventListener('ended',function(){audio.currentTime = 0;},false);
+var playAudio = function(audio){
+	if (window.HTMLAudioElement){
+		if(audio.constructor == String)
+		audio = document.getElementById(audio);
+		try{
+			//if(audio.paused)
+			audio.play();
+		}catch(e){
+			if(window.console && console.error("Error:" + e));
+		}
+	}
+}
+
+ //取得鼠标事件中光标相对于页面的位置
+ function getPageX(e){
+	 e.preventDefault();
+	 if(e.touches){
+	   var touch = e.touches[0];
+	   return touch.pageX;
+	 }
+	 return e.pageX || e.clientX + document.body.scrollLeft;
+ }
+ function getPageY(e){
+	 e.preventDefault();
+	 if(e.touches){
+	   var touch = e.touches[0];
+	   return touch.pageY;
+	 }
+	 return e.pageY || e.clientY + document.body.scrollTop;
+ }
+ //取得鼠标事件中光标相对于事件目标元素的位置
+ function getElementX(e){
+	 return e.layerX || e.offsetX;
+ }
+ function getElementY(e){
+	 return e.layerY || e.offsetY;
+ }
+
+var $ = function(id){
+	return document.getElementById(id);
+}
+//设置css
+var css = function(elem,optionObj){
+	for( var j in optionObj){
+		elem.style[j] = optionObj[j];
+	}
+}
+//添加事件处理函数
+var addEventHandler = function(elem,type,func){
+	elem.addEventListener(type,func,false);
+}
+
+var moveHandler = function(e){
+	var x = getPageX(e) - ex; 
+	var y = getPageY(e) - ey;
+	this.style['left'] = Math.ceil(x) + 'px';
+	this.style['top'] = Math.ceil(y) + 'px';
+}
+var show = function(){}
+
+function Ball(w,h,l,t){
+	var ball = document.createElement('div');
+	css(ball,{width:w || '50px',height:h || '50px',backgroundColor:'blue',position:'absolute',left:l,top:t});
+	ball.className = 'ball';
+    addEventHandler(ball,'mousedown',function(e){
+								   window.ex = getElementX(e);
+								   window.ey = getElementY(e);
+							       this.addEventListener('mousemove',moveHandler,false);
+								});	
+
+    addEventHandler(ball,'mouseup',function(e){
+								   this.removeEventListener('mousemove',moveHandler,false);
+								   addmoveHandler();
+								});
+	return ball;
+	
+}
+var clickHandler = function(e){
+	var x = getPageX(e) - 25 + 'px'; 
+	//var y = getPageY(e) - 25 + 'px';
+	document.body.appendChild(Ball('50px','50px',x));
+	setTimeout(function(){playAudio(audio)},1500);
+}
+
+addEventHandler(document.body,'click',clickHandler);
+addEventHandler(document.body,'touchstart',clickHandler);
+</script>
+</body>
+</html>

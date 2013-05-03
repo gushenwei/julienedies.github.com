@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=100%; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+<title>手动DJ</title>
+<style>
+@-webkit-keyframes rotate {
+ 0% {
+-webkit-transform:rotate(0deg);
+}
+ 100% {
+-webkit-transform:rotate(360000deg);
+}
+}
+.play {
+	-webkit-animation:rotate 800s ease 0s infinite;
+}
+#cd:hover {
+}
+#cd {
+	width:300px;
+	height:300px;
+	border-radius:150px;
+	background:url(img/cd1.png) no-repeat 0 0;
+	cursor: url(img/needle.png), default;
+	/*-webkit-animation:all 2s ease-in-out 0 1;*/
+}
+#media{
+	opacity:0;
+}
+.explain {
+	padding:15px 0 10px 0;
+}
+</style>
+</head>
+<body>
+<div class="explain">在cd上用手指按下或鼠标按下播放音乐。</div>
+<div id="cd"></div>
+<button onClick="toggle()">切换cd</button>
+<audio id="media" src="img/c.mp3" preload="preload"  controls="controls" onended="this.currentTime = 0;"></audio>
+<script>
+var toggle = function(){
+	var elem = document.getElementById('cd');
+	var cur = elem.getAttribute('cur');
+	elem.style['background-image'] = cur ? 'url(img/cd2.png)' : 'url(img/cd1.png)';
+	elem.setAttribute('cur', cur ? '' : 'cur');
+}
+var cd = function Cd(cd,audio){
+	var cd = cd;
+	var audio = audio;
+	addEvent(cd,'mousedown',downHandler);
+	addEvent(cd,'touchstart',downHandler);
+	addEvent(cd,'mouseup',upHandler);
+	addEvent(cd,'touchend',upHandler);
+	function downHandler(e){
+		if(window.timer){
+			clearTimeout(window.timer);
+		}
+		addEvent(cd,'mousemove',moveHandler);
+		cd.className = 'play';
+		audio.play();
+	}
+	function upHandler(e){
+		removeEvent(cd,'mousemove',moveHandler);
+		audio.pause();
+		window.timer = setTimeout(function(){cd.className = '';},300);
+	}
+		
+	function moveHandler(e){
+		audio.play();
+	}
+	
+	function addEvent(elem,type,func){
+		elem.addEventListener(type,func,false);
+	}
+	function removeEvent(elem,type,func){
+		elem.removeEventListener(type,func,false);
+	}
+	
+}
+cd(document.getElementById('cd'),document.getElementById('media'));
+</script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=100%; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+<title>嵌套图片</title>
+<style>
+body { padding:0; background-color:#000; }
+#view { width:360px; height:280px; position:absolute; left:50%; top:50%; margin:-140px 0 0 -180px; overflow:hidden; }
+#view div { position:absolute;-webkit-transition:all 1s ease-out 0;}
+#view img { position:absolute; cursor:pointer; }
+#p { cursor:auto!important; }
+#p.view { -webkit-transform:scale(2.4); top:-280px; left:-340px; }
+#p_1 { -webkit-transform:scale(0.38); top:95px; left:120px; }
+#p_1.view { -webkit-transform:scale(3.2); top:-560px; left:-460px; }
+#p_1.view2 { -webkit-transform:scale(3.2); top:-580px; left:-880px; }
+#p_1_1 { -webkit-transform:scale(0.27, 0.32); top:146px; left:154px; }
+#p_1_1.view { -webkit-transform:scale(3.6); top:-320px; left:-400px; }
+#p_1_1_1 { -webkit-transform:scale(0.36, 0.4); top:96px; left:130px;}
+#p_1_1_1.view { -webkit-transform:scale(6); top:-860px; left:-972px;}
+#p_1_1_1_1{-webkit-transform:scale(0.14,0.15); top:156px; left:156px;}
+#p_1_2 { -webkit-transform:scale(0.25, 0.3); top:150px; left:288px; }
+#p_1_2.view1 { -webkit-transform:scale(3.6); top:-420px; left:-280px; }
+#p_1_2.view2 { -webkit-transform:scale(4);  top:-1150px; left:-120px;}
+#p_1_2.view3 {-webkit-transform:scale(4);  top:-1150px; left:-700px; }
+#p_1_2_1{ -webkit-transform:scale(0.26, 0.25); top:142px; left:92px;}
+#p_1_2_1.view{ -webkit-transform:scale(6); top:-560px; left:-1554px;}
+#p_1_2_1_1{ -webkit-transform:scale(0.26, 0.26); top:108px; left:250px;}
+#p_1_2_1_1.view{ -webkit-transform:scale(7,6); top:-550px; left:-816px;}
+#p_1_2_1_1_1{ -webkit-transform:scale(0.13, 0.16); top:86px; left:120px;}
+#p_1_2_2{ -webkit-transform:scale(0.3); top:295px; left:32px;}
+#p_1_2_3{ -webkit-transform:scale(0.25); top:295px; left:180px;}
+#p_1_2_3.view{ -webkit-transform:scale(5,4.5); top:-380px; left:-600px;}
+#p_1_2_3_1{-webkit-transform:scale(0.21,0.27); top:82px; left:130px;}
+#p_1_2_3_1.view{ -webkit-transform:scale(6); top:-1400px; left:-22px;}
+#p_1_2_3_1_1{-webkit-transform:scale(0.134,0.18); top:234px; left:10px;}
+.view,.view1,.view2,.view3 { z-index:100!important;}
+.explain{color:white; text-align:center;}
+</style>
+</head>
+<body>
+<div class="explain">点击图片部分元素，可以层层深入。</div>
+<div id="view">
+  <div id="p"> <img src="img2/a.jpg" id="a">
+    <div id="p_1"><img src="img2/a_1.jpg" id="a_1">
+      <div id="p_1_1"><img src="img2/a_1_1.jpg">
+        <div id="p_1_1_1"><img src="img2/p_1_1_1.jpg">
+        	<div id="p_1_1_1_1"><img src="img2/p_1_1_1_1.jpg">
+            </div>
+        </div>
+      </div>
+      <div id="p_1_2" name="view2"><img src="img2/a_1_2.jpg">
+          <div id="p_1_2_1" name="view1"><img src="img2/p_1_2_1.jpg">
+              <div id="p_1_2_1_1"><img src="img2/p_1_2_1_1.jpg">
+                  <div id="p_1_2_1_1_1"><img src="img2/a.jpg"></div>
+              </div>
+          </div>
+          <div id="p_1_2_2" name="view2"><img src="img2/p_1_2_2.jpg"></div>
+          <div id="p_1_2_3" name="view3"><img src="img2/p_1_2_3.jpg">
+              <div id="p_1_2_3_1"><img src="img2/p_1_2_3_1.jpg">
+                  <div id="p_1_2_3_1_1"><img src="img2/p_1_2_3_1_1.jpg"></div>
+              </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+function view(e){
+	e.preventDefault();
+	var style = this.getAttribute('name') || 'view';
+	var css = this.parentNode.className;
+	var childs = this.querySelectorAll('div > div');
+	css ? this.parentNode.className = '' : this.parentNode.className = style;
+	for(var i = 0; i<childs.length; i++){
+		childs[i].addEventListener('click',view,false);
+		childs[i].addEventListener('touchstart',view,false);
+	}
+}
+document.getElementById('p_1').addEventListener('click',view,false);
+document.getElementById('p_1').addEventListener('touchstart',view,false);
+</script>
+</body>
+</html>

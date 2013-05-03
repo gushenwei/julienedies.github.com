@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=100%; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+<title>css3时钟</title>
+<style>
+#clock {
+	margin: auto;
+	width: 200px;
+	height: 200px;
+	border: 1px solid black;
+	-webkit-border-radius: 100px;
+	-moz-border-radius: 100px;
+	position: relative;
+}
+.hour {
+	background: black;
+	position: absolute;
+}
+#twelve_clock {
+	width: 4px;
+	height: 10px;
+	left: 0;
+	right: 0;
+	margin: auto;
+}
+#three_clock {
+	width: 10px;
+	height: 4px;
+	top: 0;
+	bottom: 0;
+	margin: auto;
+	right: 0;
+}
+#six_clock {
+	width: 4px;
+	height: 10px;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	margin: auto;
+}
+#nine_clock {
+	width: 10px;
+	height: 4px;
+	top: 0;
+	bottom: 0;
+	margin: auto;
+	left: 0;
+}
+#dot {
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	width: 4px;
+	height: 4px;
+	top: 0;
+	bottom: 0;
+	margin: auto;
+	left: 0;
+	right: 0;
+}
+#second_needle_wrap {
+	height: 80px;
+	width: 1px;
+	margin: 20px auto;
+	-webkit-transform-origin: 100% 100%;
+}
+#second_needle {
+	height: 100%;
+	width: 100%;
+	-webkit-animation-name: x-spin;
+	-webkit-animation-duration: 60s;
+	-webkit-transform-origin: 100% 100%;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-timing-function: linear;
+	position: relative;
+	background: black;
+}
+#minute_needle_wrap {
+	height: 60px;
+	width: 1px;
+	position: absolute;
+	top: 40px;
+	left: 0;
+	right: 0;
+	margin: auto;
+	-webkit-transform-origin: 100% 100%;
+}
+#minute_needle {
+	height: 100%;
+	width: 100%;
+	-webkit-transform-origin: 100% 100%;
+	-webkit-animation-name: x-spin;
+	-webkit-animation-duration: 3600s;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-timing-function: linear;
+	background: blue;
+}
+#hour_needle_wrap {
+	height: 40px;
+	width: 1px;
+	position: absolute;
+	top: 60px;
+	left: 0;
+	right: 0;
+	margin: auto;
+	-webkit-transform-origin: 100% 100%;
+}
+#hour_needle {
+	height: 100%;
+	width: 100%;
+	-webkit-transform-origin: 100% 100%;
+	-webkit-animation-name: x-spin;
+	-webkit-animation-duration: 216000s;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-timing-function: linear;
+	background: red;
+}
+ @-webkit-keyframes x-spin {
+ 0% {
+-webkit-transform: rotate(0deg);
+}
+ 100% {
+-webkit-transform: rotate(360deg);
+}
+}
+h2, p {
+	text-align: center;
+}
+</style>
+</head>
+<body>
+<p>css3时钟</p>
+<div id="clock">
+  <div id="twelve_clock" class="hour"></div>
+  <div id="three_clock" class="hour"></div>
+  <div id="six_clock" class="hour"></div>
+  <div id="nine_clock" class="hour"></div>
+  <div id="dot" class="hour"></div>
+  <div id="second_needle_wrap">
+    <div id="second_needle"> </div>
+  </div>
+  <div id="minute_needle_wrap">
+    <div id="minute_needle"> </div>
+  </div>
+  <div id="hour_needle_wrap">
+    <div id="hour_needle"> </div>
+  </div>
+</div>
+<script>
+//document.getElementById('test').style.border = '1px solid black';
+//document.getElementById('test').style.webkitTransform = 'rotate(30deg)';
+
+var date = new Date(),second = date.getSeconds(),minute = date.getMinutes(),minuteDeg,hour = date.getHours(),hourDeg;
+document.getElementById('second_needle_wrap').style.webkitTransform = 'rotate('+second*6+'deg)';
+
+minuteDeg = minute*6 + second*6/60;
+document.getElementById('minute_needle_wrap').style.webkitTransform = 'rotate('+minuteDeg+'deg)';
+
+if(hour>12){
+    hour = hour -12;
+}
+
+hourDeg = hour * 30 + minute*30/60;
+document.getElementById('hour_needle_wrap').style.webkitTransform = 'rotate('+hourDeg+'deg)';
+</script>
+</body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=100%; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+<meta http-equiv="imagetoolbar" content="no">
+<title>三维</title>
+<style type="text/css">
+html {
+	overflow: hidden;
+}
+body {
+	margin: 0px;
+	padding: 0px;
+	background: #111;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+}
+#screen {
+	position:absolute;
+	left: 0%;
+	top: 0%;
+	width: 100%;
+	height: 100%;
+	background: #000;
+	overflow: hidden;
+	cursor: pointer;
+}
+#screen img {
+	position: absolute;
+	width:100px;
+}
+#vb {
+	position: absolute;
+	border-left: #666 solid 1px;
+	left: 50%;
+	top: 10%;
+	height: 80%;
+	z-index: 1000;
+}
+#title {
+	position: absolute;
+	color: #fff;
+	font-family: arial;
+	font-weight: bold;
+	font-size: 1.5em;
+	text-align: center;
+	width: 100%;
+	bottom: 1em;
+}
+</style>
+<script>
+r3d = 
+{
+    spd : .03, max : 160, O : [], num : 0, down : false, xm : 0, ym : 0, xb : 0, yb : 0, scr : 0, R : 0, 
+    N : 0, Im : 0, img : 0, nx : 0, ny : 0, nw : 0,
+    init : function () 
+    {
+        this.scr = document.getElementById('screen');
+        this.img = document.getElementById('particles').getElementsByTagName('img');
+        this.scr.onselectstart = function () 
+        {
+            return false;
+        }
+        this.scr.ondrag = function () 
+        {
+            return false;
+        }
+        this.scr.onmousemove = function (e) 
+        {
+            if (r3d.down) 
+            {
+                if (window.event) {
+                    e = window.event;
+                }
+                var xm = e.clientX - r3d.nx;
+                var ym = e.clientY - r3d.ny;
+                if (Math.abs(xm - r3d.xb) + Math.abs(ym - r3d.yb) > r3d.img[r3d.Im % r3d.img.length].width) 
+                {
+                    var o;
+                    if (r3d.N < r3d.max) {
+                        o = document.createElement('img');
+                        r3d.scr.appendChild(o);
+                        r3d.O[r3d.N % r3d.max] = o;
+                    }
+                    else {
+                        o = r3d.O[r3d.N % r3d.max];
+                    }
+                    var i = r3d.img[r3d.Im % r3d.img.length];
+                    if (xm < r3d.nw) {
+                        o.X = r3d.nw - xm;
+                        o.c = - r3d.R - Math.PI  / 2;
+                    }
+                    else {
+                        o.X = xm - r3d.nw;
+                        o.c = - r3d.R + Math.PI  / 2;
+                    }
+                    o.src = i.src;
+                    o.w = Math.round(i.width  / 2);
+                    o.style.top = Math.round(ym - o.height  / 2) + 'px';
+                    o.style.left = "-9999px";
+                    r3d.N++;
+                    r3d.xb = xm;
+                    r3d.yb = ym;
+                }
+            }
+            return false;
+        }
+        this.scr.onclick = function (e) 
+        {
+            r3d.down = true;
+            r3d.xb = r3d.yb = - 999;
+            return false;
+        }
+        this.scr.onmouseup = function (e) 
+        {
+            r3d.down = false;
+            r3d.Im++;
+            if (r3d.N > 10) {
+                document.getElementById('title').innerHTML = "";
+            }
+            return false;
+        }
+        r3d.resize();
+        r3d.run();
+    },
+    resize : function () 
+    {
+        var o = r3d.scr;
+        r3d.nw = o.offsetWidth  / 2;
+        for (r3d.nx = 0, r3d.ny = 0; o != null; o = o.offsetParent) {
+            r3d.nx += o.offsetLeft;
+            r3d.ny += o.offsetTop;
+        }
+    },
+    run : function () 
+    {
+        r3d.R += r3d.spd;
+        for (var i = 0, o; o = r3d.O[i]; i++) 
+        {
+            o.style.left = Math.round(r3d.nw + o.X * Math.sin(r3d.R + o.c) - o.w * .5) + 'px';
+            o.style.zIndex = 1000 + Math.round(2 * o.w + (Math.abs(o.X) * Math.cos(r3d.R + o.c)));
+        }
+        setTimeout(r3d.run, 32);
+    }
+}
+onload = function ()
+{
+    onresize = r3d.resize;
+    r3d.init();
+}
+</script>
+</head>
+<body>
+<div id="screen">
+  <div id="title"></div>
+  <div id="vb"></div>
+</div>
+<div id="particles" style="visibility:hidden">  <img src="img5/s1.png"> <img src="img5/s2.png"> <img src="img5/s3.png"> <img src="img5/s4.png"> <img src="img5/s5.png"> <img src="img5/s6.png"></div>
+</body>
+</html>

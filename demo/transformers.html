@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title> CSS3变形金刚 </title>
+<style>
+body {
+	background-color:white;
+}
+#test{
+	position:absolute;
+}
+#test.active {
+	-webkit-animation-name: slide;
+	-webkit-animation-duration: 3s;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-timing-function: ease-in-out; 
+	-webkit-animation-delay:0s;
+}
+@-webkit-keyframes slide{
+	0%{-webkit-transform:scale(1) translate(-100px,0);}
+	50%{-webkit-transform:scale(1) translate(200px,0);}
+	100%{-webkit-transform:scale(1) translate(-100px,0);}
+}
+@-webkit-keyframes go{
+	0%{padding-top:0px; -webkit-transform: skew(0deg,0deg);}
+	50%{padding-top:20px;-webkit-transform: skew(0deg,0deg);}
+	100%{padding-top:0px;-webkit-transform: skew(0deg,0deg);}
+}
+@-webkit-keyframes go1{
+	0%{-webkit-transform: rotate(0deg) scale(1);}
+	50%{-webkit-transform: rotate(360deg) scale(1);}
+	100%{-webkit-transform: rotate(0deg) scale(1);}
+}
+#test span{
+	position:absolute;
+	top:10px;
+	border:1px dashed white;
+	-webkit-transition-property: all;
+	-webkit-transition-duration: 1s;
+	-webkit-transition-delay:0s;
+}
+#head{
+	left:0;
+}
+#l_arm{
+	left:40px;
+}
+#r_arm{
+	left:70px;
+}
+#body{
+	left:130px;
+}
+#l_leg{
+	left:220px;
+}
+#r_leg{
+	left:270px;
+}
+#test.active span{
+	font-size:40px;
+	border:dashed 10px black;
+}
+.active #head{
+	height:60px;
+	padding:10px;
+	left:460px;
+	top:50px;
+}
+.active #l_arm{
+	height:120px;
+	left:320px;
+	top:160px;
+	-webkit-animation:go1 1s ease 0s infinite;
+}
+.active #r_arm{
+	padding-right:60px;
+	left:660px;
+	top:160px;
+	-webkit-animation:go1 2s ease 1s infinite;
+}
+.active #body{
+	height:200px;
+	left:420px;
+	top:160px;
+}
+.active #l_leg{
+	height:200px;
+	line-height:200px;
+	left:420px;
+	top:400px;
+	-webkit-animation:go 1s ease 0s infinite;
+}
+.active #r_leg{
+	height:200px;
+	line-height:200px;
+	left:560px;
+	top:400px;
+	-webkit-animation:go 2s ease 1s infinite;
+}
+</style>
+</head>
+<body>
+<div id="test" class="active" onMouseOver="this.className = this.className ? '' : 'active';">
+<span id="head" class="">perl</span>
+<span id="l_arm">php</span>
+<span id="r_arm">python</span>
+<span id="body">javascript</span>
+<span id="l_leg">ruby</span>
+<span id="r_leg">java</span>
+</div>
+</body>
+</html>

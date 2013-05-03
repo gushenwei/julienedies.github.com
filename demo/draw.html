@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+<title>画板</title>
+<style>
+body {
+	font-size:1em;
+	padding:0;
+	margin:0;
+}
+#container{
+	width:300px;
+}
+img {
+	background:rgba(153, 204, 0, 1);
+	width:200px;
+	height:200px;
+}
+#canvas {
+	cursor:crosshair;
+	top:0;
+	background-color:#9C0;
+}
+#control {
+	margin-top:10px;
+	text-align:center;
+}
+button {
+	font-size:1em;
+}
+.explain {
+	padding:15px 0 10px 0;
+}
+</style>
+</head>
+<body>
+<div id="container">
+  <canvas id="canvas" width="300" height="300"></canvas>
+  <div id="control">
+    <button id="save">生成图片</button>
+    <button id="clear">清空画板</button>
+  </div>
+  <div class="explain">手指按下或鼠标按下移动作画。</div>
+</div>
+<script>
+ //取得鼠标事件中光标相对于页面的位置
+ function getPageX(e){
+	 e.preventDefault();
+	 if(e.touches){
+	   var touch = e.touches[0];
+	   return touch.pageX;
+	 }
+	 return e.pageX || e.clientX + document.body.scrollLeft;
+ }
+ function getPageY(e){
+	 e.preventDefault();
+	 if(e.touches){
+	   var touch = e.touches[0];
+	   return touch.pageY;
+	 }
+	 return e.pageY || e.clientY + document.body.scrollTop;
+ }
+
+var canvas = document.getElementById('canvas'),clear_but = document.getElementById('clear'),save_but = document.getElementById('save'),img = null;
+  //取得canvas绘图上下文，设置绘图基本样式
+  var ctx = canvas.getContext('2d');
+	  ctx.fillStyle = 'white';
+	  ctx.strokeStyle = 'white';
+  //绘图
+  var draw = function(e){
+	  ctx.beginPath();
+	  ctx.arc(getPageX(e), getPageY(e), 4, 0, 2*Math.PI, true);
+	  ctx.fill();
+	  ctx.stroke();
+  }
+  //保存图片
+  var save = function(){
+	  var url = canvas.toDataURL();
+	  if(!img){
+		img = new Image(canvas.width,canvas.height);
+		img.src = url;
+		document.getElementById('container').appendChild(img);
+	  }else{
+		img.src = url;
+	  }
+  }
+  //清空画板
+  var clear = function(){
+	 ctx.clearRect(0,0,400,400);
+  }
+  //鼠标按下，添加鼠标移动事件处理函数
+  var addevent = function(){
+	  canvas.addEventListener('mousedown',function(){this.addEventListener('mousemove',draw,false)},false);
+	  canvas.addEventListener('touchstart',function(){this.addEventListener('touchmove',draw,false)},false);
+  }
+  //绑定事件处理函数
+  addevent();
+  canvas.addEventListener('mouseup',function(){this.removeEventListener('mousemove',draw,false);addevent();},false);
+  canvas.addEventListener('touchend',function(){this.removeEventListener('touchmove',draw,false);addevent();},false);
+  save_but.addEventListener('click',save,false);
+  clear_but.addEventListener('click',clear,false);
+</script>
+</body>
+</html>

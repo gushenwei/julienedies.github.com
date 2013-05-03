@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>三维旋转</title>
+<style>
+body {
+	background-color: #3f3f3f;
+}
+.container {
+	width: 324px;
+	height: 412px;
+	-webkit-perspective: 1000;
+}
+.card {
+	width: 324px;
+	height: 412px;
+	border: 8px solid #fff;
+	-webkit-transform-style: preserve-3d;
+	-webkit-transition: 0.5s;
+}
+.face {
+	position: absolute;
+	-webkit-backface-visibility: hidden;
+}
+.front {
+	z-index: 10;
+}
+.back {
+	-webkit-transform: rotateY(180deg);
+}
+.container:hover .card {
+	-webkit-transform: rotateY(180deg);
+}
+.container:hover .front {
+	z-index: 0;
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="card">
+    <div class="face front"> <img src="img/megatron.png" alt="Megatron"> </div>
+    <div class="face back"> <img src="img/optimus.png" alt="optimus"> </div>
+  </div>
+</div>
+</body>
+</html>

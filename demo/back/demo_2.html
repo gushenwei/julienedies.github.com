@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>粒子效果</title>
+<style>
+html, body {
+	margin:0;
+	padding:0;
+	background: #000000;
+}
+#outer {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 1px;
+	height: 1px;
+	overflow: visible;
+}
+#canvasContainer {
+	position: absolute;
+	width: 1000px;
+	height: 560px;
+	top: -280px;
+	left: -500px;
+}
+canvas {
+	border: 1px solid #333333;
+}
+a {
+	color: #00CBCB;
+	text-decoration:none;
+	font-weight:bold;
+	display:none;
+}
+a:hover {
+	color:#FFFFFF;
+}
+#output {
+	font-family: Verdana;
+	font-size: 0.6em;
+	margin-top:2px;
+}
+#footer {
+	font-size: 0.6em;
+	font-family: Verdana;
+	position: absolute;
+	bottom:8px;
+	width:98%;
+}
+</style>
+</head>
+<body>
+<div id="outer">
+  <div id="canvasContainer" onMouseOver="document.getElementById('mainCanvas').style='';">
+    <canvas id="mainCanvas" width="500" height="560"></canvas>
+    <div id="output"></div>
+  </div>
+</div>
+<script type="text/javascript" src="js/liquid-particles.js"></script>
+</body>
+</html>
