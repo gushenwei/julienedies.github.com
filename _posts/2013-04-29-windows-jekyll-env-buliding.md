@@ -2,8 +2,8 @@
 layout: post
 title: "在windows上快速建立jekyll环境"
 description: ""
-category: 
-tags: []
+category: tool
+tags: [jekyll]
 ---
 {% include JB/setup %}
 

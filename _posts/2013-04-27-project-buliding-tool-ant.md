@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "project buliding tool ant"
+title: 项目构建工具ant
 description: ""
-category: 
-tags: []
+category: tool 
+tags: [ant, tool]
 ---
 {% include JB/setup %}

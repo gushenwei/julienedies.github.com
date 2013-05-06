@@ -2,7 +2,7 @@
 layout: post
 title: "转载 git bash中文乱码解决"
 description: ""
-category: git
+category: tool
 tags: [git, tool]
 ---
 {% include JB/setup %}

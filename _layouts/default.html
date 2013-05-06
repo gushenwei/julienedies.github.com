@@ -3,6 +3,7 @@ theme :
   name : twitter
 ---
 {% include JB/setup %}
+
 <!DOCTYPE html>
 <html lang="zh-cn">
   <head>
@@ -41,37 +42,7 @@ theme :
   <body>
   	
   <div class="container-fluid">
-      <div class="row-fluid">
-          <div class="span2 offset1">
-              <div class="nav-container">
-              <ul class="nav">
-                  <li>
-                      <a href="/index.html">首页</a>
-                  </li>              	
-                  <li class="active">
-                      <a href="/archive.html" class="active">归档</a>
-                  </li>
-                  <li>
-                      <a href="/categories.html">分类</a>
-                  </li>
-                  <li>
-                      <a href="/tags.html">标签</a>
-                  </li>	
-                  <li>
-                      <a href="/pages.html">Pages</a>
-                  </li>				  			  
-                  <li>
-                      <a href="/demo.html">demos</a>
-                  </li>
-              </ul>
-              </div>
-          </div>  
-		      	
-          <div class="span9">
-              {{ content }}
-			  {% include JB/analytics %}
-          </div>
-      </div>
+  	{{ content }}
   <hr>
   <footer>
       <p>
@@ -81,7 +52,7 @@ theme :
       </p>
   </footer>  	  
   </div>
-  
+  {% include JB/analytics %}
   </body>
 </html>
 
