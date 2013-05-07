@@ -30,7 +30,7 @@ layout: default
         </aside>
     </div>
 
-    <div class="span9">
+    <div class="span8">
         <header class="page-header">
             <h1>{{ page.title }}
 			 {% if page.tagline %}
@@ -42,12 +42,21 @@ layout: default
         </header>
         <div class="row-fluid post-full">
             <div class="span12">
-                <div class="date">
+                <details class="date">
                     <span> 创建时间：{{ page.date | date: '%Y-%m-%d' }}</span>
-                </div>
+                {% unless page.categories == empty %}
+                   &nbsp; | &nbsp;<span>分类：</span>
+                    <ul class="inline">
+                        {% assign categories_list = page.categories %}
+                        {% include JB/categories_list %}
+                    </ul>
+                </details>
+                {% endunless %} 
+								
                 <div class="content">
                     {{ content }}
                 </div>
+				
 				<!--
                 {% unless page.categories == empty %}
                 <div>

@@ -122,6 +122,11 @@ li{
 ul.inline li{
 	background:none;
 }
+code{
+	color:blue;
+	border:none;
+	background:none;
+}
 /* layout setting start
 ----------------------------- */
 p{
@@ -137,20 +142,20 @@ p{
 body{
 	line-height: 1.6;
 	font-size:15px;
-	color:#222222;
-	color:#4a4a4a;
+	color:#333;
 }
 a{
 	color:#146eb4;
-	color:#9C0001;
+	color:#9C0001; /* red */
+	color:#296d99; /* blue */
 	text-shadow:0 1px 0 #fff;
 }
 a:visited{
 	/* color:#b63e97; */
 }
 a:hover,li.active a{
-	color:#cf0505;
 	color:#00aaaa;
+	color:#cf0505;
 }
 h1 a, h1 a:hover{
 	color:#00aaaa;
@@ -161,7 +166,6 @@ li.active a{
 h1,h2,h3,h4,h5,h6{
 	font-weight:normal;
 	font-family: Microsoft YaHei, Arial,Helvetica,Garuda,sans-serif;
-	line-height:1.5;
 }
 h1{
 	font-size:32px;
@@ -169,15 +173,15 @@ h1{
 	text-shadow: 0 1px 0 #fff;
 }
 h2{
-	font-size:18px;
+	font-size:26px;
 }
 h3{
-	font-size:16px;
+	font-size:20px;
+	border-bottom:solid 1px #d4d8da;
 }
 h4{
 	font-size:16px;
-	font-weight:bold;
-	color:#777;
+	color:#666;
 }
 h1#{
 	background-color: #00aaaa;
@@ -194,6 +198,7 @@ html {
 
 body {
     min-height: 100%;
+	padding-top:10px;
 }
 html,body{
 background: #ededec; /* Old browsers */
@@ -221,7 +226,7 @@ min-height:100%;
 }
 
 .page-header{
-	margin:0 0 20px;
+	margin:0 0 10px;
 	padding-bottom:0;
 	border-bottom: 2px solid #d4d8da;
 }
@@ -239,6 +244,10 @@ min-height:100%;
 
 .tag_cloud{
 	line-height:2;
+}
+
+details ul.inline{
+	display:inline;
 }
 /* common component class end
  * -------------------------- */

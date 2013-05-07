@@ -4,7 +4,7 @@ title: 首页
 ---
 {% include JB/setup %}
 
-<h3>我的RSS地址：<a href="/atom.xml">RSS订阅</a></h3>
+<h5>我的RSS地址：<a href="/atom.xml">RSS订阅</a></h5>
 <br/>
 <ul class="posts">
   {% for post in site.posts %}
