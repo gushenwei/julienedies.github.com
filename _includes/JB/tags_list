@@ -22,18 +22,18 @@ Usage:
 {% else %}
   {% if tags_list.first[0] == null %}
     {% for tag in tags_list %} 
-    	<li><a href="{{ BASE_PATH }}{{ site.JB.tags_path }}#{{ tag }}-ref">{{ tag }} </a><sup>{{ site.tags[tag].size }}</sup></li>
+    	<li><a href="{{ BASE_PATH }}{{ site.JB.tags_path }}#{{ tag }}-ref">{{ tag }} <sup>{{ site.tags[tag].size }}</sup></a></li>
     {% endfor %}
   {% else %}
     {% for tag in tags_list %} 
     	{% if page.tags %}
     			{% if page.tags contains tag[0] %}
-    				<li class="active"><a href="{{ BASE_PATH }}{{ site.JB.tags_path }}#{{ tag[0] }}-ref">{{ tag[0] }}</a> <sup>{{ tag[1].size }}</sup></li>
+    				<li class="active"><a href="{{ BASE_PATH }}{{ site.JB.tags_path }}#{{ tag[0] }}-ref">{{ tag[0] }} <sup>{{ tag[1].size }}</sup></a></li>
     			{% else %}
-    				<li><a href="{{ BASE_PATH }}{{ site.JB.tags_path }}#{{ tag[0] }}-ref">{{ tag[0] }} </a><sup>{{ tag[1].size }}</sup></li>
+    				<li><a href="{{ BASE_PATH }}{{ site.JB.tags_path }}#{{ tag[0] }}-ref">{{ tag[0] }} <sup>{{ tag[1].size }}</sup></a></li>
     			{% endif %}
     	{% else %}
-    		<li><a href="{{ BASE_PATH }}{{ site.JB.tags_path }}#{{ tag[0] }}-ref">{{ tag[0] }} </a><sup>{{ tag[1].size }}</sup></li>
+    		<li><a href="{{ BASE_PATH }}{{ site.JB.tags_path }}#{{ tag[0] }}-ref">{{ tag[0] }} <sup>{{ tag[1].size }}</sup></a></li>
     	{% endif %}
     	
     {% endfor %}

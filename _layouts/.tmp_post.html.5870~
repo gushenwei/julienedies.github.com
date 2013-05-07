@@ -23,7 +23,7 @@ layout: default
         </aside>
         <aside>
             <h4>标签</h4>
-            <ul class="inline tag_cloud">
+            <ul>
                 {% assign tags_list = site.tags %} 
                 {% include JB/tags_list %}
             </ul>
