@@ -3,7 +3,7 @@ layout: post
 title: "关于viewport"
 description: ""
 category: 翻译
-tags: [viewport,mobile]
+tags: [viewport, mobile]
 ---
 {% include JB/setup %}
 

@@ -42,15 +42,26 @@ layout: default
         </header>
         <div class="row-fluid post-full">
             <div class="span12">
-                <details class="date">
+                <div class="article_meta">
                     <span> 创建时间：{{ page.date | date: '%Y-%m-%d' }}</span>
+					
                 {% unless page.categories == empty %}
-                   &nbsp; | &nbsp;<span>分类：</span>
+                   &nbsp; | &nbsp;
+				   <span>分类：</span>
                     <ul class="inline">
                         {% assign categories_list = page.categories %}
                         {% include JB/categories_list %}
                     </ul>
-                </details>
+					{% endunless %}
+					
+					{% unless page.tags == empty %}
+					&nbsp; | &nbsp;
+                    <span>标签：</span>
+                    <ul class="inline">
+                        {% assign tags_list = page.tags %}
+                        {% include JB/tags_list %}
+                    </ul>					
+                </div>
                 {% endunless %} 
 								
                 <div class="content">
