@@ -29,7 +29,7 @@
 ul{
 	list-style:none;
 }
-li{
+ul>li{
 	padding-left:13px;
 	background:url(/assets/img/square.png) no-repeat 0 50%;
 	line-height:inherit;
@@ -130,6 +130,7 @@ min-height:100%;
 }
 
 .content{
+	padding-bottom:10px;
 }
 
 .page-header{
