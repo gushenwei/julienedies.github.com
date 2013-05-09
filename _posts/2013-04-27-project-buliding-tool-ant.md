@@ -2,7 +2,7 @@
 layout: post
 title: 项目构建工具ant
 description: ""
-category: tool 
+category: 工具 
 tags: [ant, tool]
 ---
 {% include JB/setup %}

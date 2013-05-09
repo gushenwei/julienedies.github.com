@@ -2,7 +2,7 @@
 layout: post
 title: "cygwin环境试用"
 description: ""
-category: tool
+category: 工具
 tags: [cygwin, UNIX]
 ---
 {% include JB/setup %}

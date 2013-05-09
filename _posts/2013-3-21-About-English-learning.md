@@ -1,8 +1,8 @@
 ---
 layout: post
 title: 英语学习
-category: 英语学习
-tags: [english]
+category: 英语
+tags: [english, learning]
 ---
 {% include JB/setup %}
 

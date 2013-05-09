@@ -1,7 +1,7 @@
 ---
 layout: post
-title: about design 1
-category: design
+title: 读“色彩心理学”
+category: 阅读
 tags: [design]
 ---
 {% include JB/setup %}
@@ -102,6 +102,3 @@ tags: [design]
 抽象的形色来表现。再现也好，表现也好，都是传达一个概念或是一种感受，而创造出的形色关系也是超越抽象与具象的界定之上的。
 
 
-<img src="/assets/img/a.jpg" />
-
-如果你连要去的地方都不知道，那么又如何到达那里？

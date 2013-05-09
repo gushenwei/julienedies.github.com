@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "favorite movie list"
+title: "喜爱的电影列表"
 description: ""
-category: movie
+category: 电影
 tags: [movie]
 ---
 {% include JB/setup %}

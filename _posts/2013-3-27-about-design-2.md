@@ -1,7 +1,7 @@
 ---
 layout: post
-category: design
-title: about design 2
+title: 读“平面设计原理”
+category: 阅读
 tags: [design]
 ---
 {% include JB/setup %}
@@ -137,5 +137,3 @@ tags: [design]
 
 
 
-<img src="/assets/img/a.jpg" />
-如果你连要去的地方都不知道，那么又如何到达那里？
