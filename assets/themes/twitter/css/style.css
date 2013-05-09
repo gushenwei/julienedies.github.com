@@ -30,8 +30,8 @@ ul{
 	list-style:none;
 }
 ul>li{
-	padding-left:13px;
-	background:url(/assets/img/square.png) no-repeat 0 50%;
+	padding-left:15px;
+	background:url(/assets/img/square.png) no-repeat 0 9px;
 	line-height:inherit;
 }
 
@@ -58,7 +58,7 @@ p{
 body{
 	line-height: 1.6;
 	font-size:15px;
-	color:#444;
+	color:#333;
 }
 a{
 	color:#146eb4;
@@ -72,9 +72,11 @@ a:visited{
 a:hover,li.active a{
 	color:#00aaaa;
 	color:#cf0505;
+	color:rgb(185, 45, 86);
 }
 h1 a, h1 a:hover{
 	color:#00aaaa;
+	color:rgb(185, 45, 86);
 }
 li.active a{
 	font-weight:bold;
@@ -85,8 +87,10 @@ h1,h2,h3,h4,h5,h6{
 }
 h1{
 	font-size:32px;
-	color:#00aaaa;
 	text-shadow: 0 1px 0 #fff;
+	color:#00aaaa;
+	color:rgb(44, 140, 189);
+	color:rgb(84, 90, 90);	
 }
 h2{
 	font-size:26px;
@@ -98,12 +102,6 @@ h3{
 h4{
 	font-size:16px;
 	color:#666;
-}
-h1#{
-	background-color: #00aaaa;
-	color: #fff;
-	border-radius: 5px;
-	padding:2px 0 2px 8px;
 }
 
 /* font style setting end
@@ -125,7 +123,7 @@ background: -o-linear-gradient(top,  #ededec 0%,#f2f2f2 52%,#dedede 100%); /* Op
 background: -ms-linear-gradient(top,  #ededec 0%,#f2f2f2 52%,#dedede 100%); /* IE10+ */
 background: linear-gradient(to bottom,  #ededec 0%,#f2f2f2 52%,#dedede 100%); /* W3C */
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ededec', endColorstr='#dedede',GradientType=0 ); /* IE6-9 */
-
+background:rgb(252, 242, 231)!important;
 min-height:100%;
 }
 

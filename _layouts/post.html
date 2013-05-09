@@ -91,13 +91,13 @@ layout: default
 				-->
 				<hr>
                 <div class="pagination">
+                    {% if page.next %}<p class="next">
+                    	下一篇：<a href="{{ BASE_PATH }}{{ page.next.url }}" title="{{ page.next.title }}">{{ page.next.title }}</a></p>
+                    {% endif %}                	
                     {% if page.previous %}
                     <p class="prev">
                                                                 上一篇：<a href="{{ BASE_PATH }}{{ page.previous.url }}" title="{{ page.previous.title }}">{{ page.previous.title }}</a>
                     </p>
-                    {% endif %}
-                    {% if page.next %}<p class="next">
-                    	下一篇：<a href="{{ BASE_PATH }}{{ page.next.url }}" title="{{ page.next.title }}">{{ page.next.title }}</a></p>
                     {% endif %}
                 </div>
                 {% include JB/comments %}
