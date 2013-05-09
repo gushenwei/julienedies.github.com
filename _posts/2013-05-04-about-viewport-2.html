@@ -1,0 +1,783 @@
+---
+layout: post
+title: "关于viewport"
+description: ""
+category: 翻译
+tags: [viewport, mobile, english]
+---
+{% include JB/setup %}
+
+<p>
+    英语原文：<a href="http://www.quirksmode.org/mobile/viewports.html">www.quirksmode.org/mobile/viewports.html</a>
+</p>
+<code>
+    meta name="viewport" content="width=drive-width,target-densitydpi=device-dpi, user-scalable=no" 
+</code>
+<h2>两个viewport的问题之一</h2>
+<p>
+    在这个短篇里，我将阐释viewport和其它各种重要的元素例如
+    <code>
+        &lt;html&gt;
+    </code>，window，screen的width如何被设置。
+</p>
+<p>
+    这章主要涉及桌面浏览器，而且它的主要目的是搭建一个平台用于类似mobile browsers的相关讨论。大部分的web开发者已经非常了解桌面浏览器开发的相关概念。在移动浏览器上我们会发现相同的概念，但是更复杂。因此预先的一个论述会更好的帮助每个人了解mobile browsers。
+</p>
+<section>
+    <h3>概念：物理像素和css像素(device pixels and css pixels)</h3>
+    <p>
+        你需要知道的第一个概念是css像素，它不同于物理像素。
+    </p>
+    <p>
+        物理像素是我们一直以来认识的像素，它决定了分辨率，无论你使用的是哪个设备。并且可以使用
+        <code>
+            screen.width/height
+        </code>获取
+    </p>
+    <p>
+        如果你设定某个元素
+        <code>
+            width:128px
+        </code>，并且你的屏幕为1024px宽(最大化你的浏览器窗口)，那么这个元素会适配为屏幕的1/8。(大致如此，现在让我们忽略某些细节)。
+    </p>
+    <p>
+        如果用户缩放屏幕，那么这个计算结果将会改变。假设用户缩放到200%，那么这个128px宽的元素将会适配为屏幕的1/4。
+    </p>
+    <p>
+        在现代浏览器里，缩放实现无关像素拉伸。即是说，该元素的宽不会从128px变为256px;相反实际的像素宽变为原先的两倍。形式上，该元素的宽仍为128px，虽然它实际上占据了256物理像素宽的空间。
+    </p>
+    <p>
+        换句话说，缩放到200%标志着1个css pixel扩展到一个物理像素的4倍大。(两倍宽，两倍高，总计为4倍)。
+    </p>
+    <p>
+        一些图片会清楚的阐述上述概念，这里有4个100%缩放级别的像素，它们刚好重叠物理像素。
+    </p>
+    <p>
+        <img src="/assets/img/viewport/csspixels_100.gif" />
+    </p>
+    <p>
+        现在让我们缩小，css像素开始收缩，意味着一个物理像素重叠于一些css像素。
+    </p>
+    <p>
+        <img src="/assets/img/viewport/csspixels_out.gif" />
+    </p>
+    <p>
+        如果我们放大，相反，css像素开始扩展，一个css像素重叠于一些物理像素。
+    </p>
+    <p>
+        <img src="/assets/img/viewport/csspixels_in.gif" />
+    </p>
+    <p>
+        这里的观点是你只需要关注css像素，它支配你的样式如何渲染。
+    </p>
+    <p>
+        物理像素基本对开发者无用;不是对最终用户，用户可能会缩放页面直到他能舒适的浏览。开发者也不用太过关心缩放级别，浏览器会自动确定页面css布局收缩或扩展。
+    </p>
+    <h4>100% zoom。</h4>
+    <p>
+        开始时候的示例，我假设缩放级别为100%;现在是时候稍微严格的定义了。
+    </p>
+    <p>
+        <strong>在100%缩放级别，1个css像素精确等于一个物理像素。</strong>
+    </p>
+    <p>
+        100%缩放的概念在下面的阐述中非常有用，但是你不用在日常工作中担心它。桌面开发中，你通常会在100%缩放级别测试你的站点。但即使用户缩放页面，css像素魔法仍会确保你的页面布局保持相同的比例。
+    </p>
+</section>
+<section>
+    <h3>Screen size</h3>
+    <div class="floater">
+        <h5 id="link4">screen.width/height</h5>
+        <dl class="data">
+            <dt>
+                Meaning
+            </dt>
+            <dd>
+                Total size of the user’s screen。
+            </dd>
+            <dt>
+                Measured in
+            </dt>
+            <dd>
+                Device pixels
+            </dd>
+            <dt>
+                Browser errors
+            </dt>
+            <dd>
+                IE8 measures it in CSS pixels， in both IE7 and IE8 mode。
+            </dd>
+        </dl>
+    </div>
+    <p>
+        让我们看一些实际开发中的宽高计算。我们将以
+        <code>
+            screen.width
+        </code>和
+        <code>
+            screen.height
+        </code>开始。它们分别计算用户屏幕的总宽和总高。这些尺寸以物理像素计算，因为它们永远不会改变;它们是屏幕的特征而不是浏览器的特征。
+    </p>
+    <p>
+        <img src="/assets/img/viewport/desktop_screen.jpg" />
+    </p>
+    <p>
+        好了，我们可以使用这些信息做什么呢?
+    </p>
+    <p>
+        恩，基本上没什么事。用户屏幕的尺寸对我们并不重要。除非你想计算它们用在一个web统计数据库中。
+    </p>
+</section>
+<section>
+    <h3>Window size</h3>
+    <div class="floater">
+        <h5 id="link6">window.innerWidth/Height</h5>
+        <dl class="data">
+            <dt>
+                Meaning
+            </dt>
+            <dd>
+                Total size of the browser window， including scrollbars。
+            </dd>
+            <dt>
+                Measured in
+            </dt>
+            <dd>
+                CSS pixels
+            </dd>
+            <dt>
+                Browser errors
+            </dt>
+            <dd>
+                Not supported by IE。
+            </dd>
+            <dd>
+                Opera measures it in device pixels。
+            </dd>
+        </dl>
+    </div>
+    <p>
+        相反，你想知道浏览器窗口的内部尺寸，它精确的告诉你，对于css布局，当前有多少可用空间。你可以通过
+        <code>
+            window.innerWidth
+        </code>和
+        <code>
+            window.innerHeight
+        </code>获取到相关值。
+    </p>
+    <p>
+        <img src="/assets/img/viewport/desktop_inner.jpg" />
+    </p>
+    <p>
+        很明显，window的内部宽是以css像素计算的。你需要知道多少页面布局显示在浏览器窗口，并且当用户放大的时候，页面布局会减少。因此当用户放大页面，浏览器窗口内可用的页面布局空间会减少。而且可以通过
+        <code>
+            window.innerWidth
+        </code>和
+        <code>
+            window.innerHeight
+        </code>反映出来。
+    </p>
+    <p>
+        opera是个例外。当用户放大的时候，
+        <code>
+            window.innerWidth
+        </code>和
+        <code>
+            window.innerHeight
+        </code>不会减少:opera以物理像素进行计算。在桌面开发中，这只是个麻烦;但在移动开发中，这是致命的。稍后，我们会看到。
+    </p>
+    <p>
+        <img src="/assets/img/viewport/desktop_inner_zoomed.jpg" />
+    </p>
+    <p>
+        注意
+        <code>
+            window.innerWidth
+        </code>和
+        <code>
+            window.innerHeight
+        </code>的值包含滚动条，它们也是inner window的组成部分。(这主要是因为历史原因)。
+    </p>
+</section>
+<section>
+<h3>Scrolling offset</h3>
+<div class="floater">
+    <h5 id="link8">window.pageX/YOffset</h5>
+    <dl class="data">
+        <dt>
+            Meaning
+        </dt>
+        <dd>
+            Scrolling offset of the page。
+        </dd>
+        <dt>
+            Measured in
+        </dt>
+        <dd>
+            CSS pixels
+        </dd>
+        <dt>
+            Browser errors
+        </dt>
+        <dd>
+            None
+        </dd>
+    </dl>
+</div>
+<code>
+    window.pageXOffset
+</code>和
+<code>
+    window.pageYOffset
+</code>包含document水平和垂直方向的滚动偏移。因此你可以获取用户已经滚动得偏移值。
+</p>
+<p>
+    <img src="/assets/img/viewport/desktop_page.jpg" />
+</p>
+<p>
+    这些值也是以css像素计算，你想要知道文档向上滚动偏移了多少，无论什么样的缩放状态。
+</p>
+<p>
+    理论上，如果用户向上滚动，并且放大页面，
+    <code>
+        window.pageXOffset/pageYOffset
+    </code>将会改变。然而，当用户缩放的时候，浏览器通过保持可视页面顶部的元素相同保持页面连贯性。这不总是是工作的很完美。这意味着实践中
+    <code>
+        window.pageXOffset/pageYOffset
+    </code>不会真的改变：已经滚出窗口的css像素数量保持不变。
+</p>
+<p>
+    <img src="/assets/img/viewport/desktop_page_zoomed.jpg" />
+</p>
+</section>
+<section>
+    <h3>概念：viewport</h3>
+    <p>
+        在继续更多JavaScript属性前，我们需要介绍另外一个概念：viewport。
+    </p>
+    <p>
+        viewport的功能是限制
+        <code>
+            html
+        </code>元素，它是web页面最高级的包含块。
+    </p>
+    <p>
+        这听起来可能有点模糊，因此这儿有个实际的例子。假设有个流布局而且其中一列为10%宽。当你重置浏览器窗口的时候，这个列会灵活的扩展或收缩。但它是如何精确工作的？
+    </p>
+    <p>
+        技术上，这个列取得父元素宽的10%。假设它的父元素是
+        <code>
+            body
+        </code>（并且你没有设定一个宽度）。因此问题变成
+        <code>
+            body
+        </code>的宽是多少？
+    </p>
+    <p>
+        通常，所有块级元素的宽占据父元素宽的100%，（有例外，但是现在先忽略），因此
+        <code>
+            body
+        </code>的宽为
+        <code>
+            html
+        </code>宽的100%。
+    </p>
+    <p>
+        那么
+        <code>
+            html
+        </code>的宽为多少呢？嗯，浏览器窗口有多宽，它就有多宽。这就是为什么10%宽的列会占据整个浏览器窗口的10%。所有的web开发者都知道并利用这点。
+    </p>
+    <p>
+        你可能不知道的是在理论上这是如何工作的。理论上，
+        <code>
+            html
+        </code>的宽受制于viewport的宽。
+        <code>
+            html
+        </code>的宽占据viewport宽的100%。
+    </p>
+    <p>
+        viewport，相应的，恰恰等于浏览器窗口：它是如此被定义的。viewport不是一个html结构，因此你不能通过css影响它。在桌面浏览器中，它就是浏览器窗口的宽和高。在移动浏览器中，这有些复杂。
+    </p>
+    <h4>影响</h4>
+    <p>
+        这种情形会造成某些奇妙的影响。你可以在本站点（此处指<a href="http://www.quirksmode.org/mobile/viewports.html">原文站点</a>）观察到这一点。滚动到页面顶部，放大页面2到3倍，页面内容会溢出浏览器窗口。
+    </p>
+    <p>
+        现在向页面右边滚动，那么你会看到页面顶部蓝条没有再适当的延伸。
+    </p>
+    <p>
+        <img src="/assets/img/viewport/desktop_htmlbehaviour.jpg" />
+    </p>
+    <p>
+        这种行为是viewport如何定义造成的一个影响。我设定顶部蓝条的宽为100%。谁的100%，
+        <code>
+            html
+        </code>的100%。也就是viewport的宽，也就是浏览器窗口的宽
+    </p>
+    <p>
+        要点：这在100%缩放级别工作的很好。现在我们放大页面，viewport宽变得比页面宽度小。本质上，这不重要，内容溢出
+        <code>
+            html
+        </code>元素，但是
+        <code>
+            html
+        </code>元素
+        <code>
+            overflow:visible
+        </code>，这意味着溢出内容总是会显示。
+    </p>
+    <p>
+        但是顶部蓝条不会溢出，因为我给定了一个100%的宽，浏览器会遵循设定它的宽为viewport的宽，浏览器不关心它现在太窄了。
+    </p>
+    <p>
+        <img src="/assets/img/viewport/desktop_100percent.jpg" />
+    </p><h4>Document width?</h4>
+    <p>
+        我们真正需要知道的是页面所有内容有多宽，including the bits that “stick out.” 就我知道的，我们不能获取该值。（恩，除非你计算页面每个元素的宽和间距，但这是易错的）。
+    </p>
+    <p>
+        我开始相信我们需要一个新的javascript属性，我称为“document width”，很明显，以css像素计算。
+    </p>
+    <p>
+        <img src="/assets/img/viewport/desktop_documentwidth.jpg" />
+    </p>
+    <p>
+        并且如果我们真的觉得不错，为什么不把此值也提供给css，我真的希望能够标记顶部蓝条的
+        <code>
+            width:100%
+        </code>取决于document的宽，而不是
+        <code>
+            html
+        </code>元素的width。(This is bound to be tricky, though, and I wouldn’t be surprised if it’s impossible to implement.)
+    </p>
+    <p>
+        浏览器开发者，你们认为如何呢？
+    </p>
+</section>
+<section>
+    <h3>计算viewport</h3>
+    <div class="floater">
+        <h5 id="link13">document. documentElement. clientWidth/Height</h5>
+        <dl class="data">
+            <dt>
+                Meaning
+            </dt>
+            <dd>
+                Viewport dimensions
+            </dd>
+            <dt>
+                Measured in
+            </dt>
+            <dd>
+                CSS pixels
+            </dd>
+            <dt>
+                Browser errors
+            </dt>
+            <dd>
+                None
+            </dd>
+        </dl>
+    </div>
+    <p>
+        你可能想知道viewport的宽高，可以通过
+        <code>
+            document.documentElement.clientWidth
+        </code>和
+        <code>
+            document.documentElement.clientHeight
+        </code>获取。
+    </p>
+    <p>
+        <img src="/assets/img/viewport/desktop_client.jpg" />
+    </p>
+    <p>
+        如果你知道你的DOM，你知道
+        <code>
+            document.documentElement
+        </code>事实上是
+        <code>
+            html
+        </code>元素：任何html文档的根元素。然而，viewport是一级高的，因此我们必须讲讲它；它是包含
+        <code>
+            html
+        </code>元素的元素。如果你给定
+        <code>
+            html
+        </code>元素一个width，它可能会有重要影响。（我不推荐这样做，但这是可能的）。
+    </p>
+    <p>
+        在那种状况下，
+        <code>
+            document.documentElement.clientWidth
+        </code>和
+        <code>
+            document.documentElement.clientHeight
+        </code>获取的仍然是viewport的值，而不是
+        <code>
+            html
+        </code>元素。 (这个规则只对该元素该属性起作用，其它情况下获取的是元素的时间宽。)
+    </p>
+    <p>
+        <img src="/assets/img/viewport/desktop_client_smallpage.jpg" />
+    </p>
+    <p>
+        因此
+        <code>
+            document.documentElement.clientWidth/clientHeight
+        </code>总是获取viewport的width和height，无论
+        <code>
+            html
+        </code>的width和height是什么。
+    </p>
+    <h4>两个属性</h4>
+    <p>
+        不是也可以通过
+        <code>
+            window.innerWidth/innerHeight
+        </code>获取到viewport的width和height吗？恩，是，也不是。
+    </p>
+    <p>
+        两个属性基本相同：
+        <code>
+            document.documentElement.clientWidth/clientHeight
+        </code>不包含滚动条，
+        <code>
+            window.innerWidth/innerHeight
+        </code>包含滚动条。
+    </p>
+    <p>
+        事实上存在这两种属性是浏览器战争时期的遗迹。那时候Netscape只支持
+        <code>
+            window.innerWidth/innerHeight
+        </code>，而IE只支持
+        <code>
+            document.documentElement.clientWidth/clientHeight
+        </code>。后来其它浏览器开始支持
+        <code>
+            document.documentElement.clientWidth/clientHeight
+        </code>，但是IE仍然不支持
+        <code>
+            window.innerWidth/innerHeight
+        </code>。
+    </p>
+    <p>
+        在桌面浏览器中，存在两个类似的属性只是个小问题，但相反，在移动浏览器中，这反而很有用。稍后，我们会看到
+    </p>
+</section>
+<section>
+    <h3>Measuring 
+        <code>
+            html
+        </code>元素
+    </h3>
+    <div class="floater">
+        <h5 id="link16">document. documentElement. offsetWidth/Height</h5>
+        <dl class="data">
+            <dt>
+                Meaning
+            </dt>
+            <dd>
+                Dimensions of the 
+                <code>
+                    &lt;html&gt;
+                </code>
+                element (and thus of the page).
+            </dd>
+            <dt>
+                Measured in
+            </dt>
+            <dd>
+                CSS pixels
+            </dd>
+            <dt>
+                Browser errors
+            </dt>
+            <dd>
+                IE measures the viewport, and not the 
+                <code>
+                    &lt;html&gt;
+                </code>
+                element.
+            </dd>
+        </dl>
+    </div>
+    <p>
+        <code>
+            document.documentElement.clientWidth/clientHeight
+        </code>总是取得viewport的值，但是如果我们想要取得
+        <code>
+            html
+        </code>元素本身的width和height怎么办呢？可以通过
+        <code>
+            document.documentElement.offsetWidth/offsetHeight
+        </code>获取。
+    </p>
+    <p>
+        <img src="/assets/img/viewport/desktop_offset.jpg" />
+    </p>
+    <p>
+        <code>
+            document.documentElement.offsetWidth/offsetHeight
+        </code>让你能够把
+        <code>
+            html
+        </code>做为一个块元素进行访问。如果你设定了width，
+        <code>
+            document.documentElement.offsetWidth/offsetHeight
+        </code>将会反映出来。
+    </p>
+    <p>
+        <img src="/assets/img/viewport/desktop_offset_smallpage.jpg" />
+    </p>
+</section>
+<section>
+    <h3>事件坐标</h3>
+    <div class="floater">
+        <h5 id="link18">pageX/Y, clientX/Y, screenX/Y</h5>
+        <dl class="data">
+            <dt>
+                Meaning
+            </dt>
+            <dd>
+                see main text
+            </dd>
+            <dt>
+                Measured in
+            </dt>
+            <dd>
+                see main text
+            </dd>
+            <dt>
+                Browser errors
+            </dt>
+            <dd>
+                IE doesn’t support pageX/Y.
+            </dd>
+            <dd>
+                IE and Opera calculate screenX/Y in CSS pixels.
+            </dd>
+        </dl>
+    </div>
+    <p>
+        接下来是事件坐标，当一个鼠标事件发生，不少于5个属性为我们提供精确信息，对于我们的讨论，其中三个是重要的：
+    </p>
+    <ol>
+        <li>
+            <code>
+                pageX/Y
+            </code>
+            gives the coordinates relative to the 
+            <code>
+                &lt;html&gt;
+            </code>
+            element in CSS pixels.
+        </li>
+        <li>
+            <code>
+                clientX/Y
+            </code>
+            gives the coordinates relative to the viewport in CSS pixels.
+        </li>
+        <li>
+            <code>
+                screenX/Y
+            </code>
+            gives the coordinates relative to the screen in device pixels.
+        </li>
+    </ol>
+    <figure>
+        <style>
+            #coordinates a.active {
+                font-weight: bold;
+                opacity: 1 !important;
+            }
+            
+            #coordinates a {
+                text-decoration: underline;
+            }
+        </style>
+        <div id="coordinates">
+            <p>
+                <a href="#" class="page active">pageX/Y</a>&nbsp;&nbsp;<a href="#" class="page">clientX/Y</a>&nbsp;&nbsp;<a href="#" class="page">screenX/Y</a>
+            </p>
+            <img src="/assets/img/viewport/desktop_pageXY.jpg" style="display: block;"><img src="/assets/img/viewport/desktop_clientXY.jpg" style="display: none;"><img src="/assets/img/viewport/desktop_screenXY.jpg" style="display: none;">
+        </div>
+        <script>
+            function init(){
+                var $ = function(id){
+                    return document.getElementById(id);
+                };
+                var root = $('coordinates');
+                var links = root.getElementsByTagName('a');
+                var images = root.getElementsByTagName('img');
+                for (var i = 0; i < links.length; i += 1) {
+                    setLink(i);
+                }
+                
+                var removeOld = function(){
+                };
+                links[0].onclick();
+                
+                function setLink(nr){
+                    var link = links[nr];
+                    var img = images[nr];
+                    img.style.display = 'none';
+                    link.onclick = function(){
+                        removeOld();
+                        img.style.display = 'block';
+                        this.className += ' active';
+                        var that = this;
+                        removeOld = function(){
+                            img.style.display = 'none';
+                            that.className = 'page';
+                        }
+                        return false;
+                    }
+                }
+            }
+            
+            init();
+        </script>
+    </figure>
+    <p>
+        90%的情况你会使用
+        <code>
+            pageX/Y
+        </code>；通常你想知道相对于文档事件发生的坐标。其它10%的情况，你会使用
+        <code>
+            clientX/Y
+        </code>。基本上不需要知道相对于屏幕事件发生的坐标。
+    </p>
+</section>
+<section>
+    <h3>Media queries</h3>
+    <div class="floater">
+        <h5 id="link20">Media queries</h5>
+        <dl class="data">
+            <dt>
+                Meaning
+            </dt>
+            <dd>
+                see main text
+            </dd>
+            <dt>
+                Measured in
+            </dt>
+            <dd>
+                see main text
+            </dd>
+            <dt>
+                Browser errors
+            </dt>
+            <dd>
+                IE doesn’t support them.
+            </dd>
+            <dd>
+                For 
+                <code>
+                    device-width/height
+                </code>
+                Firefox uses the values 
+                <code>
+                    screen.width/height
+                </code>
+                would have if they are measured in CSS pixels.
+            </dd>
+            <dd>
+                For 
+                <code>
+                    width/height
+                </code>
+                Safari and Chrome use the values 
+                <code>
+                    documentElement .clientWidth/Height
+                </code>
+                would have if they are measured in device pixels.
+            </dd>
+        </dl>
+    </div>
+    <p>
+        最后是一些关于Media queryies的话题。想法非常简单：你能够定义一些特殊的规则，只有页面的宽比某一特定宽大或者小才会触发。譬如：
+    </p>
+    {% highlight css %}<pre>
+div.sidebar {
+	width: 300px;
+}
+
+@media all and (max-width: 400px) {
+	// styles assigned when width is smaller than 400px;
+	div.sidebar {
+		width: 100px;
+	}
+
+}
+</pre>
+    {% endhighlight %}
+    <p>
+        现在sidebar的宽是300px，除非当width小于400px，这种情况下，sidebar会变成100px。
+    </p>
+    <p>
+        问题的焦点是：此处我们计算的width是什么width？
+    </p>
+    <p>
+        有两个相关的Media queries：
+        <code>
+            width/height
+        </code>和
+        <code>
+            device-width/device-height
+        </code>。
+    </p>
+    <ol>
+        <li>
+            <code>
+                width/height
+            </code>
+            uses the same values as
+            <code>
+                documentElement .clientWidth/Height
+            </code>
+            (the viewport, in other words). It works
+            with CSS pixels.
+        </li>
+        <li>
+            <code>
+                device-width/device-height
+            </code>
+            uses the same values as 
+            <code>
+                screen.width/height
+            </code>
+            (the screen, in other words). It works with device pixels.
+        </li>
+    </ol>
+    <p>
+        <img src="/assets/img/viewport/desktop_mediaqueries.jpg" />
+    </p>
+    <p>
+        应该使用哪一个呢？傻瓜都知道，当然是
+        <code>
+            width
+        </code>。Web developers are not interested in the device width; it’s the width of the browser window that counts.
+    </p>
+    <p>
+        因此使用
+        <code>
+            width
+        </code>，忘掉
+        <code>
+            device-width
+        </code>--在桌面浏览器上。如我们所见，在移动设备上，这种情形比较纷杂。
+    </p>
+</section>
+<section>
+    <h3>总结</h3>
+    <p>
+        我们已经总结了桌面浏览器的行为，这个系列的第二部分会阐述移动设备上的viewport及和桌面浏览器行为的重要不同。
+    </p>
+</section>
+
+

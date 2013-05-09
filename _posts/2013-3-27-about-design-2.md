@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 读“平面设计原理”
+title: 读“写给大家看的设计书”
 category: 阅读
 tags: [design]
 ---
