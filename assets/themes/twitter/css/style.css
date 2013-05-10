@@ -112,7 +112,9 @@ code{
 	font-family:'宋体';
 }
 
-
+small{
+	color:#999a9a;
+}
 .active{
 	font-weight:bold;
 }
