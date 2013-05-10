@@ -28,15 +28,19 @@
 /* overwrite default style  < by Julien198414 > */
 ul{
 	list-style:none;
+	margin:0;
+	padding:0;
 }
 ul>li{
 	padding-left:15px;
 	background:url(/assets/img/square.png) no-repeat 0 9px;
-	line-height:inherit;
 }
 
 ul.inline li{
 	background:none;
+	display:inline-block;
+	padding:0 10px 0 0;
+	
 }
 code{
 	color:blue;
@@ -60,27 +64,27 @@ body{
 	font-size:15px;
 	color:#333;
 }
+
 a{
+	text-shadow:0 1px 0 #fff;
 	color:#146eb4;
 	color:#9C0001; /* red */
 	color:#296d99; /* blue */
-	text-shadow:0 1px 0 #fff;
+	
 }
 a:visited{
 	/* color:#b63e97; */
 }
-a:hover,li.active a{
+a:hover,.active{
 	color:#00aaaa;
 	color:#cf0505;
-	color:rgb(185, 45, 86);
+	color:#b92d56;
 }
 h1 a, h1 a:hover{
 	color:#00aaaa;
-	color:rgb(185, 45, 86);
+	color:#b92d56;
 }
-li.active a{
-	font-weight:bold;
-}
+
 h1,h2,h3,h4,h5,h6{
 	font-weight:normal;
 	font-family: Microsoft YaHei, Arial,Helvetica,Garuda,sans-serif;
@@ -89,8 +93,8 @@ h1{
 	font-size:32px;
 	text-shadow: 0 1px 0 #fff;
 	color:#00aaaa;
-	color:rgb(44, 140, 189);
-	color:rgb(84, 90, 90);	
+	color:#2c8cbd;
+	color:#545a5a;	
 }
 h2{
 	font-size:26px;
@@ -104,6 +108,20 @@ h4{
 	color:#666;
 }
 
+code{
+	font-family:'宋体';
+}
+
+
+.active{
+	font-weight:bold;
+}
+
+h4.active{
+	margin-left:-10px;
+	padding-left:10px;
+	border-left:4px solid #b92d56;
+}
 /* font style setting end
 --------------------------- */
 html {
@@ -165,3 +183,12 @@ min-height:100%;
 }
 /* common component class end
  * -------------------------- */
+.span2.offset1{
+	float:left;
+	margin:0 0 0 5%;
+	width:20%;
+}
+.span8{
+	margin-left:27%;
+	margin-right:5%;
+}

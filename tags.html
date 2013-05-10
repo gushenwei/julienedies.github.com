@@ -19,3 +19,11 @@ group: navigation
     {% include JB/pages_list %}
   </ul>
 {% endfor %}
+
+<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script>
+	$(function($){
+		var anchor = location.hash;
+		anchor && $(anchor).addClass('active');
+	})
+</script>
