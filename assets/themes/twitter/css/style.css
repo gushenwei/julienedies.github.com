@@ -1,30 +1,3 @@
-/* ******************************************************************* */
-.nav-container{
-	margin-top:30px;
-}
-.nav {
-	margin-top:45px;
-	padding:10px 0;
-	color:white;
-	background-color:rgb(132, 161, 184);
-	border-radius:5px;
-}
-.nav li{
-	padding:3px 0;
-}
-
-.nav>li>a{
-	padding:4px 0 1px 12px;
-	color:white;
-	font-size:1.2em;
-}
-.nav>li>a:hover{
-	color:white;
-	background-color:rgb(122, 151, 174);
-}
-.nav>li.active>a{
-	color:rgb(168, 46, 16);
-}
 /* overwrite default style  < by Julien198414 > */
 ul{
 	list-style:none;
@@ -42,6 +15,20 @@ ul.inline li{
 	padding:0 10px 0 0;
 	
 }
+blockquote {
+    color: #4a4a4a;
+    background: #3280bd;
+	background: #e0e0e0;
+    padding: 7px;
+    border-radius: 5px;
+}
+blockquote:before, blockquote:after, q:before, q:after {
+    content: "";
+}
+
+blockquote, q {
+    quotes: "" "";
+}
 code{
 	color:blue;
 	border:none;
@@ -53,6 +40,11 @@ p{
 	margin-bottom:18px;
 }
 
+footer hr{
+	margin-top:20px;
+	border: none;
+	border-bottom: 2px solid #d4d8da;
+}
 /* layout setting end
 ----------------------------- */
 
@@ -63,6 +55,7 @@ body{
 	line-height: 1.6;
 	font-size:15px;
 	color:#333;
+	font-family: "Helvetica Neue", "Luxi Sans", "DejaVu Sans", Tahoma, "Hiragino Sans GB", STHeiti !important;	
 }
 
 a{
@@ -143,7 +136,7 @@ background: -o-linear-gradient(top,  #ededec 0%,#f2f2f2 52%,#dedede 100%); /* Op
 background: -ms-linear-gradient(top,  #ededec 0%,#f2f2f2 52%,#dedede 100%); /* IE10+ */
 background: linear-gradient(to bottom,  #ededec 0%,#f2f2f2 52%,#dedede 100%); /* W3C */
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ededec', endColorstr='#dedede',GradientType=0 ); /* IE6-9 */
-background:rgb(252, 242, 231)!important;
+background:#fcf4ec!important;
 min-height:100%;
 }
 
@@ -186,11 +179,15 @@ min-height:100%;
 /* common component class end
  * -------------------------- */
 .span2.offset1{
-	float:left;
-	margin:0 0 0 5%;
-	width:20%;
+	margin:0 1% 0 4%;
+	width:19%;
+	min-width:180px;
+	display:inline-block;
+	vertical-align:top;
 }
 .span8{
-	margin-left:27%;
-	margin-right:5%;
+	margin:0 4% 0 0;
+	width:70%;
+	display:inline-block;
+	vertical-align:top;
 }
