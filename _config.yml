@@ -15,9 +15,9 @@ auto: true
 title : Index
 tagline: Site Tagline
 author :
-  name : Julien198414
+  name : Julienedies
   email : Julienedies@gmail.com
-  github : Julien198414
+  github : Julienedies
   twitter : ~
   feedburner : ~
 
@@ -86,7 +86,7 @@ JB :
   comments :
     provider : disqus
     disqus :
-      short_name : julien198414
+      short_name : Julienedies
     livefyre :
       site_id : 123
     intensedebate :
