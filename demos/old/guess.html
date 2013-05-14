@@ -42,48 +42,59 @@ body {
 <div id="game"> </div>
 <div id="info"></div>
 <script>
-var arr = new Array('a','b','c','d','e','f','g','h','i','j');
-var arr2 = [];
-var p = null;
-var that = null;
-var p1 = null;
-var geme = document.getElementById('game');
-var info = document.getElementById('info');
-function compare(e){
-	if(p){
-		  this.querySelector('img').style['opacity'] = '1';
-		  that = this;
-		  p1 = p;
-		  if(this != p && this.title ==  p.title){
-			  setTimeout(function(){that.className = 'none'; p1.className = 'none';},500);
-		  }else{
-			  setTimeout(function(){ that.querySelector('img').style['opacity'] = '0'; p1.querySelector('img').style['opacity'] = '0';},500);
-		  }
-	  	  p = null;
-	}else{
-		  p = this;
-		  p.querySelector('img').style['opacity'] = '1';
-	}
-}
-function createElem(id,cl){
-	var elem = document.createElement('div');
-	var img = new Image();
-	img.src = 'img3/' + id + '.png';
-	append(elem,img);
-	elem.title = id;
-	elem.className = cl;
-	elem.addEventListener('click',compare,false);
-	return elem;
-}
-function append(parent,elem){
-	var parent = parent || document.body;
-	parent.appendChild(elem);
-}
+    var arr = new Array('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j');
+    var arr2 = [];
+    var p = null;
+    var that = null;
+    var p1 = null;
+    var geme = document.getElementById('game');
+    var info = document.getElementById('info');
 	
-for(var i = 0; i<16; i++){
-	var elem = createElem(arr2[i] = arr[Math.round(Math.random()*9)], 'box');
-	append(game,elem);
-}
+    function compare(e){
+        if (p) {
+            this.querySelector('img').style['opacity'] = '1';
+            that = this;
+            p1 = p;
+            if (this != p && this.title == p.title) {
+                setTimeout(function(){
+                    that.className = 'none';
+                    p1.className = 'none';
+                }, 500);
+            }
+            else {
+                setTimeout(function(){
+                    that.querySelector('img').style['opacity'] = '0';
+                    p1.querySelector('img').style['opacity'] = '0';
+                }, 500);
+            }
+            p = null;
+        }
+        else {
+            p = this;
+            p.querySelector('img').style['opacity'] = '1';
+        }
+    }
+    
+    function createElem(id, cl){
+        var elem = document.createElement('div');
+        var img = new Image();
+        img.src = 'img3/' + id + '.png';
+        append(elem, img);
+        elem.title = id;
+        elem.className = cl;
+        elem.addEventListener('click', compare, false);
+        return elem;
+    }
+    
+    function append(parent, elem){
+        var parent = parent || document.body;
+        parent.appendChild(elem);
+    }
+    
+    for (var i = 0; i < 16; i++) {
+        var elem = createElem(arr2[i] = arr[Math.round(Math.random() * 9)], 'box');
+        append(game, elem);
+    }
 </script>
 </body>
 </html>

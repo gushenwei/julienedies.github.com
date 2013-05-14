@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="animate.js"></script>
+<style>
+</style>
+</head>
+<body>
+<div id="view" style="width:400px; height:60px; background:blue;position:relative;margin-left:500px;">
+	
+</div>
+
+<script>
+	var a = {cssprop:'top',from:-60,to:200,animation:function(v){return v+'px';},numframes:25,duration:500,delay:0};
+	var b = {cssprop:'left',from:-(400),to:200,animation:function(v){return v+'px';},numframes:30,duration:500,delay:0};
+	var c = {cssprop:'opacity',from:0,to:100,animation:function(v){return v/100+'';},numframes:25,duration:2000,delay:0};
+	var d = {cssprop:'left',from:0,to:-(400),animation:function(v){return v+'px';},numframes:20,duration:500,delay:0};
+	var e = {cssprop:'top',from:0,to:400,animation:function(v){return v+'px';},numframes:25,duration:500,delay:0};
+	
+	//ax('view').add(a).add(c).add(c).add(d).add(e).run();
+	//ax('view').add(b).run();
+	//ax('view').add(c).run();
+	//ax('view').add(d).run();
+</script>
+
+<button onclick="ax('view').add(a).run();">a</button>
+&nbsp;&nbsp; <button onclick="ax('view').add(b).run();">b</button>
+&nbsp;&nbsp; <button onclick="ax('view').add(c).run();">c</button> 
+&nbsp;&nbsp; <button onclick="ax('view').add(d).run();">d</button>
+&nbsp;&nbsp; <button onclick="ax('view').add(e).run();">e</button>
+</body>
+</html>
