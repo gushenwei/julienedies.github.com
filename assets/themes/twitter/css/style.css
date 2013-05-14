@@ -1,4 +1,4 @@
-/* overwrite default style  < by Julien198414 > */
+/* overwrite default style  < by Julienedies> */
 ul{
 	list-style:none;
 	margin:0;
@@ -21,6 +21,7 @@ blockquote {
 	background: #e0e0e0;
     padding: 7px;
     border-radius: 5px;
+	border-left: solid 5px #ccc;
 }
 blockquote:before, blockquote:after, q:before, q:after {
     content: "";

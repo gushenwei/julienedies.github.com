@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "喜爱的电影列表 （欧美）"
+title: "喜爱的电影列表（欧美）"
 description: ""
 category: 电影
 tags: [movie]
