@@ -104,6 +104,7 @@
 	</div>				
 </div>	
 </div>
+<p>点按可拖动，滑屏，排序；双击删除。</p>
 <script>
 
 /*
@@ -471,6 +472,10 @@ $('.list').each(function(i){
     }).delegate('.item','dblclick',function(){
 		//彻底删除拖动项
 		$(this).parent().dragOrderRemoveItem($(this));
+	}).delegate('.item','mousedown',function(){
+		$(this).addClass('active');
+	}).delegate('.item','mouseup',function(){
+		$(this).removeClass('active');
 	});
     
 });

@@ -42,8 +42,11 @@
 	width:100%;
 	opacity:0;
 }
-.v{}
-.active{-webkit-box-shadow: 5px 5px 7px #999, -5px -5px 7px #999;z-index:1000;border:solid 1px blue;}
+.active {
+    -webkit-box-shadow: 5px 5px 7px #999, -5px -5px 7px #999;
+    z-index: 1000;
+    border: solid 1px blue;
+}
 </style>
 </head>
 <body>
@@ -104,6 +107,7 @@
 	</div>				
 </div>	
 </div>
+<p></p>
 <script>
 
 /*
@@ -471,6 +475,8 @@ $('.list').each(function(i){
     }).delegate('.item','dblclick',function(){
 		//彻底删除拖动项
 		$(this).parent().dragOrderRemoveItem($(this));
+	}).delegate('.item','mousedown',function(){
+		$(this).addClass('active');
 	});
     
 });
