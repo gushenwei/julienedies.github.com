@@ -30,7 +30,6 @@ blockquote, q {
     quotes: "" "";
 }
 code{
-	color:blue;
 	border:none;
 	background:none;
 }
@@ -58,7 +57,7 @@ body{
 	line-height: 1.6;
 	font-size:15px;
 	color:#333;
-	font-family: "Helvetica Neue", "Luxi Sans", "DejaVu Sans", Tahoma, "Hiragino Sans GB", STHeiti !important;	
+	font-family: "Helvetica Neue", "Luxi Sans", "DejaVu Sans", Tahoma, "Hiragino Sans GB", STHeiti;	
 }
 
 a{
@@ -104,7 +103,8 @@ h4{
 }
 
 code{
-	font-family:'宋体';
+	font: 100% "Courier New", "Andale Mono", monospace;
+	color: blue;
 }
 
 small{
@@ -118,6 +118,9 @@ h4.active{
 	margin-left:-10px;
 	padding-left:10px;
 	border-left:4px solid #b92d56;
+}
+.content{
+	font-family: "Lucida Grande", "Lucida Sans Unicode", Lucida, Arial, Helvetica, sans-serif;	
 }
 /* font style setting end
 --------------------------- */

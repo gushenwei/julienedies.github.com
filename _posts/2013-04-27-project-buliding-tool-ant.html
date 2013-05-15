@@ -4,6 +4,7 @@ title: 利用ant为html中的js/css引用添加时间戳
 description: ""
 category: 技术&amp;开发
 tags: [ant, tool]
+brushs: [Xml]
 ---
 {% include JB/setup %}
 
@@ -82,27 +83,8 @@ jstestdriver.browser = "C:\\Program Files (x86)\\Google\\Chrome\\Application\\ch
 jstestdriver.config = conf.yml
 jstestdriver.output = results
 
-
 jsCssRefRegexp = ((assets/(css|js)/(base|helper|doc)\.(css|js))([?][t]=[0-9]+)?)
 
 </pre>
 
-
-<link href="/assets/js/library/syntaxhighlighter_3.0.83/styles/shCore.css" rel="stylesheet" type="text/css" />
-<link href="/assets/js/library/syntaxhighlighter_3.0.83/styles/shThemeRDark.css" rel="stylesheet" type="text/css" />
-
-<script type="text/javascript" src="/assets/js/library/syntaxhighlighter_3.0.83/scripts/shCore.js"></script>
-<script type="text/javascript" src="/assets/js/library/syntaxhighlighter_3.0.83/scripts/shAutoloader.js"></script>
-
-<script type="text/javascript">
-SyntaxHighlighter.autoloader(
-	'php                           /assets/js/library/syntaxhighlighter_3.0.83/scripts/shBrushPhp.js',
-	'html xml                      /assets/js/library/syntaxhighlighter_3.0.83/scripts/shBrushXml.js',
-	'css                           /assets/js/library/syntaxhighlighter_3.0.83/scripts/shBrushCss.js',
-	'js jscript javascript         /assets/js/library/syntaxhighlighter_3.0.83/scripts/shBrushJScript.js',
-	'bash shell                    /assets/js/library/syntaxhighlighter_3.0.83/scripts/shBrushBash.js',
-	'sql                           /assets/js/library/syntaxhighlighter_3.0.83/scripts/shBrushSql.js'
-);
-SyntaxHighlighter.all();
-</script>	
 	

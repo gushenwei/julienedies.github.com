@@ -1,0 +1,35 @@
+{% comment %}<!--
+insert syntaxhighlighter javaScript code.
+Usage:
+<link href="/assets/js/library/syntaxhighlighter_3.0.83/styles/shCore.css" rel="stylesheet" type="text/css" />
+<link href="/assets/js/library/syntaxhighlighter_3.0.83/styles/shThemeRDark.css" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript" src="/assets/js/library/syntaxhighlighter_3.0.83/scripts/shCore.js"></script>
+<script type="text/javascript" src="/assets/js/library/syntaxhighlighter_3.0.83/scripts/shAutoloader.js"></script>
+
+<script type="text/javascript">
+SyntaxHighlighter.autoloader(
+	'php                           /assets/js/library/syntaxhighlighter_3.0.83/scripts/shBrushPhp.js',
+	'html xml                      /assets/js/library/syntaxhighlighter_3.0.83/scripts/shBrushXml.js',
+	'css                           /assets/js/library/syntaxhighlighter_3.0.83/scripts/shBrushCss.js',
+	'js jscript javascript         /assets/js/library/syntaxhighlighter_3.0.83/scripts/shBrushJScript.js',
+	'bash shell                    /assets/js/library/syntaxhighlighter_3.0.83/scripts/shBrushBash.js',
+	'sql                           /assets/js/library/syntaxhighlighter_3.0.83/scripts/shBrushSql.js'
+);
+SyntaxHighlighter.all();
+</script>	
+-->{% endcomment %} 
+ 
+{% if brushs %}
+  
+  <link href="/assets/js/library/syntaxhighlighter_3.0.83/styles/shCore.css" rel="stylesheet" type="text/css" />
+  <link href="/assets/js/library/syntaxhighlighter_3.0.83/styles/shThemeRDark.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="/assets/js/library/syntaxhighlighter_3.0.83/scripts/shCore.js"></script>
+    {% for brush in brushs %} 
+    	<script type="text/javascript" src="/assets/js/library/syntaxhighlighter_3.0.83/scripts/shBrush{{ brush }}.js"></script>
+    {% endfor %}
+  <script type="text/javascript">
+	SyntaxHighlighter.all();
+  </script>
+  
+ {% endif %}
