@@ -8,17 +8,22 @@ brushs: [Xml]
 ---
 {% include JB/setup %}
 
-<p>最近做的一个项目，后端只提供API接口，用于输出json数据，页面渲染完全由前端处理。</p>
+<p>最近做的一个项目，后端只提供API接口，用于输出json数据，页面渲染和交互完全由前端处理。</p>
 
-<p>由于初期考虑不完善，后期遇到一些问题。其中之一是将html页面中的js/css引用添加时间戳或版本号。手动添加或修改肯定是不现实的。</p>
+<p>由于所有页面都是静态的html，遇到一些问题；其中之一是每次发布更新都要将html页面中的js/css引用添加或修改时间戳或版本号；手动添加或修改肯定是不现实的。</p>
 
-<p>后来想到了ant，果然圆满解决问题。</p>
+<pre class="brush: xml;">
+&lt;script src="../assets/js/helper.js?t=20130423110956"&gt;&lt;/script&gt;
+&lt;script src="../assets/js/doc.js?t=20130423110956"&gt;&lt;/script&gt;	
+</pre>
 
-<p>ant是基于java的任务构建工具（即通过可配置的程序组件自动完成日常开发中琐碎重复的任务，譬如单元测试，文件压缩合并打包，代码检查等）。</p>
+<p>后来通过ant解决了此问题。</p>
 
-<p>之前jQuery就是用其进行项目构建的，包括运行单元测试，代码检查，文件合并，代码压缩等。不过现在已经转用<a href="http://gruntjs.com/">grunt</a>，grunt是基于node平台，完全由javascript实现，而且专注于js开发的任务构建工具。</p>
+<p><a href="http://ant.apache.org/manual/index.html">ant</a>是基于java的以任务为单位的项目构建工具（即通过可配置的程序组件<strong>自动完成</strong>日常开发中琐碎重复的任务，譬如单元测试，文件压缩，合并打包，代码检查等）。</p>
 
-<p>以下是此次特定任务的ant配置代码：</p>
+<p>之前jQuery的开发就是用ant进行项目构建的，但现在已经转用<a href="http://gruntjs.com/">grunt</a>。grunt是基于node平台，完全由js实现，而且专注于js开发的项目构建工具。</p>
+
+<p>以下是完成此任务的ant配置代码：</p>
 
 <h3>build.xml</h3>
 <pre class="brush: xml;">

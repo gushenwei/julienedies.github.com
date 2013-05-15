@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 读“平面设计原理”笔记
-category: 阅读
+category: 阅读&amp;笔记
 tags: [design]
 ---
 {% include JB/setup %}

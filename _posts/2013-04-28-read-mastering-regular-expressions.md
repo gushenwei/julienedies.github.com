@@ -2,7 +2,7 @@
 layout: post
 title: 重读 "精通正则表达式"
 description: ""
-category: 阅读
+category: 阅读&amp;笔记
 tags: [regexp]
 ---
 {% include JB/setup %}

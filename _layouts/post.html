@@ -43,9 +43,15 @@ layout: default
         <div class="row-fluid post-full">
             <div class="span12">
                 <div class="article_meta">
-                	<span>作者：{{ site.author.name }}</span>
+                	{% if page.tags contains 'translated' %}
+                		<span>译者：
+					{% else %}
+						<span>作者：
+					{% endif %}
+						<a href="http://julienedies.github.io/contact.html" >{{ site.author.name }}</a></span>
+					
 					&nbsp; | &nbsp;
-                    <span> 创建时间：{{ page.date | date: '%Y-%m-%d' }}</span>
+                    <span> 发布：{{ page.date | date: '%Y-%m-%d' }}</span>
 					
                   {% unless page.categories == empty %}
                    &nbsp; | &nbsp;

@@ -1,6 +1,14 @@
 {% comment %}<!--
-insert syntaxhighlighter javaScript code.
+The syntaxhighlighter include is a listing helper for syntaxhighlighter.
 Usage:
+  1) assign the 'brushs' variable to a valid array of brushs.
+  2) include JB/syntaxhighlighter
+  example:
+    <div>
+  	  {% assign brushs = page.brushs %}  
+  	  {% include JB/syntaxhighlighter %}
+  	</div>
+Code:
 <link href="/assets/js/library/syntaxhighlighter_3.0.83/styles/shCore.css" rel="stylesheet" type="text/css" />
 <link href="/assets/js/library/syntaxhighlighter_3.0.83/styles/shThemeRDark.css" rel="stylesheet" type="text/css" />
 
