@@ -20,8 +20,7 @@ theme :
     <![endif]-->
 
     <!-- Le styles -->
-    <link href="{{ ASSET_PATH }}/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
-	<link href="{{ ASSET_PATH }}/css/pygment_trac.css?body=1" rel="stylesheet" type="text/css" media="all">
+    <!-- <link href="{{ ASSET_PATH }}/css/style.css?body=1" rel="stylesheet" type="text/css" media="all"> -->
 
     <!-- Le fav and touch icons -->
 	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
@@ -35,6 +34,44 @@ theme :
     <!-- atom & rss feed -->
     <link href="{{ BASE_PATH }}{{ site.JB.atom_path }}" type="application/atom+xml" rel="alternate" title="Sitewide ATOM Feed">
     <link href="{{ BASE_PATH }}{{ site.JB.rss_path }}" type="application/rss+xml" rel="alternate" title="Sitewide RSS Feed">
+	
+    <style>
+        body {
+            line-height: 1.5;
+			font-size:14px;
+        }
+        .span2.offset1 {
+            margin: 0 1% 0 4%;
+            width: 19%;
+            min-width: 180px;
+            display: inline-block;
+            vertical-align: top;
+        }
+        
+        .span8 {
+            margin: 0 4% 0 0;
+            width: 70%;
+            display: inline-block;
+            vertical-align: top;
+        }
+        ul.inline {
+            display: inline-block;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        ul.inline li {
+            display: inline-block;
+			padding:0 7px 0 0;
+        }
+        .article_meta {
+            margin-bottom: 20px;
+            color: #999a9a;
+            font-size: 0.8em;
+			padding:0 0 3px 5px;
+			background:rgb(245,245,245);
+        }
+    </style>
 
   </head>
 

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "在windows上快速建立jekyll环境"
+title: "在windows/Mac上快速建立jekyll环境"
 description: ""
 category: 技术&amp;开发
 tags: [jekyll, tool]
@@ -27,11 +27,11 @@ brushs: [Bash, Php]
 	$ jekyll --server
 </pre>
 
-另外不建议使用jekyll自带的语法高亮工具：pygments；因为依赖于python，而在windows/Mac上配置python非常麻烦，非常浪费时间。
+另外不建议使用jekyll自带的语法高亮工具：pygments；因为依赖于python，而在windows/Mac上配置python非常麻烦。
 
-而且有很多基于js的语法高亮工具可以选择，而且给了你更多的控制。
+而且有很多其它的语法高亮工具可以选择。
 
-我使用的是syntaxhighlighter，并且在jekyll中将其抽取成一个可以重复动态使用的部分：
+我使用的是基于js的syntaxhighlighter，并且在jekyll中将其抽取成一个可以重复动态使用的部分：
 
 <pre class="brush: php">
 

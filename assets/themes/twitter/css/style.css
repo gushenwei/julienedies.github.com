@@ -13,7 +13,6 @@ ul.inline li{
 	background:none;
 	display:inline-block;
 	padding:0 10px 0 0;
-	
 }
 blockquote {
     color: #4a4a4a;
@@ -59,7 +58,12 @@ body{
 	color:#333;
 	font-family: "Helvetica Neue", "Luxi Sans", "DejaVu Sans", Tahoma, "Hiragino Sans GB", STHeiti;	
 }
-
+/*
+ * font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+font-size: 14px;
+line-height: 20px;
+color: #333333;
+ */
 a{
 	text-shadow:0 1px 0 #fff;
 	color:#146eb4;
