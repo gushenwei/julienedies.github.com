@@ -8,8 +8,13 @@ tags: [movie]
 {% include JB/setup %}
 
 <ul class="inline">
-<li>笑傲江湖之东方不败</li>
-<li>魔教教主张无忌</li>
-<li>侠女</li>
+
 <li>饮食男女</li>
+<li>童年往事</li>
+<li>恋恋风尘</li>
+<li>风柜来的人</li>
+<li>阿飞正传</li>
+<li>东邪西毒</li>
+<li>侠女</li>
+
 </ul>

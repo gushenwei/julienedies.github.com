@@ -38,7 +38,7 @@ pre{
 /* layout setting start
 ----------------------------- */
 p{
-	margin-bottom:18px;
+	margin-bottom:24px;
 }
 
 footer hr{
@@ -53,8 +53,8 @@ footer hr{
 /* font style setting start
 ---------------------------- */
 body{
-	line-height: 1.6;
-	font-size:15px;
+	line-height: 1.7;
+	font-size:14px;
 	color:#333;
 	font-family: "Helvetica Neue", "Luxi Sans", "DejaVu Sans", Tahoma, "Hiragino Sans GB", STHeiti;	
 }
@@ -124,7 +124,8 @@ h4.active{
 	border-left:4px solid #b92d56;
 }
 .content{
-	font-family: "Lucida Grande", "Lucida Sans Unicode", Lucida, Arial, Helvetica, sans-serif;	
+	font-family: "Lucida Grande", "Lucida Sans Unicode", Lucida, Arial, Helvetica, sans-serif;
+	color:rgb(69,69,69);	
 }
 /* font style setting end
 --------------------------- */
@@ -146,6 +147,7 @@ background: -ms-linear-gradient(top,  #ededec 0%,#f2f2f2 52%,#dedede 100%); /* I
 background: linear-gradient(to bottom,  #ededec 0%,#f2f2f2 52%,#dedede 100%); /* W3C */
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ededec', endColorstr='#dedede',GradientType=0 ); /* IE6-9 */
 background:#fcf4ec!important;
+background:rgb(240,240,240)!important;
 min-height:100%;
 }
 
@@ -158,7 +160,9 @@ min-height:100%;
 	padding-bottom:0;
 	border-bottom: 2px solid #d4d8da;
 }
-
+.page-header h1{
+	margin-bottom:10px;
+}
 /* common component class start
  * -------------------------- */
 .background_1{
