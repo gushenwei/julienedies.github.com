@@ -2,8 +2,8 @@
 layout: post
 title: "坂上之云"
 description: ""
-category: 
-tags: []
+category: 随笔&amp;书摘
+tags: [随笔]
 ---
 {% include JB/setup %}
 

@@ -2,8 +2,8 @@
 layout: post
 title: "你表达的和别人理解的"
 description: ""
-category: 
-tags: []
+category: 随笔&amp;书摘
+tags: [随笔] 
 ---
 {% include JB/setup %}
 
