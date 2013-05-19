@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 读“色彩心理学”笔记
+title: 读“色彩构成”笔记
 category: 阅读&amp;笔记
 tags: [design]
 ---
