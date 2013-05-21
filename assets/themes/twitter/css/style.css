@@ -6,7 +6,7 @@ ul{
 }
 ul>li{
 	padding-left:15px;
-	background:url(/assets/img/square.png) no-repeat 0 9px;
+	background:url(/assets/img/square.png) no-repeat 0 11px;
 }
 
 ul.inline li{
@@ -19,7 +19,7 @@ blockquote {
     background: #3280bd;
 	background: #e0e0e0;
     padding: 7px;
-	border-left: solid 5px #ccc;
+	border-left: solid 5px rgb(128, 157, 201);
 }
 blockquote:before, blockquote:after, q:before, q:after {
     content: "";
@@ -96,9 +96,11 @@ h1{
 }
 h2{
 	font-size:26px;
+	padding-bottom:8px;
+	background:url(/assets/img/stripe1.gif) repeat-x 0 bottom;
 }
 h3{
-	font-size:20px;
+	font-size:24px;
 	border-bottom:solid 1px #d4d8da;
 }
 h4{
