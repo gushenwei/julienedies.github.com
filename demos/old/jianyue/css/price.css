@@ -1,0 +1,68 @@
+@charset "utf-8";
+/* CSS Document */
+#content_right h3{background: url(../images/price_background.gif) no-repeat 0 0;}
+/*ul.price_navigation{ width:515px; height:30px; line-height:30px; margin:0 0 10px 0; padding:0 37px; 
+background: url(../images/price_navigation-nar.gif) no-repeat 0 0;}
+ul.price_navigation li{ width:103px;height:30px; text-align:center;float:left;}
+ul.price_navigation li a{ display:block;color:#FFFFFF; font-size:14px; font-weight:bold;}
+ul.price_navigation li a:hover{display:block; color:#da4d30; background:url(../images/price_item_background.gif) no-repeat 0 0;}
+ul.price_content{ clear:both;}
+ul.price_content li.price_centent_item{ margin:10px 0; padding:20px; background-color:#fff4f4;}
+ul.price_content li.price_centent_item h4{color:#da4d30; margin:5px 0;}
+ul.price_content li.price_centent_item span{ font-weight:bold; color: #5D5D5D;}*/
+
+/* js添加 */
+/*.scroll{ width:600px;height:330px; position:relative;overflow: hidden;}
+div.scroll ul.price_content{width:5000px; height:330px; position:absolute;left:110px;overflow: hidden;}
+div.scroll li.price_centent_item{ float:left; width:550px; height:330px;}
+ul.price_navigation li.bg{ background:url(../images/price_item_background.gif) 0 0 no-repeat;}
+ul.price_navigation li.bg a{ color:#da4d30;}
+ul.price_navigation li.bg a:hover{color:#da4d30;}
+.ss{left:-250px;}*/
+.slider-wrap {width: 100%;position: relative;margin:20px 0;} 
+.csw {width: 50px; height: 20px; background: #fff; overflow:hidden;}
+.stripViewer {position:relative;overflow:hidden;border:0 solid #AFAFAF;margin:auto;width:640px;height:420px;clear:both;background: #fff;}
+.stripViewer .panelContainer .panel h4{ margin:10px 0 10px 0; font-size:16px; padding:0 0 3px 0;border-bottom:#AFAFAF solid 1px; color:#da4d30;}
+.stripViewer .panelContainer .panel ul{text-align:left;margin: 0 15px 0 0;}
+.stripViewer .panelContainer .panel ul li{ margin:0 0 5px 0;}
+.stripViewer .panelContainer .panel ul span{font-weight:bold;}
+.stripViewer .panelContainer{position:relative;left:0;top:0;width: 100%;list-style-type: none;-moz-user-select: none;}
+.stripViewer .panelContainer .panel{float:left;width:640px;height:100%;}
+.stripViewer .panelContainer .panel .wrapper{padding: 10px; margin-top:10px; width:580px;}
+.stripNav{}
+.stripNav ul{width:515px;padding:0 37px; height:30px;background:url(../images/price_navigation-nar.gif) no-repeat 0 0; }
+.stripNav ul li{float:left;}
+.stripNav a {width:103px;height:28px; padding:2px 0 0 0;font-weight:bold;text-align:center;line-height:30px;color:#fff;display:block;}
+.stripNav a:hover{color:#da4d30; background:url(../images/price_item_background.gif) no-repeat 0 0;}
+.stripNav a.current {color:#da4d30;background: url(../images/price_item_background.gif) no-repeat 0 0;}
+.stripNavL, .stripNavR{position: absolute;top:230px;text-indent:-9000em;}
+.stripNavL {left: 0;}
+.stripNavR{ right:0;}			
+
+					
+			
+			
+			
+			
+			
+			
+			
+			
+			
+		
+
+
+
+			
+			 
+			 
+			
+			 
+			
+			
+			
+		
+			
+			
+			
+		

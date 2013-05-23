@@ -1,0 +1,84 @@
+HTML,BODY {
+padding:0px;
+margin:0px;
+font-size:10pt;
+}
+.qqbox a{
+	color:#333333;
+	text-decoration: none;
+}
+.qqbox a:hover{
+	color:#FF0000;
+	text-decoration: underline;
+}
+.qqbox {
+	RIGHT: 0px; 
+	OVERFLOW: hidden; 
+	WIDTH: 132px; 
+	POSITION: absolute; 
+	TOP: 40px; 
+	HEIGHT: auto;
+	text-align:center;
+	font-size:10pt;
+}
+.qqlv {
+	FLOAT: right; 
+	OVERFLOW: hidden; 
+	WIDTH: 32px; 
+	POSITION: relative; 
+	HEIGHT: 256px;
+}
+.qqkf {
+	BORDER-RIGHT: #138907 6px solid; 
+	BORDER-TOP: #138907 6px solid; 
+	RIGHT: 0px; 
+	BACKGROUND: #fff; 
+	OVERFLOW: hidden; 
+	BORDER-LEFT: #138907 6px solid; 
+	WIDTH: 120px; 
+	BORDER-BOTTOM: #138907 6px solid; 
+	TOP: 0px; 
+	HEIGHT: auto;
+}
+.submenu{
+	padding-top:4px;
+	padding-bottom:4px;}
+.qqkfbt {
+	BORDER-RIGHT: #9cd052 1px solid; 
+	BORDER-TOP: #9cd052 1px solid; 
+	FONT-WEIGHT: bold; 
+	BACKGROUND: #138907; 
+	OVERFLOW: hidden; 
+	BORDER-LEFT: #9cd052 1px solid; 
+	WIDTH: 118px; 
+	CURSOR: pointer; 
+	COLOR: #fff; 
+	LINE-HEIGHT: 20px; 
+	BORDER-BOTTOM: #9cd052 1px solid; 
+	POSITION: relative; 
+	HEIGHT: 20px;
+}
+.qqkfhm{
+	text-align:left;
+	width:90%;
+	height:24px;
+	line-height:24px;
+	display:block;
+	margin:0 auto;
+	OVERFLOW: hidden; 
+	POSITION: relative; 
+}
+.qqkfhm img{
+margin-top:3px;
++margin-right:3px;
+float:left;}
+.bgdh{
+	width:90%;
+	height:19px;
+	line-height:19px;
+	text-align:center;
+	display:block;
+	margin:0 auto;
+	OVERFLOW: hidden;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+}

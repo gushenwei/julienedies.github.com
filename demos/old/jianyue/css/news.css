@@ -1,0 +1,12 @@
+@charset "utf-8";
+/* CSS Document */
+#content_right h3{ background: url(../images/journal_background.gif) no-repeat 0 0;}
+#content_right ul{}
+#content_right ul li{ width:100%; margin:0 0 15px 0; padding:0 0 2px 0; border-bottom:#CCCCCC dashed 1px;position:relative;}
+#content_right ul li span{ position:absolute; right:3px;}
+#content_right ul li a{ color:#e99c41;}
+#content_right ul li a:hover{ color:#d5472a;}
+
+.content h5{ width:644px; height:28px;position:relative;color:#da4d30;line-height:28px; border-bottom:#B3B3B3 dashed 1px; font-size:16px;}
+.content h5 span{position:absolute; bottom:-2px; right:0;font-weight:normal; font-size:12px;}
+.content p{ margin:10px 0;}

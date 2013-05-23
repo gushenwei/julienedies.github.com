@@ -1,25 +1,22 @@
-/* overwrite default style  < by Julienedies> */
+/*
+ *  by Julienedies
+ * 
+ */
+
+
+
+
+/* overwrite default style start
+--------------------------------------- */
+ul{
+	margin:0;
+	padding:0;	
+}
 ul{
 	list-style:none;
-	margin:0;
-	padding:0;
 }
-ul>li{
-	padding-left:15px;
-	background:url(/assets/img/square.png) no-repeat 0 11px;
-}
-
-ul.inline li{
-	background:none;
-	display:inline-block;
-	padding:0 10px 0 0;
-}
-blockquote {
-    color: #4a4a4a;
-    background: #3280bd;
-	background: #e0e0e0;
-    padding: 7px;
-	border-left: solid 5px rgb(128, 157, 201);
+p{
+	margin-bottom:24px;
 }
 blockquote:before, blockquote:after, q:before, q:after {
     content: "";
@@ -35,35 +32,48 @@ code{
 pre{
 	word-break: break-all;
 }
-/* layout setting start
------------------------------ */
-p{
-	margin-bottom:24px;
+
+ul>li{
+	padding-left:15px;
+	background:url(/assets/img/square.png) no-repeat 3px 11px;
+	line-height:1.8;
 }
 
-footer hr{
-	margin-top:20px;
-	border: none;
-	border-bottom: 2px solid #d4d8da;
+ul.inline li{
+	background:none;
+	display:inline-block;
+	padding:0 10px 0 0;
 }
-/* layout setting end
------------------------------ */
+blockquote{
+    background: #3280bd;
+	background: #e0e0e0;
+    padding: 7px;
+	border-left: solid 5px rgb(128, 157, 201);
+}
+blockquote p{
+	margin:10px 0;
+}
 
 
-/* font style setting start
----------------------------- */
+/* font/color style setting start
+------------------------------------- */
 body{
-	line-height: 1.7;
-	font-size:14px;
-	color:#333;
+    background: #ededec; /* Old browsers */
+    background: -moz-linear-gradient(top,  #ededec 0%, #f2f2f2 52%, #dedede 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ededec), color-stop(52%,#f2f2f2), color-stop(100%,#dedede)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #ededec 0%,#f2f2f2 52%,#dedede 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #ededec 0%,#f2f2f2 52%,#dedede 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #ededec 0%,#f2f2f2 52%,#dedede 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  #ededec 0%,#f2f2f2 52%,#dedede 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ededec', endColorstr='#dedede',GradientType=0 ); /* IE6-9 */
+	background:#fcf4ec!important;
+	background:rgb(240,240,240)!important;	
+	/* font-family: "Helvetica Neue",Helvetica,Arial,sans-serif; */
 	font-family: "Helvetica Neue", "Luxi Sans", "DejaVu Sans", Tahoma, "Hiragino Sans GB", STHeiti;	
+	line-height: 1.7;
+	font-size:14px;	
+	color:#333;
 }
-/*
- * font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-font-size: 14px;
-line-height: 20px;
-color: #333333;
- */
 a{
 	text-shadow:0 1px 0 #fff;
 	color:#146eb4;
@@ -85,11 +95,11 @@ h1 a, h1 a:hover{
 
 h1,h2,h3,h4,h5,h6{
 	font-weight:normal;
-	font-family: Microsoft YaHei, Arial,Helvetica,Garuda,sans-serif;
+	font-family: "Microsoft YaHei", Arial,Helvetica,Garuda,sans-serif;
 }
 h1{
-	font-size:32px;
 	text-shadow: 0 1px 0 #fff;
+	font-size:32px;
 	color:#00aaaa;
 	color:#2c8cbd;
 	color:#545a5a;	
@@ -107,7 +117,9 @@ h4{
 	font-size:16px;
 	color:#666;
 }
-
+blockquote{
+	color: #4a4a4a;
+}
 code{
 	font: 100% "Courier New", "Andale Mono", monospace;
 	color: blue;
@@ -129,8 +141,11 @@ h4.active{
 	font-family: "Lucida Grande", "Lucida Sans Unicode", Lucida, Arial, Helvetica, sans-serif;
 	color:rgb(69,69,69);	
 }
-/* font style setting end
---------------------------- */
+
+
+/* layout setting start
+------------------------------------ */
+
 html {
     height: 100%;
 }
@@ -139,22 +154,12 @@ body {
     min-height: 100%;
 	padding-top:10px;
 }
-html,body{
-background: #ededec; /* Old browsers */
-background: -moz-linear-gradient(top,  #ededec 0%, #f2f2f2 52%, #dedede 100%); /* FF3.6+ */
-background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ededec), color-stop(52%,#f2f2f2), color-stop(100%,#dedede)); /* Chrome,Safari4+ */
-background: -webkit-linear-gradient(top,  #ededec 0%,#f2f2f2 52%,#dedede 100%); /* Chrome10+,Safari5.1+ */
-background: -o-linear-gradient(top,  #ededec 0%,#f2f2f2 52%,#dedede 100%); /* Opera 11.10+ */
-background: -ms-linear-gradient(top,  #ededec 0%,#f2f2f2 52%,#dedede 100%); /* IE10+ */
-background: linear-gradient(to bottom,  #ededec 0%,#f2f2f2 52%,#dedede 100%); /* W3C */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ededec', endColorstr='#dedede',GradientType=0 ); /* IE6-9 */
-background:#fcf4ec!important;
-background:rgb(240,240,240)!important;
-min-height:100%;
+html, body {
+	min-height:100%;
 }
 
 .content{
-	padding-bottom:10px;
+	padding:5px 0 10px 0;
 }
 
 .page-header{
@@ -165,8 +170,29 @@ min-height:100%;
 .page-header h1{
 	margin-bottom:10px;
 }
+.span2.offset1{
+	margin:0 1% 0 4%;
+	width:19%;
+	min-width:180px;
+	display:inline-block;
+	vertical-align:top;
+}
+.span8{
+	margin:0 4% 0 0;
+	width:70%;
+	display:inline-block;
+	vertical-align:top;
+}
+
+#top{
+	display:none;
+}
+
+
+
 /* common component class start
- * -------------------------- */
+ * ----------------------------------- */
+
 .background_1{
 	background:#e8e8e8;
 	color:#99003f;
@@ -191,18 +217,10 @@ min-height:100%;
 .introduction {
 	
 }
-/* common component class end
- * -------------------------- */
-.span2.offset1{
-	margin:0 1% 0 4%;
-	width:19%;
-	min-width:180px;
-	display:inline-block;
-	vertical-align:top;
+footer p{
+	margin-bottom: 4px;
+	padding-top: 4px;
+	border-top: 1px solid rgb(209, 209, 209);
 }
-.span8{
-	margin:0 4% 0 0;
-	width:70%;
-	display:inline-block;
-	vertical-align:top;
-}
+
+

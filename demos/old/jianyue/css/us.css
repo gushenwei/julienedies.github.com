@@ -1,0 +1,16 @@
+@charset "utf-8";
+/* CSS Document */
+#content_right h3{ background:url(../images/About_background.gif) no-repeat 0 0;}
+div.introduction{ width:605px;}
+div.introduction p{ margin:0 0 20px 0;}
+
+ul.team{ width:632px;}
+ul.team li{ margin:0 0 20px 0;}
+ul.team li h4{ color:#da4d30;  font-size:14px; line-height:1.6;}
+ul.team li.one h4{ padding:0 0 0 15px; background: url(../images/hn_01.gif) no-repeat 0 30%;}
+ul.team li.two h4{ padding:0 0 0 15px; background: url(../images/hn_02.gif) no-repeat 0 30%;}
+ul.team li.three h4{padding:0 0 0 15px;background: url(../images/hn_03.gif) no-repeat 0 30%;}
+
+
+ul.contact{ width:544px; background-color:#edf6fe; padding:20px 0 20px 20px; font-size:14px; margin:10px 0;}
+ul.contact li a{ background-color:#f27f28; color:#FFFFFF; font-weight:bold; padding:0 3px;}

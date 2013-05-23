@@ -1,0 +1,201 @@
+body{
+	background-color: #ace5f9;
+}
+#top{
+	width:940px;
+	margin:0 auto;}
+h1{ 
+	height:85px;
+	position:relative;
+	color:#FFFFFF;
+	background:url(../images/logo_2.gif) no-repeat 90% 0; 
+}
+h1 a{
+	color:#FFFFFF;
+	position:absolute;
+	top:50px;
+	left:580px;
+}
+h1 a:hover{
+	color:#FFFFFF;
+}
+div.sound{
+	height:38px; background:url(../images/sound_03.gif) no-repeat 0 0;
+}
+div#page {
+	width: 900px;
+	height:100%; 
+	padding:14px 20px 0;;
+	margin: 0 auto;
+	background:url(../images/footer_background_01.gif) no-repeat 0 0 #FFFFFF;
+}
+div#container {
+	padding: 20px;
+	background-color: #fff;
+}
+div#ads {
+	clear: both;
+	padding: 12px 0 12px 66px;
+}
+div#footer {
+	clear: both;
+	color: #777;
+	margin: 0 auto;
+	padding: 20px 0 40px;
+	text-align: center;
+}
+
+div.content {
+	/* The display of content is enabled using jQuery so that the slideshow content won't display unless javascript is enabled. */
+	display: none;
+	float: right;
+	width: 550px;
+	height:100%;
+}
+div.content a, div.navigation a {
+	text-decoration: none;
+	color: #777;
+}
+div.content a:focus, div.content a:hover, div.content a:active {
+	text-decoration: underline;
+}
+div.controls {
+	margin-top: 8px;
+	height: 23px;
+}
+div.controls a {
+	padding: 5px;
+}
+div.ss-controls {
+	float: left;
+}
+div.nav-controls {
+	float: right;
+}
+div.slideshow-container {
+	position: relative;
+	clear: both;
+	height: 502px; /* This should be set to be at least the height of the largest image in the slideshow */
+	background-color:#1a1a1a;
+}
+div.loader {
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-image: url(../images/loader.gif);
+	background-repeat: no-repeat;
+	background-position: center;
+	width: 550px;
+	height: 502px; /* This should be set to be at least the height of the largest image in the slideshow */
+}
+div.slideshow {
+display: block;
+}
+div.slideshow span.image-wrapper {
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+div.slideshow a.advance-link {
+	display:block;
+	width: 550px;
+	height: 502px; /* This should be set to be at least the height of the largest image in the slideshow */
+	line-height: 502px; /* This should be set to be at least the height of the largest image in the slideshow */
+	text-align: center;
+	vertical-align:middle;
+}
+div.slideshow a.advance-link:hover, div.slideshow a.advance-link:active, div.slideshow a.advance-link:visited {
+	text-decoration: none;
+}
+div.slideshow img {
+	vertical-align: middle;
+}
+div.download {
+	float: right;
+}
+div.caption-container {
+	position: relative;
+	clear: both;
+	height:50px;
+}
+span.image-caption {
+	display: block;
+	position: absolute;
+	width: 550px;
+	top: 0;
+	left: 0;
+}
+div.caption {
+	padding: 12px;
+}
+div.image-title {
+	font-size: 14px; 
+	color:#e29437;
+}
+div.image-desc {
+	line-height: 1.3em;
+	color:#e29437;
+	padding-top: 5px;
+}
+div.navigation {
+	/* The navigation style is set using jQuery so that the javascript specific styles won't be applied unless javascript is enabled. */
+}
+ul.thumbs {
+	clear: both;
+	margin: 0;
+	padding: 0;
+}
+ul.thumbs li {
+	float: left;
+	padding: 0;
+	margin: 5px 10px 5px 0;
+	list-style: none;
+}
+a.thumb {
+	padding: 2px;
+	display: block;
+	border: 1px solid #ccc;
+}
+ul.thumbs li.selected a.thumb {
+	background: #000;
+}
+a.thumb:focus {
+	outline: none;
+}
+ul.thumbs img {
+	border: none;
+	display: block;
+}
+div.pagination {
+	clear: both;
+}
+div.navigation div.top {
+	height: 25px;
+}
+div.navigation div.bottom {
+}
+div.pagination a, div.pagination span.current, div.pagination span.ellipsis {
+	display: block;
+	float: left;
+	margin-right: 2px;
+	padding: 4px 7px 2px 7px;
+	border: 1px solid #f9964d;
+}
+div.pagination a:hover {
+	color:#FFFFFF;
+	background-color: #f5af6b;
+	text-decoration: none;
+}
+div.pagination span.current {
+	font-weight: bold;
+	background-color: #f9964d;
+	border-color: #f9964d;
+	color: #fff;
+}
+div.pagination span.ellipsis {
+	border: none;
+	padding: 5px 0 3px 2px;
+}
+.footer{ width:940px; margin:0 auto; padding:20px 0 10px 0; height:35px;background:url(../images/footer_background_02.gif) 0 0  no-repeat #ace5f9; color:#FFFFFF; text-align:right;}
+.footer p{padding:0 10px 0 0;}

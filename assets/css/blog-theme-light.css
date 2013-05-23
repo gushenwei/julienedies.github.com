@@ -1,0 +1,89 @@
+/* blog custom themes by Julienedies 
+ * ----------------------------------------- */
+
+body{
+ 	/* background:#ace5f9!important; */
+	color:#777;
+	margin:0;
+	padding-bottom:5px;
+}
+
+a {
+	color:#1b8296;
+	text-shadow: 0 1px 0 rgb(224, 249, 253);
+	te
+}
+a:hover{
+	color:#b92d56;
+	text-decoration:underline;
+}
+
+h1,h2,h3,h4,h5,h6{
+	font-family: inherit;
+}
+h4{
+	/*color:rgb(228, 104, 22);*/
+	margin-bottom:10px;
+}
+
+blockquote{
+	border-left: solid 5px rgb(137, 171, 182);
+}
+.content{
+	font-family:inherit;
+	color:rgb(69,69,69);
+}
+.container-fluid{
+	width: 980px;
+	margin: 0 auto 5px auto;
+
+}
+.row-fluid{
+	border-radius: 0 17px 17px 17px;
+	background: #fff;
+	padding-bottom:17px;	
+}
+
+.span2 a{
+}
+
+.span8{
+	background:#fff;
+	padding:0 30px 30px 30px;
+	border-radius:8px;
+	border-radius-left:none;
+	width:660px;
+	margin:0;
+}
+
+.span8 h1{
+	/*background:url(/assets/img/bg/title1.png) no-repeat 0 0;*/
+	height:38px;
+	padding-bottom: 5px;
+}
+
+.post-full{
+
+}
+
+#top{
+	display:block;
+	padding-top:65px;
+	background:url(/assets/img/bg/logo.png) no-repeat 90% 0;
+	margin-bottom:1px;
+	position:relative;
+}
+#top span {
+    position: absolute;
+    right: 20px;
+    top: 56px;
+    color: #fff;
+    font-size: 14px;
+}
+footer p{
+	margin-bottom:5px;
+	padding-top:0;
+	text-align:right;
+	color:#fff;
+	border:none;
+}
