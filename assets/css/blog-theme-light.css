@@ -1,4 +1,4 @@
-/* blog custom themes by Julienedies 
+/* blog custom theme by Julienedies 
  * ----------------------------------------- */
 
 body{
@@ -11,7 +11,6 @@ body{
 a {
 	color:#1b8296;
 	text-shadow: 0 1px 0 rgb(224, 249, 253);
-	te
 }
 a:hover{
 	color:#b92d56;
@@ -20,6 +19,8 @@ a:hover{
 
 h1,h2,h3,h4,h5,h6{
 	font-family: inherit;
+	font-family: Palatino, FreeSerif, serif;
+	font-family: "Lucida Grande", "Lucida Sans Unicode", Lucida, Arial, Helvetica, sans-serif;
 }
 h4{
 	/*color:rgb(228, 104, 22);*/
@@ -36,15 +37,11 @@ blockquote{
 .container-fluid{
 	width: 980px;
 	margin: 0 auto 5px auto;
-
 }
 .row-fluid{
 	border-radius: 0 17px 17px 17px;
 	background: #fff;
 	padding-bottom:17px;	
-}
-
-.span2 a{
 }
 
 .span8{
@@ -84,6 +81,5 @@ footer p{
 	margin-bottom:5px;
 	padding-top:0;
 	text-align:right;
-	color:#fff;
 	border:none;
 }
