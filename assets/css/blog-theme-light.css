@@ -29,6 +29,9 @@ h4{
 
 blockquote{
 	border-left: solid 5px rgb(137, 171, 182);
+	border-left: solid 5px rgb(120, 164, 179);
+	background: rgb(170, 170, 170);
+	color:#fff;
 }
 .content{
 	font-family:inherit;
@@ -41,7 +44,8 @@ blockquote{
 .row-fluid{
 	border-radius: 0 17px 17px 17px;
 	background: #fff;
-	padding-bottom:17px;	
+	padding-bottom:17px;
+	box-shadow: 1px 1px 7px rgb(220, 220, 220);	
 }
 
 .span8{
