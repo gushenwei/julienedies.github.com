@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="js/jquery-1.7.1.js"></script>
+<script src="js/jquery.ui.core.js"></script>
+<script src="js/jquery.ui.widget.js"></script>
+<script src="js/jquery.ui.mouse.js"></script>
+<script src="js/jquery.ui.draggable.js"></script>
+<script src="js/jquery.easing.min.js"></script>
+<style>
+body {
+    margin:0;
+    padding:0;
+	overflow:hidden;
+}
+#view {
+	position:absolute;
+    width: 3000px;
+    height: 3000px;
+	background: -webkit-linear-gradient(top,  #ededec 0%,#f2f2f2 52%,#dedede 100%); /* Chrome10+,Safari5.1+ */
+	-webkit-transition:all 0.5s ease;
+}
+.bg_1{
+	background:#ededec;
+}
+.bg_2{
+	background:#dedede;
+}
+</style>
+</head>
+<body>
+	
+<div id="view">
+	
+</div>
+
+<script>
+	//获取视口面积，用以填充数据
+	var vw = $(window).width();
+	var vh = $(window).height();
+	var dw = 200;
+	var dh = 100;
+	
+	var len = vw*wh/dw*dh;
+	
+	
+$('#view').draggable({
+    start: function(){
+        //$th.trigger('dragOrder.dragStart');
+    },
+    drag: function(){
+    },
+    stop: function(){
+        //$th.trigger('dragOrder.dragStop');
+    }
+});
+</script>
+</body>
+</html>

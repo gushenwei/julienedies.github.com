@@ -248,7 +248,7 @@ The command line execution looks like this:</p>
     &lt;/target&gt;
 </pre>
 <h3>Clean up</h3>
-<p>If the build process has succeeded we need to move the temporary build files from the <code>build</code> directory to the <code>bin</code>.</p>
+<p>如果构建成功，我们需要把临时的构建文件从 <code>build</code>移动到 <code>bin</code>目录。</p>
 <pre class="brush: xml; first-line: 100; title: ; wrap-lines: false; notranslate" title="">
     &lt;target name=&quot;finish&quot; depends=&quot;properties&quot;&gt;
         &lt;echo&gt;Finishing...&lt;/echo&gt;
@@ -259,9 +259,9 @@ The command line execution looks like this:</p>
     &lt;/target&gt;
 </pre>
 <h3>Group it together</h3>
-<p>Finally we'll create a grouping target which calls all of the other targets in sequence:</p>
+<p>最后我们创建一个组目标，它会根据依赖按序调用调用其它target：</p>
 <pre class="brush: xml; first-line: 100; title: ; wrap-lines: false; notranslate" title="">
     &lt;target name=&quot;build&quot; depends=&quot;version, properties, create_build, consolidate, jshint, specs, minify, jsdocs, finish&quot;&gt;
     &lt;/target&gt;
 </pre>
-<h4>Now run it!</h4>
+<h4>现在运行它吧!</h4>
