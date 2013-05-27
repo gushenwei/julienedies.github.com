@@ -16,16 +16,23 @@ body {
 }
 #view {
 	position:absolute;
-    width: 3000px;
-    height: 3000px;
+    width: 3100px;
+    height: 3100px;
 	background: -webkit-linear-gradient(top,  #ededec 0%,#f2f2f2 52%,#dedede 100%); /* Chrome10+,Safari5.1+ */
-	-webkit-transition:all 0.5s ease;
+	-webkit-transition:all 0.3s ease;
 }
 .bg_1{
 	background:#ededec;
 }
 .bg_2{
 	background:#dedede;
+}
+.k{
+	margin:1px 0 0 1px;
+	background:rgb(210, 210, 210);
+	width:200px;
+	height:200px;
+	display:inline-block;
 }
 </style>
 </head>
@@ -37,24 +44,44 @@ body {
 
 <script>
 	//获取视口面积，用以填充数据
-	var vw = $(window).width();
-	var vh = $(window).height();
+	var $view = $('#view');
+	
+	var vw = $view.width();
+	var vh = $view.height();
 	var dw = 200;
-	var dh = 100;
+	var dh = 200;
 	
-	var len = vw*wh/dw*dh;
+	var len = vw*vh/dw*dh;
+	
+	var lw = Math.floor(vw/dw);
+	var lh = Math.floor(vh/dh);
 	
 	
-$('#view').draggable({
-    start: function(){
-        //$th.trigger('dragOrder.dragStart');
-    },
-    drag: function(){
-    },
-    stop: function(){
-        //$th.trigger('dragOrder.dragStop');
-    }
-});
+	
+	for(var i=0; i<lh; i++ ){
+		for(var j=0;j<lw; j++ ){
+			$view.append('<div class="k" style="left:' + i*dw + 'px;top:' + j*dh + 'px;" id="k' + i + '' + j + '" >' + i + '' + j + '</div>');
+		}
+	}
+		
+    $view.draggable({
+        start: function(){
+        },
+        drag: function(){
+        },
+        stop: function(){
+            var $th = $(this);
+            var position = $th.position();
+            var x = position.left;
+            var y = position.top;
+			if(x>0){
+				
+			}
+			if(y>0){
+				
+			}
+        }
+    });
 </script>
 </body>
 </html>
