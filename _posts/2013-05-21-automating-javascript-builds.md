@@ -3,7 +3,7 @@ layout: post
 title: "[翻译]自动化javaScript开发"
 description: "自动化javascript开发"
 category: 英语&amp;翻译
-tags: [automating, js, translated]
+tags: [ant, js, translated]
 brushs: [Xml]
 ---
 {% include JB/setup %}

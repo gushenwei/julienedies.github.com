@@ -35,7 +35,7 @@ pre{
 
 ul>li{
 	padding-left:15px;
-	background:url(/assets/img/square.png) no-repeat 3px 11px;
+	background:url(/assets/img/bg/square.png) no-repeat 3px 11px;
 	line-height:1.8;
 }
 
@@ -107,7 +107,7 @@ h1{
 h2{
 	font-size:26px;
 	padding-bottom:8px;
-	background:url(/assets/img/stripe1.gif) repeat-x 0 bottom;
+	background:url(/assets/img/bg/stripe1.gif) repeat-x 0 bottom;
 }
 h3{
 	font-size:24px;

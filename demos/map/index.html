@@ -7,6 +7,7 @@
 <script src="js/jquery.ui.widget.js"></script>
 <script src="js/jquery.ui.mouse.js"></script>
 <script src="js/jquery.ui.draggable.js"></script>
+<script src="js/jquery.mousewheel.min.js"></script>
 <script src="js/jquery.easing.min.js"></script>
 <style>
 body {
@@ -43,8 +44,11 @@ body {
 </div>
 
 <script>
+	
 	//获取视口面积，用以填充数据
 	var $view = $('#view');
+	
+	var scale = 1;
 	
 	var vw = $view.width();
 	var vh = $view.height();
@@ -56,32 +60,48 @@ body {
 	var lw = Math.floor(vw/dw);
 	var lh = Math.floor(vh/dh);
 	
-	
-	
-	for(var i=0; i<lh; i++ ){
-		for(var j=0;j<lw; j++ ){
-			$view.append('<div class="k" style="left:' + i*dw + 'px;top:' + j*dh + 'px;" id="k' + i + '' + j + '" >' + i + '' + j + '</div>');
-		}
-	}
-		
-    $view.draggable({
-        start: function(){
-        },
-        drag: function(){
-        },
-        stop: function(){
-            var $th = $(this);
-            var position = $th.position();
-            var x = position.left;
-            var y = position.top;
-			if(x>0){
-				
-			}
-			if(y>0){
-				
-			}
+    var init = function(){
+        for (var i = 0; i < lh; i++) {
+            for (var j = 0; j < lw; j++) {
+                $view.append('<div class="k" style="left:' + i * dw + 'px;top:' + j * dh + 'px;" id="k' + i + '' + j + '" >' + i + '' + j + '</div>');
+            }
         }
-    });
+        
+        $(window).mousewheel(function(event, delta, deltaX, deltaY){
+			console.log(delta);
+			console.log(scale);
+			scale  += delta*0.1;
+			scale > 3 && (scale = 3);
+			scale < 0.1 && (scale = 0.1);
+			
+			console.log(scale);
+            $('body').css({'-webkit-transform':'scale(' + scale + ')'});
+        });
+        
+        $view.draggable({
+            start: function(){
+            },
+            drag: function(){
+            },
+            stop: function(){
+                var $th = $(this);
+                var position = $th.position();
+                var x = position.left;
+                var y = position.top;
+                if (x > 0) {
+                
+                }
+                if (y > 0) {
+                
+                }
+            }
+        });
+    };
+	
+
+
+	init();
+	
 </script>
 </body>
 </html>
