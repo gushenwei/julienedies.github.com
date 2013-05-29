@@ -35,8 +35,11 @@ theme :
     <!-- atom & rss feed -->
     <link href="{{ BASE_PATH }}{{ site.JB.atom_path }}" type="application/atom+xml" rel="alternate" title="Sitewide ATOM Feed">
     <link href="{{ BASE_PATH }}{{ site.JB.rss_path }}" type="application/rss+xml" rel="alternate" title="Sitewide RSS Feed">
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
   </head>
   <body>
+
       <div class="container-fluid">
           <header id="top">
               <span>only existence</span>
@@ -52,7 +55,9 @@ theme :
               </p>
           </footer>
       </div>
+	  
       {% include JB/analytics %}
+	  
   </body>
 </html>
 

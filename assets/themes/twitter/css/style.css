@@ -67,7 +67,7 @@ body{
 	background: linear-gradient(to bottom,  #ededec 0%,#f2f2f2 52%,#dedede 100%); /* W3C */
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ededec', endColorstr='#dedede',GradientType=0 ); /* IE6-9 */
 	background:#fcf4ec!important;
-	background:rgb(240,240,240)!important;	
+	background:rgb(230,230,230)!important;
 	/* font-family: "Helvetica Neue",Helvetica,Arial,sans-serif; */
 	font-family: "Helvetica Neue", "Luxi Sans", "DejaVu Sans", Tahoma, "Hiragino Sans GB", STHeiti;	
 	line-height: 1.7;
