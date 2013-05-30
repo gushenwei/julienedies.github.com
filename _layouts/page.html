@@ -31,7 +31,6 @@ layout: default
     </div>
 	
 </div>
-
 <style>
 body {
     margin:0;
@@ -50,13 +49,14 @@ body {
 	overflow:hidden;
 }
 .k{
-	margin:0;
-	background:rgb(210, 210, 210);
+	margin:1px 0 0 1px;
+	background:rgb(230, 230, 230);
 	width:200px;
 	height:200px;
 	display:inline-block;
 	color:rgb(140, 140, 140);
 	color:#fff;
+	vertical-align:middle;
 }
 .container-fluid{
 	position:relative;
@@ -72,7 +72,7 @@ body {
 
 <script>
     $(function(){
-        // custom bg 
+        // custom bg 6
         var $view = $('<div id="view"></div>');
 
         var left = Math.floor(Math.random() * 501);
@@ -98,7 +98,7 @@ body {
         
         for (var i = 0; i < lh; i++) {
             for (var j = 0; j < lw; j++) {
-                html += '<div class="k" style="left:' + i * dw + 'px;top:' + j * dh + 'px;" id="k' + i + '' + j + '" >' + Math.floor(Math.random() * i) + '' + Math.floor(Math.random() * j) + '</div>';
+                html += '<div class="k" style="left:' + i * dw + 'px;top:' + j * dh + 'px;xfont-size:'+ Math.ceil(Math.random() *40)+ 'px;" id="k' + i + '' + j + '" >' + Math.floor(Math.random() * i) + '' + Math.floor(Math.random() * j) + '</div>';
             }
         }
 		$view.append(html);

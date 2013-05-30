@@ -33,7 +33,7 @@ body {
 	background:rgb(210, 210, 210);
 	width:200px;
 	height:200px;
-	display:inline-block;
+	position:absolute;
 }
 </style>
 </head>
@@ -48,25 +48,37 @@ body {
 	//获取视口面积，用以填充数据
 	var $view = $('#view');
 	
+	
 	var scale = 1;
 	
-	var vw = $view.width();
-	var vh = $view.height();
-	var dw = 200;
-	var dh = 200;
+    var vw = $view.width();
+    var vh = $view.height();
+    var dw = 200;
+    var dh = 200;
+    
+    var len = vw * vh / dw * dh;
+    
+    var lw = Math.floor(vw / dw);
+    var lh = Math.floor(vh / dh);
 	
-	var len = vw*vh/dw*dh;
 	
-	var lw = Math.floor(vw/dw);
-	var lh = Math.floor(vh/dh);
 	
-    var init = function(){
+	
+	var full = function(lh,lw,dw,dh){
+		var html = '';
         for (var i = 0; i < lh; i++) {
             for (var j = 0; j < lw; j++) {
-                $view.append('<div class="k" style="left:' + i * dw + 'px;top:' + j * dh + 'px;" id="k' + i + '' + j + '" >' + i + '' + j + '</div>');
+                html += '<div class="k" style="left:' + i * (dw>0?dw+1:dw-1) + 'px;top:' + j * (dh>0?dh+1:dh-1) + 'px;" id="k' + i + '' + j + '" >' + i + '' + j + '</div>';
             }
         }
-        
+		return html;		
+	};
+	
+	
+    var init = function(){
+		
+		$view.append(full(lh,lw,dw,dh));
+		
         $(window).mousewheel(function(event, delta, deltaX, deltaY){
 			console.log(delta);
 			console.log(scale);
@@ -75,7 +87,7 @@ body {
 			scale < 0.1 && (scale = 0.1);
 			
 			console.log(scale);
-            $('body').css({'-webkit-transform':'scale(' + scale + ')'});
+            //$('body').css({'-webkit-transform':'scale(' + scale + ')'});
         });
         
         $view.draggable({
@@ -86,13 +98,18 @@ body {
             stop: function(){
                 var $th = $(this);
                 var position = $th.position();
-                var x = position.left;
-                var y = position.top;
-                if (x > 0) {
-                
+                var left = position.left;
+                var top = position.top;
+				var lw1 = Math.ceil(left/dw)+2;
+				var lh1 = Math.ceil(top/dh)+2;
+                if (left > 0 && top > 0) {
+					$view.append(full(lw1,lh,-dw,-dh));
+                }				
+                if (left > 0) {
+					$view.append(full(lw1,lh,-dw,dh));
                 }
-                if (y > 0) {
-                
+                if (top > 0) {
+                	$view.append(full(lw,lh1,dw,-dh));
                 }
             }
         });
