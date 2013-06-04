@@ -11,38 +11,47 @@
 <script src="js/jquery.easing.min.js"></script>
 <style>
 body {
-    margin:0;
-    padding:0;
 	overflow:hidden;
-	height:100%;
 	background:#fff;
 }
 #view {
-	position:fixed;
-    width: 100%;
-    height: 100%;
+	position:absolute;
+    width: 300px;
+    height: 300px;
+	overflow:hidden;
 	/*background: -webkit-linear-gradient(top,  #ededec 0%,#f2f2f2 52%,#dedede 100%); */ /* Chrome10+,Safari5.1+ */
-	-webkit-transition:all 0.3s ease;
+	border:solid 1px green;
+	-webkit-transition:all 0.1s ease;
+	margin:100px 0 0 300px;
+	overflow:visible;
+	
 }
-.bg_1{
-	background:#ededec;
+#data,#drag{
+	position:absolute;
+	left:0;
+	top:0;	
+	width:100%;
+	height:100%;	
 }
-.bg_2{
-	background:#dedede;
+#drag{
+	background:rgba(0,0,255,0.1);
 }
+
 .k{
 	margin:1px 0 0 1px;
 	background:rgb(210, 210, 210);
 	position:absolute;
 	-webkit-transition:all 0.1s ease;
-	opacity:0;
+	opacity:1;
 }
+
+#introduction{display:none;}
 </style>
 </head>
 <body>
-	
-<div id="view">
-	<pre>
+
+<div id="introduction">
+    <pre>
 	/**
 	 * 完成这个应用需要考虑以下事项：
 	 * 
@@ -64,50 +73,74 @@ body {
 	 * 
 	 */
 	 </pre>
-	 <button id="show" style="margin-left:300px;">演示基本效果</button>	
+    <button id="show" style="margin-left:300px;">
+        	演示基本效果
+    </button>
+</div>
+
+<div id="view">
+    <div id="drag">
+        <div id="data">
+        </div>
+    </div>
 </div>
 
 <script>
 	
 	var $view = $('#view');
+	var $data = $('#data');
+	var $drag = $('#drag');
 	
 	var scale = 1;
 	
-    var vw = $(window).width();
-    var vh = $(window).height();
+    var vw = $view.width();
+    var vh = $view.height();
     var dw = 100;
     var dh = 100;
+	
+	left_1 = 0;
+	top_1 = 0;
+
+	
+	var _left = vw/2;
+	var _top = vh/2;
+
     
-    var lw = Math.ceil(vw / dw);
-    var lh = Math.ceil(vh / dh);
+    var lw = Math.ceil(vw / dw / 2);
+    var lh = Math.ceil(vh / dh / 2);
 	
 	
-    var full = function(lh, lw, dw, dh){
-        for (var i = 0; i < lw; i++) {
-            for (var j = 0; j < lh; j++) {
-				
-                (function(i, j){
-					var left = i * (dw > 0 ? dw + 1 : dw - 1) + 'px';
-					var top = j * (dh > 0 ? dh + 1 : dh - 1)+'px';
-					var width = Math.abs(dw) + 'px';
-					var height = Math.abs(dh) + 'px';
-					
-					var item = $('<div class="k" style="width:' + width + ';height:'+ height + ';left:' + left + ';top:' + top + ';" id="k' + i + '' + j + '" >' + i + '' + j + '</div>').appendTo($view);
-					
-                    setTimeout(function(){
-                        item.css({'left':left,'top':top,'opacity':'1'});
-                    }, 30*i*j);
-					
-                })(i,j);
-				
+	var i = -lw;
+	var j = -lh	
+	
+	console.log(i,j, lw, lh)
+	
+    var full = (function(i1, j1, lw, lh, dw, dh){
+        
+        return function(){
+            for (var i = i1; i < lw; i++) {
+				console.log('i='+i)
+                for (var j = j1; j < lh; j++) {
+                	console.log('j='+j)
+                    var left = i * (dw + 1) + 'px';
+                    var top = j * (dh + 1) + 'px';
+                    var width = Math.abs(dw) + 'px';
+                    var height = Math.abs(dh) + 'px';
+                    
+                    var item = $('<div class="k" style="width:' + width + ';height:' + height + ';left:' + left + ';top:' + top + ';" id="k' + i + '' + j + '" >' + i + '' + j + '</div>').appendTo($data);
+                    
+                }
             }
-        }
-    };
+        };
+
+    })(i, j, lw, lh, dw, dh);
 	
 	
     var init = function(){
 		
-		full(lh,lw,dw,dh);
+		$data.css({'left':_left+'px','top':_top+'px'});
+		
+		full();
 		
         $(window).mousewheel(function(event, delta, deltaX, deltaY){
 			console.log(delta);
@@ -117,41 +150,76 @@ body {
 			scale < 0.1 && (scale = 0.1);
 			
 			console.log(scale);
-            $('body').css({'-webkit-transform':'scale(' + scale + ')'});
+           //$('body').css({'-webkit-transform':'scale(' + scale + ')'});
         });
-        
-        $view.draggable({
+		
+        $drag.draggable({
             start: function(){
             },
             drag: function(){
+                var position = $drag.position();
+
+				
+                var left = position.left;
+                var top = position.top;		
+				
+			
+						
+                var left1 = -(left) + _left;
+                var top1 = -(top) +  _top;
+				
+				$data.css({'left':left1+'px','top':top1+'px'});	
+				
+                $data.find('.k').each(function(i){
+                    $th = $(this);
+                    var position = $th.position();
+                    var left2 = position.left;
+                    var top2 = position.top;
+					
+					$th.css({'left':left2+left-left_1+'px','top':top2+top-top_1+'px'});	
+                });	
+				
+				left_1 = left ;
+				top_1 = top;	
+								
             },
             stop: function(){
                 var $th = $(this);
                 var position = $th.position();
                 var left = position.left;
                 var top = position.top;
+				
+				//_left += left;
+				//_top += top;
+				
+				//$drag.css({'left':0,'top':0});
+				
+				
 				var lw1 = Math.ceil(left/dw)+1;
 				var lh1 = Math.ceil(top/dh)+1;
+				
                 if (left > 0 && top > 0) {
-					full(lh,lw1,-dw,-dh);
+					//full(lh,lw1,-dw,-dh);
                 }				
                 if (left > 0) {
-					full(lh,lw1,-dw,dh);
+					//full(lh,lw1,-dw,dh);
                 }
                 if (top > 0) {
-                	full(lh1,lw,dw,-dh);
+                	//full(lh1,lw,dw,-dh);
                 }
+				
+				console.log($data.find('div').length)
             }
         });
     };
 	
 	
 	// app init
-	$(function(){
+	$(function(){init();
 		$('#show').click(function(){
-			$view.hide(500,function(){
-				$view.empty();
-				$view.show();
+			$data.hide(500,function(){
+				$data.empty();
+				$data.show();
 				init();
 			})
 		});

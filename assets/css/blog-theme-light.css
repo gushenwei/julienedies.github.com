@@ -10,7 +10,7 @@ body{
 
 a {
 	color:#1b8296;
-	text-shadow: 0 1px 0 rgb(224, 249, 253);
+	text-shadow: 0 0 0 rgb(224, 249, 253);
 }
 a:hover{
 	color:#b92d56;
