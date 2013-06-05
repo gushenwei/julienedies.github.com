@@ -13,6 +13,6 @@ tags: [git]
 
 互联网上git学习教程很多，但是都比较零碎和入门。
 
-如果大家想深入和系统的了解git，推荐读 “Pro.Git“ 这本书（有中文译本）。
+如果大家想深入和系统的了解git，推荐读 《Pro.Git》 这本书（有中文译本）。
 
 <p><img src="/assets/img/book/pro_git.gif" style="border: solid 1px #aaa;" /></p>

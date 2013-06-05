@@ -7,9 +7,9 @@ tags: [book]
 ---
 {% include JB/setup %}
 
-
-#跌荡一百年@吴晓波
-
+<ul class="inline">
+<li>跌荡一百年@吴晓波</li>
+</ul>
 
 <section>
 <h3>想读的</h3>
