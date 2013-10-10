@@ -1,0 +1,46 @@
+*{
+	list-style:none;
+	margin:0;
+	padding:0;
+}
+pre{
+	font-size:1.2em;
+}
+#box {
+	width: 700px;
+	margin: 0 auto;
+}
+#info {
+	font-size: 18px;
+	font-weight: bold;
+	color: red;
+}
+#list {
+	line-height: 1.5;
+}
+#list li{
+	margin-top:25px;
+	padding:2px 5px;
+	border-bottom:1px #eee solid;
+}
+#list li input{
+	display:none;
+}
+#console{
+	position : fixed;
+	right:7em;
+	top:5em;
+}
+.details {
+	position: relative;
+	display: none;
+	/*visibility:hidden;*/
+	margin-left:360px;
+	color: #777;
+}
+.ref{
+	margin:-22px 0 0 80px;
+}
+.bg{
+	background-color:#eee;
+}
