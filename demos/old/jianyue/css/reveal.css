@@ -1,0 +1,20 @@
+@charset "utf-8";
+/* CSS Document */
+#content_right h3{ background: url(../images/reveal_background.gif) no-repeat 0 0;}
+ul.wedding li{ width:210px; padding:6px 3px; margin:0 0 10px 0; float:left; text-align:center; background:url(../images/img_background.gif) no-repeat 0 1px; border-bottom:#CCCCCC dashed 1px;}
+ul.wedding li a {display:block;width:200px; padding:5px;}
+ul.wedding li a:hover{background-color:#98192e;}
+ul.wedding li a h6{ color:#DA4D31;text-decoration:underline; padding:10px 0 0 0; font-weight:normal; font-size:12px;}
+ul.wedding li a:hover h6{ color:#FFFFFF;text-decoration:underline;}
+ul.wedding li a img{ border:none;}
+p.pagination{ margin:10px 0 0 10px; text-align:center; clear:both;}
+
+ul.appreciate{}
+ul.appreciate li{margin:0 0 25px 0; position:relative; width:100%;}
+ul.appreciate li img{ position:absolute; top:0; left:0;}
+ul.appreciate li h5{ margin:0 0 0 160px; color:#666666;}
+ul.appreciate li p{ margin:5px 0 0 160px;} 
+ul.appreciate li p.location{}
+ul.appreciate li p.clear{ width:625px; padding:0 0 0 15px; height:24px; line-height:24px; background-color:#fbe6ee; position:relative; margin:20px 0 0 0;}
+a.location{ position:absolute; right:40px; top:0; padding:0 0 0 35px; background:url(../images/see_03.gif) no-repeat 0 0; color:#444444;}
+a.location:hover{ color:#6F1F7A; text-decoration:underline;}

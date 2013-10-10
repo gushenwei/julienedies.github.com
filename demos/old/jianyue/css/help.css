@@ -1,0 +1,27 @@
+@charset "utf-8";
+/* CSS Document */
+#content_right h3{background:url(../images/help_background.gif) no-repeat 0 0;}
+
+ol.flow{ width:622px;}
+ol.flow li h4{line-height:45px;font-size:24px;padding:0 0 0 60px;border-bottom:#CCCCCC 1px dotted;margin:15px 0 5px 0; color:#ea9f47; }
+ol.flow li h5{ color:#da4d30;}
+ol.flow ol li{ list-style-type:decimal; margin:0 0 5px 25px;}
+ol.flow ol li ul li{ list-style-type:disc;}
+ol.flow li.one h4{ background:url(../images/li_01.gif) no-repeat 0 0;}
+ol.flow li.two h4{background:url(../images/li_02.gif) no-repeat 0 0;}
+ol.flow li.three h4{background:url(../images/li_03.gif) no-repeat 0 0;}
+ol.flow li.four h4{background:url(../images/li_04.gif) no-repeat 0 0;}
+ol.flow li.five h4{background:url(../images/li_05.gif) no-repeat 0 0;}
+ol.flow li.six h4{background:url(../images/li_06.gif) no-repeat 0 0;}
+
+.content h4{color:#e3963c; margin-top:10px;}
+.service{ width:620px;}
+ul.service{padding:20px 0 10px 0;}
+ul.service li{ margin:5px 0;}
+ul.service li span{ font-size:14px; color:#e3963c; font-weight:bold;}
+ul.img li{ background:url(../images/e.gif) no-repeat 0 0; padding:0 5px 0 20px;}
+p.service{ margin-top:15px;}
+
+ul.problem{ width:620px;}
+ul.problem li{ margin:20px 0;}
+ul.problem li h5{ color:#e59f4c;}

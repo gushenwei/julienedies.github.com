@@ -6,28 +6,34 @@ layout: default
 <div class="row-fluid">
 	
     <div class="span2 offset1">
+      <aside>
         <h1><a class="brand" href="{{ HOME_PATH }}">{{ site.title }}</a></h1>
-		<!--
-            <ul class="nav">
-            {% assign pages_list = site.pages %}
-            {% assign group = 'navigation' %}
-            {% include JB/pages_list %}
-            </ul>
-         -->
-        <aside>
+        <!--
+        <ul class="nav">
+        {% assign pages_list = site.pages %}
+        {% assign group = 'navigation' %}
+        {% include JB/pages_list %}
+        </ul>
+        -->
+        <div>
             <h4>分类</h4>
             <ul>
                 {% assign categories_list = site.categories %}
                 {% include JB/categories_list %}
             </ul>
-        </aside>
-        <aside>
+        </div>
+        <div>
             <h4>标签</h4>
             <ul class="inline tag_cloud">
                 {% assign tags_list = site.tags %} 
                 {% include JB/tags_list %}
             </ul>
-        </aside>
+        </div>
+		
+		<br />
+		<script type="text/javascript" src="http://www.xiami.com/widget/player-multi?uid=2733355&sid=389830,3443382,3466371,53736,3466380,369196,&width=180&height=346&mainColor=5695c1&backColor=457cb4&autoplay=0&mode=js"></script>
+		
+      </aside>
     </div>
 
     <div class="span8">
@@ -40,10 +46,10 @@ layout: default
 				{% endif %}
             </h1>
         </header>
-        <div class="row-fluid post-full">
+        <div class="post-full">
             <div class="span12">
                 <div class="article_meta">
-                	<span> {{ page.date | date: '%Y-%m-%d' }}</span>
+                	<span>发布： {{ page.date | date: '%Y-%m-%d' }}</span>
 					&nbsp; | &nbsp;
 					
                 	{% if page.tags contains 'translated' %}
@@ -62,14 +68,14 @@ layout: default
                     </ul>
 				 {% endunless %}
 					
-				 {% unless page.tags == empty %}
+				 <!-- {% unless page.tags == empty %}
 					&nbsp; | &nbsp;
                     <span>标签：</span>
                     <ul class="inline">
                         {% assign tags_list = page.tags %}
                         {% include JB/tags_list %}
                     </ul>					
-                {% endunless %} 
+                {% endunless %} -->
 				</div>
 								
                 <div class="content">

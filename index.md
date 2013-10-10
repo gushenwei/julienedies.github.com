@@ -1,6 +1,6 @@
 ---
 layout: page
-title: 首页
+title: here's Julienedies.
 ---
 {% include JB/setup %}
 

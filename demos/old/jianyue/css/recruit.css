@@ -1,0 +1,7 @@
+@charset "utf-8";
+/* CSS Document */
+
+#content_right h3{background: url(../images/journal_background.gif) no-repeat 0 0;}
+#content_right .content p{font-size:12px; color:#e09638; font-weight:bold; line-height:2; background:url(../images/join_img.jpg)  no-repeat 75% 20%;}
+#content_right .content ul{}
+#content_right .content ul li h5{font-size:13px;color:#e09638;font-weight:bold;margin:10px 0 0 0; padding:25px 0 0 0; border-top:#CCCCCC 1px dashed;}

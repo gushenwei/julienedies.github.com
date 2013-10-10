@@ -7,9 +7,9 @@ tags: [regexp]
 ---
 {% include JB/setup %}
 
-最近趁上下班在地铁上的时间重读了 "精通正则表达式".
+最近趁上下班在地铁上的时间重读了《精通正则表达式》.
 
-<p><img src="/assets/img/s2697984.jpg" /></p>
+<p><img src="/assets/img/book/s2697984.jpg" /></p>
 
 作者行文流畅,结构清晰,给人很好的技术书籍阅读体验.
 

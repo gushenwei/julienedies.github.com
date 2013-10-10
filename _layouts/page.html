@@ -15,7 +15,7 @@ layout: default
           </ul>
         </nav>
     </div>
-    <div class="span8">
+    <div class="span8 post-full">
         <div class="page-header">
             <h1>{{ page.title }} {% if page.tagline %} 
                 <small>
@@ -23,7 +23,7 @@ layout: default
                 </small>{% endif %}
             </h1>
         </div>
-        <div class="row-fluid">
+        <div class="">
             <div class="span12">
                 {{ content }}
             </div>
@@ -31,3 +31,77 @@ layout: default
     </div>
 	
 </div>
+<style>
+body {
+    margin:0;
+    padding:0;
+	overflow-x:hidden;
+	background:#fff;
+}
+#view {
+	position:absolute;
+	top:-300px;
+	left:-500px;
+	background: -webkit-linear-gradient(top,  #ededec 0%,#f2f2f2 52%,#dedede 100%); /* Chrome10+,Safari5.1+ */
+	-webkit-transition:all 0.5s ease;
+	-moz-transition:all 0.5s ease;
+	-ms-transition:all 0.5s ease;
+	overflow:hidden;
+}
+.k{
+	margin:1px 0 0 1px;
+	background:rgb(230, 230, 230);
+	width:200px;
+	height:200px;
+	display:inline-block;
+	color:rgb(140, 140, 140);
+	color:#fff;
+	vertical-align:middle;
+}
+.container-fluid{
+	position:relative;
+	z-index:3;
+}
+.row-fluid, .span8{
+	background:transparent!important;
+}
+#top img{
+	display:none;
+}
+</style>
+
+<script>
+    $(function(){
+        // custom bg 
+        var $view = $('<div id="view"></div>');
+
+        var left = Math.floor(Math.random() * 501);
+        var top = Math.floor(Math.random() * 301);        
+        var vw = $(window).width() + left+200;
+        var vh = $(document).height() + top;
+        var dw = 200;
+        var dh = 200;
+        
+        var len = vw * vh / dw * dh;
+        
+        var lw = Math.ceil(vw / dw);
+        var lh = Math.ceil(vh / dh);
+        
+        var html = '';
+        
+        $view.css({
+            'width': vw + 'px',
+            'height': vh + 'px',
+            'left':'-' + left + 'px',
+            'top':'-' +  top + 'px'
+        });
+        
+        for (var i = 0; i < lh; i++) {
+            for (var j = 0; j < lw; j++) {
+                html += '<div class="k" style="left:' + i * dw + 'px;top:' + j * dh + 'px;xfont-size:'+ Math.ceil(Math.random() *40)+ 'px;" id="k' + i + '' + j + '" >' + Math.floor(Math.random() * i) + '' + Math.floor(Math.random() * j) + '</div>';
+            }
+        }
+		$view.append(html);
+		$('body').prepend($view);
+    })
+</script>
