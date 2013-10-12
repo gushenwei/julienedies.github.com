@@ -12,17 +12,19 @@ var locaMap = getLocation(opnRedBall);
 var item;
 var blue;
 var ri;
-var details;
+var details1;
 var details2;
 var details3;
+var details4;
 var loca;
 var col;
 
 for ( var t in q) {
 
-	details = [];
+	details1 = [];
 	details2 = [];
 	details3 = [];
+	details4 = [];
 
 	item = q[t];
 
@@ -34,10 +36,12 @@ for ( var t in q) {
 	//console.log(item);
 
 	$.each(item, function(index, val) {
-		item[index] = val * 1;
-		details[index] = locaMap[val * 1];
-		details2[index] = colMap[val * 1][0];
-		details3[index] = colMap[val * 1][1];
+		val = val * 1;
+		item[index] = val;
+		details1[index] = locaMap[val];
+		details2[index] = colMap[val][0];
+		details3[index] = colMap[val][1];
+		details4[index] = colMap[val][2];
 	});
 
 	item.sort(function(a, b) {
@@ -57,11 +61,18 @@ for ( var t in q) {
 	// 随机提取篮球
 	ri = Math.round(Math.random() * (blues.length - 1));
 
-	loca = countLocation(details);
+	loca = countLocation(details1);
 	col = countCol(details2);
+	
 	details3.sort(function(a, b) {
 		return a - b;
 	});
+	details4.sort(function(a, b) {
+		return a - b;
+	});	
+	
+	//过滤
+	//if(loca[1] == 0) continue;
 
 	$(
 			'<li><span>'
@@ -69,17 +80,28 @@ for ( var t in q) {
 					+ ' : '
 					+ blues[ri]
 					+ '</span> &nbsp;&nbsp; <input type="checkbox" name="op" />'
-					+ '<div class="details">' + '<p class="ref">'
-					+ colRef.join('  ') + ' &nbsp; &nbsp;  '
-					+ colRef2.join('  ') + '<p>' + loca.join('  ')
-					+ ' &nbsp; &nbsp;  ' + col.join(' ') + ' &nbsp; &nbsp;  '
-					+ details3.join(' ') + '</div>' + '</li>').appendTo($list);
+					+ '<div class="details">' 
+					+ '<p class="ref">'
+					+ colRef1.join('  ') 
+					+ ' &nbsp; &nbsp;  '
+					+ colRef2.join('  ') 
+					+ ' &nbsp; &nbsp;  '
+					+ colRef3.join('  ') 					
+					+ '<p>' 
+					+ loca.join('  ')
+					+ ' &nbsp; &nbsp;  ' 
+					+ col.join(' ') 
+					+ ' &nbsp; &nbsp;  '
+					+ details3.join(' ') 
+					+ ' &nbsp; &nbsp;  '
+					+ details4.join(' ')					
+					+ '</div></li>').appendTo($list);
 
 }
 
 ///////////////////////////////////////
 
-$info.html(q.length);
+$info.html($list.find('li').length);
 
 
 

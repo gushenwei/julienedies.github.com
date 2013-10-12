@@ -7,8 +7,8 @@ pre{
 	font-size:1.2em;
 }
 #box {
-	width: 700px;
-	margin: 0 auto;
+	width: 940px;
+	margin: 0 0  0 160px;
 }
 #info {
 	font-size: 18px;
@@ -28,7 +28,7 @@ pre{
 }
 #console{
 	position : fixed;
-	right:7em;
+	right:2em;
 	top:5em;
 }
 .details {
