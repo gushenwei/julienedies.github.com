@@ -55,11 +55,11 @@ for ( var t in q) {
 	});
 
 	// 顺序提取篮球
-	// blue = blues.shift();
-	// blues.push(blue);
+	blue = blues.shift();
+	blues.push(blue);
 
 	// 随机提取篮球
-	ri = Math.round(Math.random() * (blues.length - 1));
+	//blue = blues[Math.round(Math.random() * (blues.length - 1))];
 
 	loca = countLocation(details1);
 	col = countCol(details2);
@@ -73,13 +73,13 @@ for ( var t in q) {
 	
 	//过滤
 	//if(loca[0] != 1 || loca[1] < 2 || loca[1] > 3) continue;
-	if(filter()) continue;
+	//if(filter()) continue;
 
 	$(
 			'<li><span>'
 					+ item.join(' ')
 					+ ' : '
-					+ blues[ri]
+					+ blue
 					+ '</span> &nbsp;&nbsp; <input type="checkbox" name="op" />'
 					+ '<div class="details">' 
 					+ '<p class="ref">'
