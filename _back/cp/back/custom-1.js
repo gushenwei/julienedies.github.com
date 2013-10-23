@@ -72,7 +72,7 @@ for ( var t in q) {
 	});	
 	
 	//过滤
-	//if(loca[0] != 1 || loca[1] < 2 || loca[1] > 3) continue;
+	//if(loca[1] != 1 ) continue;
 	//if(filter()) continue;
 
 	$(
