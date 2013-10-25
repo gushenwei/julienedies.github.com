@@ -54,12 +54,6 @@ for ( var t in q) {
 		item[index] = val < 10 ? '0' + val : val;
 	});
 
-	// 顺序提取篮球
-	blue = blues.shift();
-	blues.push(blue);
-
-	// 随机提取篮球
-	//blue = blues[Math.round(Math.random() * (blues.length - 1))];
 
 	loca = countLocation(details1);
 	col = countCol(details2);
@@ -72,8 +66,19 @@ for ( var t in q) {
 	});	
 	
 	//过滤
-	//if(loca[1] != 1 ) continue;
+	//if(loca[1] == 1 || loca[1] == 5) continue;
+	//if(loca[1] != 4) continue;
 	//if(filter()) continue;
+	
+	
+	
+	// 顺序提取篮球
+	blue = blues.shift();
+	blues.push(blue);
+
+	// 随机提取篮球
+	//blue = blues[Math.round(Math.random() * (blues.length - 1))];	
+	
 
 	$(
 			'<li><span>'
