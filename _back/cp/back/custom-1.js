@@ -66,7 +66,7 @@ for ( var t in q) {
 	});	
 	
 	//过滤
-	//if(loca[1] == 1 || loca[1] == 5) continue;
+	//if(loca[1] == 2) continue;
 	//if(loca[1] != 4) continue;
 	//if(filter()) continue;
 	
