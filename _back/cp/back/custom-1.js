@@ -67,7 +67,7 @@ for ( var t in q) {
 	
 	//过滤
 	//if(loca[1] == 2) continue;
-	//if(loca[1] != 4) continue;
+	//if(loca[1] != 3) continue;
 	//if(filter()) continue;
 	
 	
@@ -81,26 +81,37 @@ for ( var t in q) {
 	
 
 	$(
-			'<li><span>'
+			'<li><p class="ref ref_"><span>'
 					+ item.join(' ')
-					+ ' : '
-					+ blue
-					+ '</span> &nbsp;&nbsp; <input type="checkbox" name="op" />'
-					+ '<div class="details">' 
-					+ '<p class="ref">'
-					+ colRef1.join('  ') 
-					+ ' &nbsp; &nbsp;  '
-					+ colRef2.join('  ') 
-					+ ' &nbsp; &nbsp;  '
-					+ colRef3.join('  ') 					
-					+ '<p>' 
+					+ (blue ? ' : ' + blue : ' ')
+					+ ' '
+					+ '</span> &nbsp;&nbsp; <input type="checkbox" name="op" /></p>'
+					+ '<div class="details">'
+					+ '<p class="ref ref0">'
 					+ loca.join('  ')
+					+ '</p>'
+					+ '<p class="ref ref1">'
+					+ colRef1.join('  ') 
+					+ ' <br /> '
+					+ col.join(' ') 
+					+ '</p>'
+					+ '<p class="ref ref2">'
+					+ colRef2.join('  ') 
+					+ ' <br />  '
+					+ details3.join(' ')
+					+ '</p>'
+					+ '<p class="ref ref3">'					
+					+ colRef3.join('  ') 
+					+ ' <br /> '
+					+ details4.join(' ')
+					+ '</p>' 
+					/*+ loca.join('  ')
 					+ ' &nbsp; &nbsp;  ' 
 					+ col.join(' ') 
 					+ ' &nbsp; &nbsp;  '
 					+ details3.join(' ') 
 					+ ' &nbsp; &nbsp;  '
-					+ details4.join(' ')					
+					+ details4.join(' ')	*/				
 					+ '</div></li>').appendTo($list);
 
 }

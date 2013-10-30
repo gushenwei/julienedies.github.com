@@ -22,6 +22,7 @@ pre{
 	margin-top:25px;
 	padding:2px 5px;
 	border-bottom:1px #eee solid;
+	height:60px;
 }
 #list li input{
 	display:none;
@@ -35,11 +36,29 @@ pre{
 	position: relative;
 	display: none;
 	/*visibility:hidden;*/
-	margin-left:360px;
+	margin-left:320px;
 	color: #777;
 }
 .ref{
-	margin:-22px 0 0 80px;
+	/*margin:-22px 0 0 80px;*/
+	position:absolute;
+	width:160px;
+}
+.ref_{
+	width:auto;
+}
+.ref0{
+	left:20px;
+	top:22px;
+}
+.ref1{
+	left:120px;
+}
+.ref2{
+	left:300px;
+}
+.ref3{
+	left:480px;
 }
 .bg{
 	background-color:#eee;
