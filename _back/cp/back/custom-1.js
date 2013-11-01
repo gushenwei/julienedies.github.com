@@ -67,7 +67,7 @@ for ( var t in q) {
 	
 	//过滤
 	//if(loca[1] == 2) continue;
-	//if(loca[1] != 3) continue;
+	//if(loca[1] != 0) continue;
 	//if(filter()) continue;
 	
 	
