@@ -1,48 +1,6 @@
 window.filter = function(){};
 	
 window.q = [];
-//
-window.opnRedBall = ['1','3','15','16','31','33']
-window.colRef1 = ['1','1','2','0','0','2'];
-window.colRef2 = ['0','0','1','2','6','10'];
-window.colRef3 = ['0','2','2','5','6','14'];
-//
-window.colMap = [ 
-                  [         ], //0
-                  [ 1, 6, 0 ], //1
-                  [ 1, 3, 3 ], //2
-                  [ 2, 2, 0 ], //3
-                  [ 1, 0, 4 ], //4
-                  [ 1, 7, 1 ], //5
-                  [ 2, 3, 1 ], //6
-                  [ 1, 5, 2 ], //7
-                  [ 3, 13, 5 ], //8
-                  [ 2, 6, 6 ], //9
-                  [ 3, 2, 1 ], //10  
-                  [ 4, 9, 7 ], //11
-                  [ 2, 0, 13 ], //12
-                  [ 2, 0, 2 ], //13
-                  [ 4, 28, 1 ], //14
-                  [ 3, 5, 0 ], //15
-                  [ 4, 14, 0 ], //16
-                  [ 3, 4, 2 ], //17
-                  [ 4, 4, 5 ], //18
-                  [ 4, 1, 2 ], //19
-                  [ 4, 7, 3 ], //20
-                  [ 3, 1, 14 ], //21
-                  [ 5, 7, 3 ], //22  
-                  [ 4, 3, 6 ], //23
-                  [ 4, 3, 13 ], //24
-                  [ 5, 2, 2 ], //25
-                  [ 5, 2, 8 ], //26
-                  [ 5, 2, 1 ], //27
-                  [ 6, 16, 5 ], //28
-                  [ 5, 0, 20 ], //29
-                  [ 6, 17, 6 ], //30
-                  [ 5, 0, 0 ], //31
-                  [ 6, 0, 11 ], //32
-                  [ 6, 2, 0 ]  //33
-                ];
 
 //
 function getLocation (nu){
@@ -68,8 +26,6 @@ function getLocation (nu){
 				arr[i] = '3';
 			}
 		}		
-		
-		
 		
 	}
 	
@@ -152,50 +108,54 @@ function combination(a, b, c, d, e, arr) {
 
 };
 
-//
-$('#del').click(function() {
-	$('input[name="op"]:checked').each(function() {
-		$(this).parent().parent().remove();
+
+$(function(){
+	//
+	$('#del').click(function() {
+		$('input[name="op"]:checked').each(function() {
+			$(this).parent().parent().remove();
+		});
+		$('#info').html($list.find('li').length);
 	});
-	$('#info').html($list.find('li').length);
+
+	//
+	$('#choice').toggle(function() {
+		$('input[name="op"]').hide();
+	}, function() {
+		$('input[name="op"]').show();
+	});
+
+	//
+	$('#show').toggle(function() {
+		$('.details').hide();
+	}, function() {
+		$('.details').show();
+	});
+
+	//
+	$('#list').delegate('li', 'click', function() {
+		var $th = $(this);
+		var input = $th.find('input[name="op"]');
+
+		if (input.attr('checked')) {
+			input.attr('checked', false);
+		} else {
+			input.attr('checked', true);
+		}
+
+	});
+
+	//
+	$('#list').delegate('li', 'mouseover', function() {
+		var $th = $(this);
+		$th.addClass('bg');
+		//$th.find('.details').css('visibility', 'visible');
+	});
+
+	$('#list').delegate('li', 'mouseout', function() {
+		var $th = $(this);
+		$th.removeClass('bg');
+		//$th.find('.details').css('visibility', 'hidden');
+	});	
 });
 
-//
-$('#choice').toggle(function() {
-	$('input[name="op"]').show();
-}, function() {
-	$('input[name="op"]').hide();
-});
-
-//
-$('#show').toggle(function() {
-	$('.details').show();
-}, function() {
-	$('.details').hide();
-});
-
-//
-$('#list').delegate('li', 'click', function() {
-	var $th = $(this);
-	var input = $th.find('input[name="op"]');
-
-	if (input.attr('checked')) {
-		input.attr('checked', false);
-	} else {
-		input.attr('checked', true);
-	}
-
-});
-
-//
-$('#list').delegate('li', 'mouseover', function() {
-	var $th = $(this);
-	$th.addClass('bg');
-	//$th.find('.details').css('visibility', 'visible');
-});
-
-$('#list').delegate('li', 'mouseout', function() {
-	var $th = $(this);
-	$th.removeClass('bg');
-	//$th.find('.details').css('visibility', 'hidden');
-});

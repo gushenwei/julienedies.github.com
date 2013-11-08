@@ -16,6 +16,7 @@ var details1;
 var details2;
 var details3;
 var details4;
+var details5;
 var loca;
 var col;
 
@@ -25,6 +26,7 @@ for ( var t in q) {
 	details2 = [];
 	details3 = [];
 	details4 = [];
+	details5 = [];
 
 	item = q[t];
 
@@ -35,13 +37,17 @@ for ( var t in q) {
 
 	//console.log(item);
 
-	$.each(item, function(index, val) {
+	$.each(item, function(i, val) {
+		
+		details5[i] = val.slice(val.length-1)*1;
+		
 		val = val * 1;
-		item[index] = val;
-		details1[index] = locaMap[val];
-		details2[index] = colMap[val][0];
-		details3[index] = colMap[val][1];
-		details4[index] = colMap[val][2];
+		item[i] = val;
+		details1[i] = locaMap[val];
+		details2[i] = colMap[val][0];
+		details3[i] = colMap[val][1];
+		details4[i] = colMap[val][2];
+		
 	});
 
 	item.sort(function(a, b) {
@@ -62,6 +68,9 @@ for ( var t in q) {
 		return a - b;
 	});
 	details4.sort(function(a, b) {
+		return a - b;
+	});	
+	details5.sort(function(a, b) {
 		return a - b;
 	});	
 	
@@ -87,24 +96,35 @@ for ( var t in q) {
 					+ ' '
 					+ '</span> &nbsp;&nbsp; <input type="checkbox" name="op" /></p>'
 					+ '<div class="details">'
+					
 					+ '<p class="ref ref0">'
 					+ loca.join('  ')
 					+ '</p>'
+	
 					+ '<p class="ref ref1">'
-					+ colRef1.join('  ') 
+					+ colRef1[colRef1.length-1].join('  ') 
 					+ ' <br /> '
 					+ col.join(' ') 
 					+ '</p>'
+					
 					+ '<p class="ref ref2">'
-					+ colRef2.join('  ') 
+					+ colRef2[colRef2.length-1].join('  ') 
 					+ ' <br />  '
 					+ details3.join(' ')
 					+ '</p>'
+					
 					+ '<p class="ref ref3">'					
-					+ colRef3.join('  ') 
+					+ colRef3[colRef3.length-1].join('  ') 
 					+ ' <br /> '
 					+ details4.join(' ')
 					+ '</p>' 
+					
+					+ '<p class="ref ref4">'
+					+ colRef4[colRef4.length-1].join('  ') 
+					+ ' <br />  '					
+					+ details5.join('  ')
+					+ '</p>'
+					
 					/*+ loca.join('  ')
 					+ ' &nbsp; &nbsp;  ' 
 					+ col.join(' ') 

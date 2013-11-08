@@ -3,8 +3,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>方案-1</title>
-<script src="back/jquery.min.js" type="text/javascript"></script>
 <link href="back/style.css" rel="stylesheet" type="text/css" media="all">
+<script src="back/jquery.min.js" type="text/javascript"></script>
+<script src="back/custom.js" type="text/javascript"></script>
+<script src="back/33.js" type="text/javascript"></script>
 </head>
 <body>
 
@@ -26,41 +28,23 @@
 <br />
 <pre>
 
-上期  0 2  5 6 最多重2个
-所以   0 5 | 0 6 | 2 5 | 2 6  | 
-
-上面是合理的组合情况 
-
-合理即不合理
-考虑这个组合   0 2 | 5 6
-
-合理间隔 两个  是两个     1 3 |  1  4 |  3 4  | 3  7  | 1 7  | 4  7
-
-考虑间隔 3 个
-
-但是 间隔整体数量少的多
-
-考虑  重 3个  间隔1个 
-0 1 5 6
-0 1 1 1 5 6
-0 0 1 1 5 6
 </pre>
 </div>
 
 </div>
-<script src="back/custom.js" type="text/javascript"></script>
+
 <script>
 
 
 
 
-	blues = [ '06' ]; //
+	blues = [ '13','15' ]; //
 
-	n0 = [ '5 6','5 10','5 14','5 27','5 31'  ,'6 10','6 14','6 27','6 31',  '10 14','10 27','10 31', '14 27','14 31',  '27 31']; //
-	n1 = [ '7','13','17','19','25']; //  
-	nx = [ '9','15','23','30']; // 
-	ny = [ '29' ]; //
-	nz = [ '32']; //
+	n0 = [ '1','3','15','16','31','33']; //'5 6','5 10','5 14','5 27','5 31'  ,'6 10','6 14','6 27','6 31',  '10 14','10 27','10 31', '14 27','14 31',  '27 31'
+	n1 = [ '17']; //  
+	nx = [ '23']; // 
+	ny = [ '4' ]; //
+	nz = [ '11 30']; //
 
 	combination(n0, n1, nx, ny, nz, q);
 	

@@ -7,8 +7,8 @@ pre{
 	font-size:1.2em;
 }
 #box {
-	width: 900px;
-	margin: 0 0  0 160px;
+	width: 920px;
+	margin: 0 0  0 220px;
 }
 #info {
 	font-size: 18px;
@@ -25,7 +25,6 @@ pre{
 	height:60px;
 }
 #list li input{
-	display:none;
 }
 #console{
 	position : fixed;
@@ -34,7 +33,6 @@ pre{
 }
 .details {
 	position: relative;
-	display: none;
 	/*visibility:hidden;*/
 	margin-left:320px;
 	color: #777;
@@ -47,19 +45,25 @@ pre{
 .ref_{
 	width:auto;
 }
+
 .ref0{
-	left:0px;
-	top:22px;
+	left:-60px;
+	top:23px;
 }
 .ref1{
-	left:100px;
+	left:30px;
 }
 .ref2{
-	left:270px;
+	left:180px;
 }
 .ref3{
-	left:450px;
+	left:340px;
 }
+
+.ref4{
+	left:490px;
+}
+
 .bg{
 	background-color:#eee;
 }
