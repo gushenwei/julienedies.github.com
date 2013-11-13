@@ -1,4 +1,4 @@
-
+//
 var $box = $('#box');
 var $info = $('#info');
 var $list = $('#list');

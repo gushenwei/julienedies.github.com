@@ -10,6 +10,14 @@ pre{
 	width: 920px;
 	margin: 0 0  0 220px;
 }
+#list_ref{
+	position:fixed;
+	top:10px;
+	left:480px;
+	padding:10px;
+	background-color:#fff;
+	line-height:2;
+}
 #info {
 	font-size: 18px;
 	font-weight: bold;

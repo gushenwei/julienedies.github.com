@@ -1,3 +1,8 @@
+
+
+///////////////////////////////////////////
+
+
 window.filter = function(){};
 	
 window.q = [];
@@ -167,9 +172,9 @@ $(function(){
 	//
 	$('#del').click(function() {
 		$('input[name="op"]:checked').each(function() {
-			$(this).parent().parent().remove();
+			$(this).closest('li').remove();
 		});
-		$('#info').html($list.find('li').length);
+		$('#info').html($('#list').find('li').length);
 	});
 
 	//
