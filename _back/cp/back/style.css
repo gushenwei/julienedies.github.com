@@ -75,3 +75,13 @@ pre{
 .bg{
 	background-color:#eee;
 }
+
+.table{
+	border-collapse: collapse;
+	line-height:1.4!important;
+}
+.table td {
+	border:solid 1px #c2c5d8;
+	width:3.6em;
+	text-align:center;
+}
