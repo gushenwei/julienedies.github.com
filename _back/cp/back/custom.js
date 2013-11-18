@@ -8,6 +8,14 @@ window.filter = function(){};
 window.q = [];
 
 //
+function cc(obj){
+	if(typeof obj == 'object'){
+		console.log(JSON.stringify(obj));
+	}
+	console.log(obj);
+}
+
+//
 function getLocation (nu){
 	var arr = [];
 	var n;
@@ -113,9 +121,54 @@ function combination(a, b, c, d, e, arr) {
 
 };
 
+function combine(){
+	var  args = Array.prototype.slice.call(arguments, 0);
+	
+	var arr1;
+	var arr2;
+	var arr3;	
+	
+	function func(arr1,arr2){
+		var arr3 = [];
+		var item1,item2,item1c;
+		
+		if(arr1.length == 0) return arr2;
+		if(arr2.length == 0) return arr1;
+		
+		for(var i in arr1){
+			item1 = arr1[i];
+			item1 = item1.constructor === Array ? item1 : [item1];
+			
+			for(var j in arr2){
+				item1c = item1.slice();
+				item2 = arr2[j];
+				item1c = item1c.concat(item2);
+				arr3.push(item1c);
+			}
+			
+		}
+		
+		return arr3;
+		
+	}
+	
+	if(args.length == 1) {
+		console.log(args);
+		return args[0];
+	}
+	if(args.length > 1){
+		arr1 = args.shift();
+		arr2 = args.shift();
+		arr3 = func(arr1,arr2);
+		args.unshift(arr3);
+		return combine.apply(null,args);
+	}
+	
+}
+
 
 //对数字进行编组
-function groupf(nu, groupl, result){
+function group(nu, groupl, result){
 	
 	var result = result ? result : [];
 	var nul = nu.length;
@@ -159,7 +212,7 @@ function groupf(nu, groupl, result){
 	
 
 	if(nuc.length >= groupl){
-		return groupf(nuc, groupl, result);
+		return group(nuc, groupl, result);
 	}else{
 		return result;
 	}
@@ -233,7 +286,22 @@ function count(arr){
 	return result;	
 }
 
-
+//
+function countCol(arr) {
+	var length = arr.length;
+	var result = [];
+	var obj = count(arr);
+	
+	for(var i = 0; i < length; i++){
+		result[i] = 0;
+	}
+	
+	for(var j in obj){
+		result[j*1-1] = obj[j];
+	}
+	
+	return result;
+}
 
 /*
  * ***************************************************************************************
@@ -243,6 +311,34 @@ function count(arr){
  */
 
 $(function(){
+	
+	//
+	$('body')
+	.delegate('#groupList li :checkbox','change',function(){
+		$(this).closest('li').remove();
+		$('#groupListBoxBtn').text($('#groupList li').length);
+	})	
+	.delegate('#groupList li','click',function(){
+		var $th = $(this);
+		$th.siblings().removeClass('bg');
+		$th.addClass('bg');
+		var arg = $th.attr('data');
+		$(window).trigger('group.change', [arg]);
+	})
+	
+	.delegate('#groupListBoxBtn','click',function(){
+		var $th = $(this);
+		var mark = !$th.attr('data-mark');
+		cc(mark);
+		if(mark){
+			$('#groupList').fadeOut('500');
+			$th.attr('data-mark', 1);
+		}else{
+			 $('#groupList').fadeIn('500');
+			 $th.removeAttr('data-mark');
+		}
+	});
+	
 	//
 	$('#del').click(function() {
 		$('input[name="op"]:checked').each(function() {
