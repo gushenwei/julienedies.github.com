@@ -180,22 +180,18 @@ function init(q) {
 /*
  * ***************************************************************************************
  * ***************************************************************************************
- * ***************************************************************************************
- * ***************************************************************************************
  */
 
 //////////////////////////////////////////
 // init
 //////////////////////////////////////////
 
-window.classifyList = classify(2);
-cc(classifyList);
+$(window).bind('group.change', groupChangeCall);
 
-window.locaMap = getLocation(opnRedBall);
 
 groupListWrap(groupList);
 
-$(window).bind('group.change', groupChangeCall);
+
 
 $(template('groupListTemp',{list:groupList})).appendTo($('body'));
 

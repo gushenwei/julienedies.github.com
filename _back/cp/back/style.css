@@ -117,7 +117,9 @@ pre{
 	padding:5px;
 	background-color:#fff;
 }
-
+#groupList li:hover{
+	background-color:#eee;
+}
 /*滚动条样式*/
  ::-webkit-scrollbar {
     width: 10px;

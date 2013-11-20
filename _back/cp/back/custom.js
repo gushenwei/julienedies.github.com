@@ -11,8 +11,9 @@ window.q = [];
 function cc(obj){
 	if(typeof obj == 'object'){
 		console.log(JSON.stringify(obj));
+	}else{
+		console.log(obj);
 	}
-	console.log(obj);
 }
 
 //
@@ -153,7 +154,7 @@ function combine(){
 	}
 	
 	if(args.length == 1) {
-		console.log(args);
+		//console.log(args);
 		return args[0];
 	}
 	if(args.length > 1){
@@ -306,9 +307,13 @@ function countCol(arr) {
 /*
  * ***************************************************************************************
  * ***************************************************************************************
- * ***************************************************************************************
- * ***************************************************************************************
  */
+
+window.classifyList = classify(2);
+cc(classifyList);
+
+window.locaMap = getLocation(opnRedBall);
+
 
 $(function(){
 	
