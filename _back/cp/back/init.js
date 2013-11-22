@@ -8,7 +8,7 @@ function groupListWrap(groupList) {
 		if (patch && patch.length) {
 			item = item.concat(patch);
 		}
-
+		
 		item.sort(function(a, b) {
 			return a - b;
 		});
@@ -16,7 +16,7 @@ function groupListWrap(groupList) {
 		groupList[k] = item;
 	}
 
-	cc(groupList)
+	cc(groupList);
 	return groupList;
 }
 
@@ -177,14 +177,91 @@ function init(q) {
 
 
 
-/*
- * ***************************************************************************************
- * ***************************************************************************************
- */
+////////////////////////////////////////////////////////////////////////////////////
+//事件委托
+////////////////////////////////////////////////////////////////////////////////////
+$(function(){
+	
+	//
+	$('body')
+	.delegate('#groupList li :checkbox','change',function(){
+		$(this).closest('li').remove();
+		$('#groupListBoxBtn').text($('#groupList li').length);
+	})	
+	.delegate('#groupList li','click',function(){
+		var $th = $(this);
+		$th.siblings().removeClass('bg');
+		$th.addClass('bg');
+		var arg = $th.attr('data');
+		$(window).trigger('group.change', [arg]);
+	})
+	
+	.delegate('#groupListBoxBtn','click',function(){
+		var $th = $(this);
+		var mark = !$th.attr('data-mark');
+		cc(mark);
+		if(mark){
+			$('#groupList').fadeOut('500');
+			$th.attr('data-mark', 1);
+		}else{
+			 $('#groupList').fadeIn('500');
+			 $th.removeAttr('data-mark');
+		}
+	})
+	
+	//
+	.delegate('#del','click',function() {
+		$('input[name="op"]:checked').each(function() {
+			$(this).closest('li').remove();
+		});
+		$('#info').html($('#list').find('li').length);
+	})
 
-//////////////////////////////////////////
-// init
-//////////////////////////////////////////
+	//
+	.delegate('#choice','toggle',function() {
+		$('input[name="op"]').hide();
+	}, function() {
+		$('input[name="op"]').show();
+	})
+
+	//
+	.delegate('#show','toggle',function() {
+		$('.details').hide();
+	}, function() {
+		$('.details').show();
+	})
+
+	//
+	.delegate('#list li', 'click', function() {
+		var $th = $(this);
+		var input = $th.find('input[name="op"]');
+
+		if (input.attr('checked')) {
+			input.attr('checked', false);
+		} else {
+			input.attr('checked', true);
+		}
+
+	})
+
+	//
+	.delegate('#list li', 'mouseover', function() {
+		var $th = $(this);
+		$th.addClass('bg');
+		//$th.find('.details').css('visibility', 'visible');
+	})
+
+	.delegate('#list li', 'mouseout', function() {
+		var $th = $(this);
+		$th.removeClass('bg');
+		//$th.find('.details').css('visibility', 'hidden');
+	});	
+	
+});
+
+////////////////////////////////////////////////////////////////////////////////////
+//init
+////////////////////////////////////////////////////////////////////////////////////
 
 $(window).bind('group.change', groupChangeCall);
 

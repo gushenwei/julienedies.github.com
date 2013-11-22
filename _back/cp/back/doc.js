@@ -1,52 +1,69 @@
+/**
+ * 自定义工具函数
+ * 
+ * 全局变量声明与设置
+ */
 
+/*
+ * 获取数组最后一个元素
+ */
+function getArrayLast(arr){
+	var last = arr.slice(-1);
+	return last[0];
+}
 
-///////////////////////////////////////////
-
-
-window.filter = function(){};
-	
-window.q = [];
-
-//
-function cc(obj){
+/*
+ *控制台打印输出
+ */
+function cc(obj,prefix){
+	var prefix = prefix || '';
 	if(typeof obj == 'object'){
-		console.log(JSON.stringify(obj));
+		console.log(prefix + JSON.stringify(obj));
 	}else{
-		console.log(obj);
+		console.log(prefix + obj);
 	}
 }
 
-//
-function getLocation (nu){
-	var arr = [];
+/*
+ * 以参数为参照，取得1-60的数字的相对位置;
+ * 返回一个映射数组;
+ * 或重;(1)
+ * 或连;(2)
+ * 或延;(3)
+ */
+function getLocation (arr){
+	var result = [];
 	var n;
 	
 	outerloop:
-	for(var i = 1; i < 34; i++){
-		for(var j in nu){
-			n = nu[j]*1;
+	for(var i = 0; i < 60; i++){
+		for(var j in arr){
+			n = arr[j]*1;
 			if(i == n){
-				arr[i] = '1';
+				result[i] = 1;
 				continue outerloop; 
 			}
 		}
 
-		for ( var k in nu) {
-			n = nu[k] * 1;
+		for ( var k in arr) {
+			n = arr[k] * 1;
 			if (i == n - 1 || i == n + 1) {
-				arr[i] = '2';
+				result[i] = 2;
 				break;
 			} else {
-				arr[i] = '3';
+				result[i] = 3;
 			}
 		}		
 		
 	}
 	
-	return arr;
+	cc(result,JSON.stringify(arr)+'=>');
+	return result;
 }
 
-//
+/*
+ * 
+ */
 function countLocation(data) {
 	var loca1 = 0, loca2 = 0, loca3 = 0;
 
@@ -64,64 +81,10 @@ function countLocation(data) {
 	return [loca1,loca2,loca3];
 }
 
-//
-function countCol(data) {
-	var col1 = 0, col2 = 0, col3 = 0, col4 = 0, col5 = 0, col6 = 0;
 
-	for ( var i in data) {
-		var val = data[i];
-		if (val == 1) {
-			col1 += 1;
-		} else if (val == 2) {
-			col2 += 1;
-		} else if (val == 3) {
-			col3 += 1;
-		} else if (val == 4) {
-			col4 += 1;
-		} else if (val == 5) {
-			col5 += 1;
-		} else {
-			col6 += 1;
-		} 
-		
-	}
-	
-	return [col1,col2,col3,col4,col5,col6];
-}
-
-
-//	
-function combination(a, b, c, d, e, arr) {
-	var v, f, r, w, s;
-	var i, j, k, m, n;
-	for (i in a) {
-		v = [];
-		v.push(a[i]);
-		for (j in b) {
-			f = v.slice();
-			f = f.concat(b[j].split(' '));
-			//alert(f);
-			for (k in c) {
-				r = f.slice();
-				r.push(c[k]);
-				for (m in d) {
-					w = r.slice();
-					w.push(d[m]);
-					for (n in e) {
-						s = w.slice();
-						s.push(e[n]);
-						s.sort(function(a, b) {
-							return a * 1 - b * 1
-						});
-						arr.push(s);
-					}
-				}
-			}
-		}
-	}
-
-};
-
+/*
+ * 
+ */
 function combine(){
 	var  args = Array.prototype.slice.call(arguments, 0);
 	
@@ -168,7 +131,9 @@ function combine(){
 }
 
 
-//对数字进行编组
+/*
+ * 对数字进行编组
+ */
 function group(nu, groupl, result){
 	
 	var result = result ? result : [];
@@ -220,7 +185,9 @@ function group(nu, groupl, result){
 	
 }
 
-//
+/*
+ * 
+ */
 function format(arr){
 	var result = [];
 	var item;
@@ -232,7 +199,9 @@ function format(arr){
 	return result;
 }	
 
-//
+/*
+ * 
+ */
 function compare(arr1,arr2,nu1){
 	var nu2 = 0;
 	var arr3 = [];
@@ -252,7 +221,9 @@ function compare(arr1,arr2,nu1){
 	
 }
 
-//
+/*
+ * 
+ */
 function classify(index){
 	var arr = window.colMap;
 	var length = arr.length;
@@ -271,7 +242,9 @@ function classify(index){
 	return result;
 }
 
-//
+/*
+ * 
+ */
 function count(arr){
 	var length = arr.length;
 	var result = {};
@@ -287,7 +260,9 @@ function count(arr){
 	return result;	
 }
 
-//
+/*
+ * 
+ */
 function countCol(arr) {
 	var length = arr.length;
 	var result = [];
@@ -304,92 +279,20 @@ function countCol(arr) {
 	return result;
 }
 
-/*
- * ***************************************************************************************
- * ***************************************************************************************
- */
+////////////////////////////////////////////////////////////////////////////////////
+//全局变量设置
+////////////////////////////////////////////////////////////////////////////////////
+window.filter = function(){};
 
-window.classifyList = classify(2);
+window.q = [];
+
+
+window.classifyList = classify(0);
 cc(classifyList);
 
 window.locaMap = getLocation(opnRedBall);
+window.downMarginLocaMap = getLocation(getArrayLast(downMarginRef));
 
 
-$(function(){
-	
-	//
-	$('body')
-	.delegate('#groupList li :checkbox','change',function(){
-		$(this).closest('li').remove();
-		$('#groupListBoxBtn').text($('#groupList li').length);
-	})	
-	.delegate('#groupList li','click',function(){
-		var $th = $(this);
-		$th.siblings().removeClass('bg');
-		$th.addClass('bg');
-		var arg = $th.attr('data');
-		$(window).trigger('group.change', [arg]);
-	})
-	
-	.delegate('#groupListBoxBtn','click',function(){
-		var $th = $(this);
-		var mark = !$th.attr('data-mark');
-		cc(mark);
-		if(mark){
-			$('#groupList').fadeOut('500');
-			$th.attr('data-mark', 1);
-		}else{
-			 $('#groupList').fadeIn('500');
-			 $th.removeAttr('data-mark');
-		}
-	});
-	
-	//
-	$('#del').click(function() {
-		$('input[name="op"]:checked').each(function() {
-			$(this).closest('li').remove();
-		});
-		$('#info').html($('#list').find('li').length);
-	});
 
-	//
-	$('#choice').toggle(function() {
-		$('input[name="op"]').hide();
-	}, function() {
-		$('input[name="op"]').show();
-	});
-
-	//
-	$('#show').toggle(function() {
-		$('.details').hide();
-	}, function() {
-		$('.details').show();
-	});
-
-	//
-	$('#list').delegate('li', 'click', function() {
-		var $th = $(this);
-		var input = $th.find('input[name="op"]');
-
-		if (input.attr('checked')) {
-			input.attr('checked', false);
-		} else {
-			input.attr('checked', true);
-		}
-
-	});
-
-	//
-	$('#list').delegate('li', 'mouseover', function() {
-		var $th = $(this);
-		$th.addClass('bg');
-		//$th.find('.details').css('visibility', 'visible');
-	});
-
-	$('#list').delegate('li', 'mouseout', function() {
-		var $th = $(this);
-		$th.removeClass('bg');
-		//$th.find('.details').css('visibility', 'hidden');
-	});	
-});
 
