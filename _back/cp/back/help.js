@@ -1,7 +1,7 @@
 /**
- * 自定义工具函数
  * 
- * 全局变量声明与设置
+ * 定义工具函数
+ * 
  */
 
 /*
@@ -13,14 +13,14 @@ function getArrayLast(arr){
 }
 
 /*
- *控制台打印输出
+ * 控制台打印输出
  */
 function cc(obj,prefix){
 	var prefix = prefix || '';
 	if(typeof obj == 'object'){
-		console.log(prefix + JSON.stringify(obj));
+		console.log(prefix +  ' => ' + JSON.stringify(obj));
 	}else{
-		console.log(prefix + obj);
+		console.log(prefix + ' : ' + obj);
 	}
 }
 
@@ -31,23 +31,24 @@ function cc(obj,prefix){
  * 或连;(2)
  * 或延;(3)
  */
-function getLocation (arr){
-	var result = [];
-	var n;
+function getLocation_ (referArr,countArr){
+	var countArr = countArr || window.colMap;
+	var result = {};
+	var item;
 	
 	outerloop:
-	for(var i = 0; i < 60; i++){
-		for(var j in arr){
-			n = arr[j]*1;
-			if(i == n){
+	for(var i in countArr){
+		for(var j in referArr){
+			item = referArr[j];
+			if(i == item){
 				result[i] = 1;
 				continue outerloop; 
 			}
 		}
 
-		for ( var k in arr) {
-			n = arr[k] * 1;
-			if (i == n - 1 || i == n + 1) {
+		for ( var k in referArr) {
+			item = referArr[k];
+			if (i == item*1 - 1 || i == item*1 + 1) {
 				result[i] = 2;
 				break;
 			} else {
@@ -57,7 +58,47 @@ function getLocation (arr){
 		
 	}
 	
-	cc(result,JSON.stringify(arr)+'=>');
+	if(countArr === window.colMap){
+		delete result[0];
+	}
+	
+	return result;	
+}
+
+function getLocation (referArr,countArr){
+	
+	if(!countArr) return getLocation_(referArr);
+	if(countArr.constructor === Object) return getLocation_(referArr,countArr);
+	
+	var result = {};
+	var item;
+	var val;
+	
+	outerloop:
+	for(var i in countArr){
+		
+		val = countArr[i];
+		
+		for(var j in referArr){
+			item = referArr[j];
+			if(val == item){
+				result[val] = 1;
+				continue outerloop; 
+			}
+		}
+
+		for ( var k in referArr) {
+			item = referArr[k];
+			if (val == item*1 - 1 || val == item*1 + 1) {
+				result[val] = 2;
+				break;
+			} else {
+				result[val] = 3;
+			}
+		}		
+		
+	}
+	
 	return result;
 }
 
@@ -224,7 +265,7 @@ function compare(arr1,arr2,nu1){
 /*
  * 
  */
-function classify(index){
+function classify_(index){
 	var arr = window.colMap;
 	var length = arr.length;
 	var result = {};
@@ -232,12 +273,28 @@ function classify(index){
 	
 	for(var i = 1; i< length; i++){
 		item = arr[i];
-		key = item[index];
+		key = item[index]; 
+		key = typeof key !== 'undefined' ? key : (i+'').slice(-1);
 		result[key] = result[key] || [];
 		result[key].push(i);
 	}
 	
-	//console.log(JSON.stringify(result));
+	return result;
+}
+
+function classify(arr){
+	var result = {};
+	var key;
+	
+	if(typeof arr === 'number' ){
+		return classify_(arr);
+	}
+		
+	for(var i in arr){
+		key = arr[i];
+		result[key] = result[key] || [];
+		result[key].push(i*1);
+	}
 	
 	return result;
 }
@@ -279,20 +336,220 @@ function countCol(arr) {
 	return result;
 }
 
+function locaCompare(arr1,arr2){
+	if(arr1.length<=0 || arr2.length<=0) return;
+	
+	var arr1 = $.unique( arr1.slice() );
+	var arr2 = $.unique( arr2.slice() );
+	
+	var locaMap = getLocation(arr1,arr2);
+	
+	return countLocation(locaMap);
+}
+
+/*
+ * 
+ */
+function groupWrap(groupList, patch) {
+	var patch = patch || window.patch;
+	var item;
+
+	for ( var k in groupList) {
+		item = groupList[k];
+		if (patch && patch.length) {
+			item = item.concat(patch);
+		}
+		
+		item.sort(function(a, b) {
+			return a - b;
+		});
+
+		groupList[k] = item;
+	}
+
+	//cc(groupList,'groupList');
+	return groupList;
+}
+
+/*
+ * 
+ */
+function combineWrap(classifyListMap, groupScheme) {
+	var countList = count(groupScheme);
+
+	var args = [];
+	var number;
+	var item;
+
+	for ( var i in countList) {
+		number = countList[i];
+		item = group(classifyListMap[i], number);
+		args.push(item);
+	}
+
+	cc(args, 'combine args');
+
+	return (combine.apply(null, args));
+}
+
+
 ////////////////////////////////////////////////////////////////////////////////////
-//全局变量设置
+// 回调函数
+//
+// 封装操作
 ////////////////////////////////////////////////////////////////////////////////////
-window.filter = function(){};
-
-window.q = [];
 
 
-window.classifyList = classify(0);
-cc(classifyList);
+//
+function groupChangeCall(e, groupItem) {
 
-window.locaMap = getLocation(opnRedBall);
-window.downMarginLocaMap = getLocation(getArrayLast(downMarginRef));
+	$('#list').html( window.loadingFigure );
+			
+	if (typeof groupItem == 'string') {
+		groupItem = groupItem.split(' ');
+	}
+	
+	var q = combineWrap(classifyList,groupItem);
+	
+	q = redBlueBallModel(q);
+	//cc(q);
 
+	setTimeout(function() {
+		$('#list').html(template('listItemTemp',{list:q}));
+		$('#info').html(q.length);
+	}, 500);
 
+}
 
+//
+function redBlueBallModel(arr) {
+	var result = [];
+	var item;
+	var blue;
+	var ri;
+	var inLoca;
+	var inCol;
+	var upMargin;
+	var downMargin;
+	var singleDigit;
+	var locaCount;
+	var colCount;
+	var obj;
 
+	for ( var i in arr) {
+		
+		obj = {};
+		inLoca = [];
+		inCol = [];
+		upMargin = [];
+		downMargin = [];
+		singleDigit = [];
+
+		item = arr[i];
+
+		// 数组转字符，再转为数组;
+		item = $.trim(item.join(' ')).split(/\s+/);
+
+		$.each(item, function(i, val) {
+
+			singleDigit[i] = val.slice(val.length - 1) * 1;
+
+			val = val * 1;
+			item[i] = val;
+			inLoca[i] = redBallLocaMap[val];
+			inCol[i] = colMap[val][0];
+			upMargin[i] = colMap[val][1];
+			downMargin[i] = colMap[val][2];
+
+		});
+
+		item.sort(function(a, b) {
+			return a - b;
+		});
+
+		$.each(item, function(index, val) {
+			item[index] = val < 10 ? '0' + val : val;
+		});
+
+		locaCount = countLocation(inLoca);
+		colCount = countCol(inCol);
+
+		upMargin.sort(function(a, b) {
+			return a - b;
+		});
+		downMargin.sort(function(a, b) {
+			return a - b;
+		});
+		singleDigit.sort(function(a, b) {
+			return a - b;
+		});
+
+		// 过滤
+		if (filter(locaCount, colCount, upMargin, downMargin, singleDigit))
+			continue;
+
+		if(window.blueBallIsRandom){
+			// 随机提取篮球
+			blue = blues[Math.round(Math.random() * (blues.length - 1))];			
+		}else{
+			// 顺序提取篮球
+			blue = blues.shift();
+			blues.push(blue);
+		}
+
+		blue = blue ? ':' + blue : '';
+		item.push(blue);
+		
+		obj.redBall = item;
+		//obj.blueBall = [blue];
+		obj.locaCount = locaCount;
+		
+		obj.colCountRef = getArrayLast(window.colCountRef);
+		obj.colCount = colCount;
+		
+		obj.upMarginRef = getArrayLast(upMarginRef);
+		obj.upMargin = upMargin;
+		
+		obj.downMarginRef = getArrayLast(downMarginRef);
+		obj.downMargin = downMargin;
+		
+		obj.singleDigitRef = getArrayLast(singleDigitRef);
+		obj.singleDigit = singleDigit;
+		
+		result.push(obj);
+	}
+	
+	return result;
+}
+
+//
+function refListModel(arr){
+	var length = arr.length;
+	var result = [];
+	var prev = [];
+	var current;
+	var obj;
+	var locaMap;
+	
+	for(var i = 0; i < length; i++){
+		obj = {};
+		current = arr[i];
+		locaMap = locaCompare(prev,current);
+		
+		current = $.unique( current.slice() );
+		current.sort(function(a, b) {
+			return a - b;
+		});
+		
+		obj.refItem = current;
+		obj.locaMap = locaMap;
+		
+		result.push(obj);
+		
+		prev = current;
+	}
+	
+	//cc(result,'refList');
+	return result;
+	
+}

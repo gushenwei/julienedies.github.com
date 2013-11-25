@@ -36,8 +36,38 @@ pre{
 	padding:2px 5px;
 	border-bottom:1px #eee solid;
 	height:60px;
+	position:relative;
 }
-#list li input{
+.locaCount, .colCount, .upMargin, .downMargin, .singleDigit, .locaCountRef, .colCountRef, .upMarginRef, .downMarginRef, .singleDigitRef{
+	position:absolute;
+	top:26px;
+	color: #777;
+}
+.locaCountRef, .colCountRef, .upMarginRef, .downMarginRef, .singleDigitRef{
+	top:0px;
+}
+.locaCount, .locaCountRef{
+	left:230px;
+}
+.colCount, .colCountRef{
+	left:310px;
+}
+.upMargin, .upMarginRef{
+	left:450px;
+}
+.downMargin, .downMarginRef{
+	left:640px;
+}
+.singleDigit, .singleDigitRef{
+	left:820px;
+}
+li p b{
+	display:inline-block;
+	width:1em;
+	font-weight:400;
+}
+p.locaCount b, p.colCount b, p.singleDigit b, p.locaCountRef b, p.colCountRef b, p.singleDigitRef b{
+	width:10px;
 }
 #console{
 	position : fixed;
@@ -76,7 +106,9 @@ pre{
 .ref4{
 	left:490px;
 }
-
+.ls{
+	border-top:solid 2px #eee;
+}
 .bg{
 	background-color:#eee!important;
 }
@@ -97,7 +129,7 @@ pre{
 	left:15px;
 	border: solid 1px #c2c5d8;
 }
-#groupListBoxBtn{
+#groupListBoxBtn, #groupListInfo2{
 	position:absolute;
 	left:0px;
 	top:-25px;
@@ -106,21 +138,53 @@ pre{
 	padding:3px;
 	background-color:#eee;
 }
-#groupList{
+#groupList, #groupList2{
 	width:208px;
 	height:600px;
 	overflow:scroll;	
 }
-#groupList li{
+#groupList li, #groupList2 li{
 	cursor:pointer;
 	line-height:1.6;
 	padding:5px;
 	background-color:#fff;
 }
-#groupList li:hover{
+#groupList li:hover, #groupList2 li:hover{
 	background-color:#eee;
 }
+
+#refList{
+	position:fixed;
+	top:30px;
+	left:640px;
+	width:500px;
+	background-color:rgba(240,240,240,0.4);
+}
+#refList li{
+	position:relative;
+	padding:0 5px;
+	height:28px;
+	border-bottom:solid 1px #efefef;
+}
+
+#refList li p{
+	display:inline-block;
+	width:280px;
+	line-height:2;
+}
+#refList li p.locaMap{
+	width:120px;
+	margin:0 0 0 40px;
+}
+#refList li b{
+	width:2em;
+}
+
+#refList li:nth-child(2n){
+}
+/*************************************/
 /*滚动条样式*/
+/*************************************/
  ::-webkit-scrollbar {
     width: 10px;
 }
