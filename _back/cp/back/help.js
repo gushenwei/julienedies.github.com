@@ -8,9 +8,37 @@
  * 获取数组最后一个元素
  */
 function getArrayLast(arr){
+	if(!arr) return;
 	var last = arr.slice(-1);
 	return last[0];
 }
+
+/*
+ * 判断数组元素是否全是偶数
+ */
+function isAlloddOrEven( arr ){
+	var j = 0;
+	
+	for(var i in arr){
+		j += arr[i] * 1 % 2;
+	}
+	
+	return j==0 || j==6 ? true : false;
+}
+
+/*
+ * 
+ */
+function getArrayUnique(g){
+	var g = g.slice();
+	if(B){
+		i=o;
+		g.sort(B);
+	if(i)
+		for(var h=1;h<g.length;h++)g[h]===g[h-1]&&g.splice(h--,1)
+	}
+	return g
+} 
 
 /*
  * 控制台打印输出
@@ -337,6 +365,7 @@ function countCol(arr) {
 }
 
 function locaCompare(arr1,arr2){
+	if(!arr1) return;
 	if(arr1.length<=0 || arr2.length<=0) return;
 	
 	var arr1 = $.unique( arr1.slice() );
@@ -354,8 +383,8 @@ function groupWrap(groupList, patch) {
 	var patch = patch || window.patch;
 	var item;
 
-	for ( var k in groupList) {
-		item = groupList[k];
+	for ( var i in groupList) {
+		item = groupList[i];
 		if (patch && patch.length) {
 			item = item.concat(patch);
 		}
@@ -364,7 +393,7 @@ function groupWrap(groupList, patch) {
 			return a - b;
 		});
 
-		groupList[k] = item;
+		groupList[i] = item;
 	}
 
 	//cc(groupList,'groupList');
@@ -387,39 +416,62 @@ function combineWrap(classifyListMap, groupScheme) {
 		args.push(item);
 	}
 
-	cc(args, 'combine args');
+	//cc(args, 'combine args');
 
 	return (combine.apply(null, args));
 }
 
 
 ////////////////////////////////////////////////////////////////////////////////////
-// 回调函数
-//
-// 封装操作
 ////////////////////////////////////////////////////////////////////////////////////
+//检测操作
 
-
-//
-function groupChangeCall(e, groupItem) {
-
-	$('#list').html( window.loadingFigure );
-			
-	if (typeof groupItem == 'string') {
-		groupItem = groupItem.split(' ');
+function numSelFilter( numSelObj ){
+	
+	var locaCount = numSelObj.locaCount;
+	var colCount = numSelObj.colCount;
+	var upMargin = numSelObj.upMargin;
+	var downMargin = numSelObj.downMargin;
+	var singleDigit = numSelObj.singleDigit;
+	
+	var i
+	var item;
+	
+	//col check
+	if(JSON.stringify(colCount) === '[1,1,1,1,1,1]') return false;
+	
+	for(i in colCount){
+		if( colCount[i] > 3) return false;
 	}
 	
-	var q = combineWrap(classifyList,groupItem);
+	if( getArrayUnique(upMargin).length < 4 ) return false;
+	if( getArrayUnique(downMargin).length < 4 ) return false;
+	if( getArrayUnique(singleDigit).length < 4 ) return false;
 	
-	q = redBlueBallModel(q);
-	//cc(q);
-
-	setTimeout(function() {
-		$('#list').html(template('listItemTemp',{list:q}));
-		$('#info').html(q.length);
-	}, 500);
-
+	//upMargin check
+	if( isAlloddOrEven(upMargin) ) return false;	
+	
+	//downMargin check
+	if( isAlloddOrEven(downMargin) ) return false;
+	
+	//singDigit check
+	if( isAlloddOrEven(singleDigit) ) return false;
+	
+	//custom check
+	if( filter(locaCount, colCount, upMargin, downMargin, singleDigit) === false ) return false;
+	
+	// if chexck ok
+	return true;
 }
+
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////
+//封装操作
+
 
 //
 function redBlueBallModel(arr) {
@@ -485,7 +537,7 @@ function redBlueBallModel(arr) {
 		});
 
 		// 过滤
-		if (filter(locaCount, colCount, upMargin, downMargin, singleDigit))
+		if ( filter(locaCount, colCount, upMargin, downMargin, singleDigit) === false )
 			continue;
 
 		if(window.blueBallIsRandom){
@@ -500,49 +552,148 @@ function redBlueBallModel(arr) {
 		blue = blue ? ':' + blue : '';
 		item.push(blue);
 		
-		obj.redBall = item;
-		//obj.blueBall = [blue];
-		obj.locaCount = locaCount;
+		var colCountRefLast = getArrayLast(window.colCountRef);
 		
-		obj.colCountRef = getArrayLast(window.colCountRef);
-		obj.colCount = colCount;
+		var upMarginRefLast = getArrayLast(upMarginRef);
 		
-		obj.upMarginRef = getArrayLast(upMarginRef);
-		obj.upMargin = upMargin;
+		var downMarginRefLast = getArrayLast(downMarginRef);
 		
-		obj.downMarginRef = getArrayLast(downMarginRef);
-		obj.downMargin = downMargin;
+		var singleDigitRefLast = getArrayLast(singleDigitRef);
 		
-		obj.singleDigitRef = getArrayLast(singleDigitRef);
-		obj.singleDigit = singleDigit;
+		var upLoca,downLoca,digitLoca;
 		
-		result.push(obj);
+		upLoca = locaCompare( upMarginRefLast, upMargin);
+		downLoca = locaCompare( downMarginRefLast, downMargin);
+		digitLoca = locaCompare( singleDigitRefLast, singleDigit);
+		
+		obj = {
+				col : JSON.stringify(colCount),
+				up : JSON.stringify(upMargin),
+				down : JSON.stringify(downMargin),
+				digit : JSON.stringify(singleDigit),
+				upLoca : JSON.stringify(upLoca),
+				downLoca : JSON.stringify(downLoca),
+				digitLoca : JSON.stringify(digitLoca),
+				
+				redBall: item,
+				locaCount: locaCount,
+				colCountRef: colCountRefLast,
+				colCount: colCount,
+				upMarginRef: upMarginRefLast,
+				upMargin: upMargin,
+				downMarginRef: downMarginRefLast,
+				downMargin: downMargin,
+				singleDigitRef: singleDigitRefLast,
+				singleDigit: singleDigit
+				
+		};	
+		
+		//if( numSelFilter(obj) )
+			result.push(obj);
+				
 	}
 	
 	return result;
 }
 
 //
-function refListModel(arr){
+function numSelRefListModel(){
+	var colArr = colCountRef.slice();
+	var upArr = upMarginRef.slice();
+	var downArr = downMarginRef.slice();
+	var digitArr = singleDigitRef.slice();
+	
+	var length = Math.min(colArr.length, upArr.length, downArr.length, digitArr.length);
+	var result = [];
+	var prev = [];
+	var obj;
+	var col,up,down,digit;
+	var upLoca,downLoca,digitLoca;
+	
+	for(var i = length; i > 0; i--){
+		col = colArr.pop();
+		up = upArr.pop();
+		down = downArr.pop();
+		digit = digitArr.pop();
+		
+		upLoca = locaCompare( getArrayLast(upArr), up);
+		downLoca = locaCompare( getArrayLast(downArr), down);
+		digitLoca = locaCompare( getArrayLast(digitArr), digit);
+		
+		obj = {
+				col:col, 
+				up: up, 
+				upLoca: upLoca,
+				down: down, 
+				downLoca: downLoca,
+				digit: digit,
+				digitLoca: digitLoca
+			  };
+		
+		result.unshift(obj);
+	}
+	
+	//cc(result,'refList');
+	return result;
+	
+}
+
+//
+function groupListModel(arr){
+	var result = [];
+	var length = arr.length;
+	var prevRef = getArrayLast(window.groupRefList);
+	var item;
+	var loca;
+	var unique;
+	
+	for(var i = 0; i < length; i++){
+		
+		item = arr[i];
+		
+		loca = locaCompare(prevRef,item);
+		
+		unique = $.unique( item.slice() );
+		unique.sort(function(a,b){
+			return a-b;
+		});
+		
+		result.push({
+			group: item,
+			loca: JSON.stringify(loca),
+			unique : JSON.stringify(unique),
+			groupStr: JSON.stringify(item)
+		});		
+	}
+	
+	return result;
+}
+//
+function groupRefListModel(arr){
+	var arr = arr.slice();
 	var length = arr.length;
 	var result = [];
 	var prev = [];
 	var current;
+	var unique;
 	var obj;
-	var locaMap;
+	var loca;
 	
 	for(var i = 0; i < length; i++){
 		obj = {};
 		current = arr[i];
-		locaMap = locaCompare(prev,current);
+		loca = locaCompare(prev,current);
 		
-		current = $.unique( current.slice() );
-		current.sort(function(a, b) {
+		unique = $.unique( current.slice() );
+		unique.sort(function(a,b){
 			return a - b;
 		});
 		
-		obj.refItem = current;
-		obj.locaMap = locaMap;
+		obj = {
+				group: current,
+				unique : unique,
+				loca: loca
+		};
 		
 		result.push(obj);
 		

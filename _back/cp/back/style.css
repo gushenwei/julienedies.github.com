@@ -1,50 +1,175 @@
-*{
-	margin:0;
-	padding:0;
+@charset "utf-8";
+/**********************************************************************/
+/* reset */
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, button, textarea, p, blockquote, th, td {
+	margin: 0;
+	padding: 0;
 }
-ul{
-	list-style:none;
+fieldset, img {
+	border: 0;
 }
+/* remember to define focus styles! */
+:focus {
+	outline: 0;
+}
+address, caption, cite, code, dfn, em, strong, th, var, optgroup {
+	font-style: normal;
+	font-weight: normal;
+}
+abbr, acronym {
+	border: 0;
+	font-variant: normal;
+}
+input, button, textarea, select, optgroup, option {
+	font-family: inherit;
+	font-size: inherit;
+	font-style: inherit;
+	font-weight: inherit;
+}
+code, kbd, samp, tt {
+	font-size: 100%;
+}
+/*@purpose To enable resizing for IE */
+/*@branch For IE6-Win, IE7-Win */
+input, button, textarea, select {
+ *font-size: 100%;
+}
+body {
+	line-height: 1.5;
+}
+ol, ul {
+	list-style: none;
+}
+/* tables still need 'cellspacing="0"' in the markup */
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+caption, th {
+	text-align: left;
+	white-space: nowrap;
+}
+sup, sub {
+	font-size: 100%;
+	vertical-align: baseline;
+}
+/* remember to highlight anchors and inserts somehow! */
+:link, :visited, ins {
+	text-decoration: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after, q:before, q:after {
+	content: '';
+	content: none;
+}
+button{
+	padding:2px 5px;
+}
+b{
+	font-weight:normal;
+}
+/* reset */
+/**********************************************************************/
+/**********************************************************************/
+/* 基本设置  */
 body{
 	min-height:800px;
 }
 pre{
 	font-size:1.2em;
 }
-#box {
-	width: 920px;
-	margin: 0 0  0 240px;
+b{
+	display:inline-block;
+	width:1em;
 }
-#list_ref{
+
+/* 基本设置 */
+/**********************************************************************/
+/**********************************************************************/
+/* 通用类 */
+
+.table{
+	border-collapse: collapse;
+	line-height:1.4!important;
+}
+.table td {
+	border:solid 1px #c2c5d8;
+	width:3.6em;
+	text-align:center;
+}
+.ls{
+	border-top:solid 2px #eee;
+}
+.bg{
+	background-color:#eee!important;
+}
+
+
+/* 通用类 */
+/**********************************************************************/
+/**********************************************************************/
+/* 模块类 */
+.box{
+	min-height:100%;
+}
+.box li[optional=1]:hover{
+	background-color:#eee!important;
+}
+.operateBar{
 	position:fixed;
-	top:10px;
-	left:480px;
-	padding:10px;
-	background-color:#fff;
-	line-height:2;
+	width:100%;
+	height:32px;
+	line-height:32px;
+	top:0px;
+	left:0;
+	background:blue;
+	text-align:right;
 }
-#info {
-	font-size: 18px;
-	font-weight: bold;
-	color: red;
+
+.info{
+	font-weight:bold;
+	color:#fff;
+	font-size:16px;
+	padding:0 20px 0 0;
 }
-#list {
-	line-height: 1.5;
+
+
+/* 模块类 */
+/**********************************************************************/
+/**********************************************************************/
+/* 具体模块  */
+
+#numSelListBox{
+	position:absolute;
+	z-index:100;
+	background:#fff;
+	width:100%;
+	margin:32px 0 0 0;
 }
-#list li{
-	margin-top:25px;
-	padding:2px 5px;
+#numSelList{
+	margin:0 0 0 40px;
+}
+#numSelList li{
+	padding:20px 5px 5px 5px;
 	border-bottom:1px #eee solid;
-	height:60px;
+	height:48px;
 	position:relative;
 }
-.locaCount, .colCount, .upMargin, .downMargin, .singleDigit, .locaCountRef, .colCountRef, .upMarginRef, .downMarginRef, .singleDigitRef{
+#numSelList li input{
 	position:absolute;
+	left:187px;
 	top:26px;
+}
+.locaCount, .colCount, .upMargin, .downMargin, .singleDigit, .locaCountRef, .colCountRef, .upMarginRef, .downMarginRef, .singleDigitRef{
+	display:none;
+	position:absolute;
+	top:44px;
 	color: #777;
 }
 .locaCountRef, .colCountRef, .upMarginRef, .downMarginRef, .singleDigitRef{
-	top:0px;
+	top:20px;
 }
 .locaCount, .locaCountRef{
 	left:230px;
@@ -61,67 +186,49 @@ pre{
 .singleDigit, .singleDigitRef{
 	left:820px;
 }
-li p b{
-	display:inline-block;
-	width:1em;
-	font-weight:400;
-}
-p.locaCount b, p.colCount b, p.singleDigit b, p.locaCountRef b, p.colCountRef b, p.singleDigitRef b{
+.locaCount b, .colCount b, .singleDigit b, .locaCountRef b, .colCountRef b, .singleDigitRef b{
 	width:10px;
 }
-#console{
-	position : fixed;
-	right:2em;
-	top:5em;
+
+#numSelRefList{
+	position:fixed;
+	z-index:101;
+	top:32px;
+	right:0px;
+	width:1000px;
+	padding:10px;
+	color:rgba(20,20,20,1);
+	background-color:rgba(199, 223, 228, 1);
 }
-.details {
-	position: relative;
-	/*visibility:hidden;*/
-	margin-left:320px;
-	color: #777;
+
+#numSelRefList li{
+	position:relative;
+	padding:0 5px;
+	height:28px;
+	border-bottom:solid 1px rgba(230,230,234,1);
 }
-.ref{
-	/*margin:-22px 0 0 80px;*/
-	position:absolute;
+#numSelRefList li.ls{
+	border-top:solid 1px rgba(230,230,234,1);
+	border-bottom:none;
+}
+#numSelRefList li p{
+	display:inline-block;
 	width:160px;
+	margin-left:20px;
+	line-height:2;
 }
-.ref_{
-	width:auto;
+#numSelRefList .upLoca, #numSelRefList .downLoca, #numSelRefList .digitLoca{
+	width:60px;
+	margin-left:10px;
 }
-
-.ref0{
-	left:-60px;
-	top:23px;
+#numSelRefList .upLoca b, #numSelRefList .downLoca b, #numSelRefList .digitLoca b{
+	width:12px;
 }
-.ref1{
-	left:30px;
-}
-.ref2{
-	left:180px;
-}
-.ref3{
-	left:340px;
+#numSelRefList li b{
+	width:18px;
 }
 
-.ref4{
-	left:490px;
-}
-.ls{
-	border-top:solid 2px #eee;
-}
-.bg{
-	background-color:#eee!important;
-}
 
-.table{
-	border-collapse: collapse;
-	line-height:1.4!important;
-}
-.table td {
-	border:solid 1px #c2c5d8;
-	width:3.6em;
-	text-align:center;
-}
 
 #groupListBox{
 	position:fixed;
@@ -132,14 +239,14 @@ p.locaCount b, p.colCount b, p.singleDigit b, p.locaCountRef b, p.colCountRef b,
 #groupListBoxBtn, #groupListInfo2{
 	position:absolute;
 	left:0px;
-	top:-25px;
+	top:-32px;
 	display:inline-block;
 	width:2em;
 	padding:3px;
 	background-color:#eee;
 }
 #groupList, #groupList2{
-	width:208px;
+	width:260px;
 	height:600px;
 	overflow:scroll;	
 }
@@ -153,38 +260,48 @@ p.locaCount b, p.colCount b, p.singleDigit b, p.locaCountRef b, p.colCountRef b,
 	background-color:#eee;
 }
 
+
+
 #refList{
 	position:fixed;
-	top:30px;
-	left:640px;
-	width:500px;
+	top:32px;
+	right:0px;
+	width:800px;
+	padding:2px 10px;
 	background-color:rgba(240,240,240,0.4);
 }
 #refList li{
 	position:relative;
 	padding:0 5px;
 	height:28px;
-	border-bottom:solid 1px #efefef;
+	line-height:2;
+	border-top:solid 1px #efefef;	
 }
-
+#refList li:nth-child(1){
+	border-top:none;
+}
 #refList li p{
 	display:inline-block;
 	width:280px;
-	line-height:2;
-}
-#refList li p.locaMap{
-	width:120px;
 	margin:0 0 0 40px;
+}
+#refList li p.loca{
+	width:120px;
 }
 #refList li b{
 	width:2em;
 }
 
-#refList li:nth-child(2n){
+#refList li p:nth-child(1){
+	margin:0;
 }
-/*************************************/
-/*滚动条样式*/
-/*************************************/
+
+
+/*  */
+/**********************************************************************/
+/**********************************************************************/
+/* 滚动条样式 */
+
  ::-webkit-scrollbar {
     width: 10px;
 }
@@ -205,4 +322,8 @@ p.locaCount b, p.colCount b, p.singleDigit b, p.locaCountRef b, p.colCountRef b,
 }
 ::-webkit-scrollbar-thumb:window-inactive {
 	background: rgba(231,231,231,0.4); 
-} 
+}
+
+/* 滚动条样式 */
+/**********************************************************************/
+/**********************************************************************/

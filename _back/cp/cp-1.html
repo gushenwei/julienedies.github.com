@@ -13,91 +13,131 @@
 <!-- template
   	================================================== 
     ================================================== -->
-<script id="listItemTemp" type="text/html">
+    
+<script id="groupListItemTemp" type="text/html">
+    <% for (var i in list) { var item = list[i]; var group = item.group %>
+        <li data-group="<%= item.groupStr %>" data-loca="<%= item.loca %>" data-unique="<%= item.unique %>"  optional=1>
+			<input type="checkbox" name="" />&nbsp;
+
+            <span> 
+				<% for ( var k in group ) {  %>
+					<b><%=group[k]%></b>
+				<%}%>
+           </span>
+			&nbsp;
+			<button class="make"  data-group="<%= item.groupStr %>">make</button>
+		</li>
+    <%}%>
+</script>
+<script id="numSelListItemTemp" type="text/html">
     <% for (var i in list) { var obj = list[i]; %>
-        <li>
+        <li optional=1 data-col="<%= obj.col %>" data-up="<%= obj.up %>" data-down="<%= obj.down %>" data-digit="<%= obj.digit %>"  data-up-loca="<%= obj.upLoca %>" data-down-loca="<%= obj.downLoca %>" data-digit-loca="<%= obj.digitLoca %>">
+				<input type="checkbox" name="" />
+				<% delete obj.col; delete obj.up; delete obj.down; delete obj.digit; delete obj.upLoca; delete obj.downLoca; delete obj.digitLoca; %>
 				<% for (var j in obj) { var item = obj[j] %>
-                		<p class="<%= j %>">
+                		<p class="<%= (j == 'redBall'? j : j+' details') %>" >
 							<% for (var k in item) {  %>
 									<b><%=item[k]%></b>
-							<%}%>
-							<% if(j == 'redBall') { %>
-									&nbsp; <input type="checkbox" name="op" />
 							<%}%>
                 		</p>
 				<%}%>
 		</li>
     <%}%>
 </script>
+<script id="numSelRefListItemTemp" type="text/html">
+    <% for (var i in list) { var obj = list[i]; %>
+        <li class="<%= className %>">
+				<% for (var j in obj) { var item = obj[j] %>
+                		<p class="<%= j %>" >
+							<% for (var k in item) {  %>
+									<b><%=item[k]%></b>
+							<%}%>
+                		</p>
+				<%}%>
+		</li>
+    <%}%>
+</script>
+<script id="boxTemp" type="text/html">
+<div  id="<%= id && id+'Box' || '' %>" class="box">
+	<% include( 'listTemp' ) %>
 
-
-
-<script id="groupListTemp" type="text/html">
-		<div id="groupListBox">
-		<a href="#" id="groupListBoxBtn">X</a>
-        <ol id="groupList">
-                <% 
-					for (var i in list) { var item = list[i];
-				 %>
-                <li data="<%= item.join(' '); %>">
-					<input type="checkbox" name="" />&nbsp;<span> <%= item.join('&nbsp; '); %> </span>
-                </li>
-                <% } %>
-        </ol>
+	<div class="operateBar">
+		<span class="info"><%= info %></span>
+		<button class="reset">反选</button>
+		<button class="del">删除所选</button>
+		<button class="showRef">显示参照</button>
+		<button class="toggle">切换细节</button>
+		<button class="close">关闭窗口</button>
 	</div>
-    </script>
-
+</div>
+</script>
+<script id="listTemp" type="text/html">
+    <ul id="<%= id || '' %>" >
+			<% include( embedTemp || 'groupListItemTemp') %>
+    </ul>
+</script>
+<script id="refListItemTemp" type="text/html">
+    <% for (var i in list) { var obj = list[i]; %>
+        <li class="<%= className || '' %>">
+				<% for (var j in obj) { var item = obj[j] %>
+                		<p class="<%= j %>" >
+							<% for (var k in item) {  %>
+									<b><%=item[k]%></b>
+							<%}%>
+                		</p>
+				<%}%>
+		</li>
+    <%}%>
+</script>
 <!-- template
   	================================================== 
     ================================================== -->
 </head>
 <body>
 
-<div id="box">
-
-<ul id="list"></ul>
-<div id="console">
-<button id="choice">选择</button>
-<br />
-<br />
-<button id="del">删除所选</button>
-<br />
-<br />
-<button id="show">显示细节</button>
-<br />
-<br />
-<span id="info"></span> <br />
-<br />
-<pre>
-</pre></div>
-
-</div>
-
 <script>
 	
 	window.classifyByIndex = 2;
 	window.blueBallIsRandom = 0;
+
+	window.groupRefList = window[ refMap[classifyByIndex] ];
+
+	window.classifyList = window[window.classifyBy[classifyByIndex]];
+	
+
+	classifyList = {"0":[4,15,16,24,27,28],"1":[17,19,23],"2":[6,14,18,26],"3":[9,31],"4":[1],"5":[7,12,22],"6":[20,21],"8":[3,33],"9":[5,10],"10":[13],"11":[2],"13":[8],"14":[30],"15":[11],"19":[32]} 
+	
 	
 	window.filter = function(loca, col, upMargin, downMargin, singleDigit) {
-		//if(loca[1] != 2) return true;
-		//if(compare(col,colNumberRef[colNumberRef.length-1],2)) return true;
-		//if(compare(upMargin,upMarginRef[upMarginRef.length-1],1)) return true;
-		//if(compare(downMargin,downMarginRef[downMarginRef.length-1],1)) return true;
-		//if(compare(singleDigit,singleDigitRef[singleDigitRef.length-1],2)) return true;
-		//if(singleDigit[5] != 7 ) return true;
+		//if(loca[1] != 2) return false;
+		//if(compare(col,colNumberRef[colNumberRef.length-1],2)) return false;
+		//if(compare(upMargin,upMarginRef[upMarginRef.length-1],1)) return false;
+		//if(compare(downMargin,downMarginRef[downMarginRef.length-1],1)) return false;
+		//if(compare(singleDigit,singleDigitRef[singleDigitRef.length-1],2)) return false;
+		//if(singleDigit[5] != 7 ) return false;
 	};
 
 	//window.blues = [ '04', '14' ]; 
 
 	//var groupnum = [5,10,10,0,1,6];
-	var groupnum = [1,2 ,9,7, 7,18 ];
-	//window.patch = [ 0 ];
+	var groupnum = [2,5,3,9];
 
-	window.groupList = group(groupnum, 6);
+	window.patch = [ 0 ,3];
 
-	//classifyList = {"0":[4,6,14,16,18,26],"1":[9,23,24,25,29,31],"2":[1,17,19],"3":[7,12,22],"4":[20,21,27],"6":[3,15,33],"7":[5,10],"8":[13],"9":[2],"11":[8,28],"12":[30],"13":[11],"17":[32]} ;
+	window.groupList = group(groupnum, 4);
+	
+	q = groupWrap(groupList);
 
-classifyByDownMargin = {"0":[4,17,19,23,24,27],"1":[6,14,16,18,26],"2":[9,25,29,31],"3":[1],"4":[7,12,22],"5":[20,21],"7":[15,33],"8":[5,10],"9":[13],"10":[2],"12":[8,28],"13":[30],"14":[11],"18":[32]} 
+
+	q = groupListModel(q);
+
+
+
+$( template('boxTemp',{list:q, info: q.length, id:'groupList', embedTemp:''}) ).appendTo('body');
+
+
+
+
 
 
 

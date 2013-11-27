@@ -9,103 +9,170 @@
  */
 
 
-
-
-
-	
-
+////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////
 //事件绑定
-////////////////////////////////////////////////////////////////////////////////////
+
 $(function(){
 	
-	//
 	$('body')
-	.delegate('#groupList li :checkbox','change',function(){
-		$(this).closest('li').remove();
-		$('#groupListBoxBtn').text($('#groupList li').length);
-	})	
+	
+	//
 	.delegate('#groupList li','click',function(){
 		var $th = $(this);
 		$th.siblings().removeClass('bg');
 		$th.addClass('bg');
-		var arg = $th.attr('data');
-		$(window).trigger('group.change', [arg]);
 	})
-	
-	.delegate('#groupListBoxBtn','click',function(){
+	//
+	.delegate('#groupList li .make','click',function(){
 		var $th = $(this);
-		var mark = !$th.attr('data-mark');
-		if(mark){
-			$('#groupList').fadeOut('500');
-			$th.attr('data-mark', 1);
+		
+		var group = JSON.parse( $th.attr('data-group') );
+		
+		var q = combineWrap(classifyList,group);
+		
+		q = redBlueBallModel(q);
+		
+		$( template('boxTemp',{list:q, id: 'numSelList', embedTemp: 'numSelListItemTemp', info:q.length}) ).prependTo('body');		
+	})
+	//
+	.delegate('#groupList li', 'mouseover', function() {
+		var $th = $(this);
+		var group = JSON.parse( $th.attr('data-group') );
+		var unique = JSON.parse( $th.attr('data-unique') ); 
+		var loca = JSON.parse( $th.attr('data-loca') ); 
+		
+		var list = [{
+			group: group,
+			unique: unique,
+			loca: loca			
+		}];
+		
+		$( template('refListItemTemp',{list: list, className: 'ls'}) ).appendTo('#refList');
+	})
+
+	.delegate('#groupList li', 'mouseout', function() {
+		$('#refList li.ls:last').remove();
+	})		
+	.delegate('#groupListBox .showRef','click',function() {
+		var refList = $('#refList');
+		
+		if( refList.length ){
+			refList.toggle();
 		}else{
-			 $('#groupList').fadeIn('500');
-			 $th.removeAttr('data-mark');
+			var q = groupRefListModel(window.groupRefList);
+			
+			$( template('listTemp', {list: q, id: 'refList', embedTemp:'refListItemTemp'}) ).appendTo('#groupListBox');			
 		}
+	})	
+	
+	/////////////////////////////////////////////////////////////////////
+	//
+	.delegate('#numSelListBox .toggle','click',function() {
+		var box = $(this).closest('.box');
+		//box.find('.locaCount, .colCount, .upMargin, .downMargin, .singleDigit, .locaCountRef, .colCountRef, .upMarginRef, .downMarginRef, .singleDigitRef').toggle();	
+		box.find('p.details').toggle();
+	})	
+	//
+	.delegate('#numSelListBox .showRef','click',function() {
+		var numSelRefList = $('#numSelRefList');
+		
+		if( numSelRefList.length ){
+			numSelRefList.toggle();
+		}else{
+			var q = numSelRefListModel();
+			$( template('listTemp',{list:q, id:'numSelRefList',  embedTemp: 'numSelRefListItemTemp'}) ).appendTo('#numSelListBox');			
+		}
+	})		
+	//
+	.delegate('#numSelList li', 'mouseover', function() {
+		if( !$('#numSelRefList:visible').length) return;
+		var $th = $(this);
+		var list= [];
+		var col = $th.attr('data-col');
+		var up = $th.attr('data-up');
+		var down = $th.attr('data-down');
+		var digit = $th.attr('data-digit');
+		var upLoca = $th.attr('data-up-loca');
+		var downLoca = $th.attr('data-down-loca');
+		var digitLoca = $th.attr('data-digit-loca');		
+		var obj = {
+					col : JSON.parse(col),
+					up : JSON.parse(up),
+					upLoca : JSON.parse(upLoca),
+					down : JSON.parse(down),
+					downLoca : JSON.parse(downLoca),
+					digit : JSON.parse(digit),
+					digitLoca : JSON.parse(digitLoca)					
+				};
+		
+		list.push(obj);
+		
+		$( template('numSelRefListItemTemp',{list: list, className: 'ls'}) ).appendTo('#numSelRefList');
+	})
+	//
+	.delegate('#numSelList li', 'mouseout', function() {
+		$('#numSelRefList li.ls:last').remove();
 	})
 	
-	//
-	.delegate('#del','click',function() {
-		$('input[name="op"]:checked').each(function() {
-			$(this).closest('li').remove();
-		});
-		$('#info').html($('#list').find('li').length);
-	})
-
-	//
-	.delegate('#choice','click',function() {
-		$('input[name="op"]').toggle();
-	})
-
-	//
-	.delegate('#show','click',function() {
-		$('.locaCount, .colCount, .upMargin, .downMargin, .singleDigit, .locaCountRef, .colCountRef, .upMarginRef, .downMarginRef, .singleDigitRef').toggle();
-	})
-
-	//
-	.delegate('#list li', 'click', function() {
+	/////////////////////////////////////////////////////////////////////
+	//选中
+	.delegate('li[optional=1]', 'click', function() {
 		var $th = $(this);
-		var input = $th.find('input[name="op"]');
+		var input = $th.find('input:checkbox');
 
 		if (input.attr('checked')) {
 			input.attr('checked', false);
 		} else {
 			input.attr('checked', true);
 		}
-
 	})
-
-	//
-	.delegate('#list li', 'mouseover', function() {
-		var $th = $(this);
-		$th.addClass('bg');
-		//$th.find('.details').css('visibility', 'visible');
+	//删除所选
+	.delegate('.del','click',function() {
+		var box = $(this).closest('.box');
+		box.find('li input:checked').each(function() {
+			$(this).closest('li').remove();
+		});
+		box.find('.info').html(box.find('li[optional=1]').length);
 	})
-
-	.delegate('#list li', 'mouseout', function() {
-		var $th = $(this);
-		$th.removeClass('bg');
-		//$th.find('.details').css('visibility', 'hidden');
+	//反选
+	.delegate('.reset','click',function() {
+		var box = $(this).closest('.box');
+		box.find('li input:checkbox').each(function() {
+			var input = $(this);
+			if (input.attr('checked')) {
+				input.attr('checked', false);
+			} else {
+				input.attr('checked', true);
+			}
+		});
+	})	
+	//关闭box
+	.delegate('.close','click',function() {
+		var box = $(this).closest('.box');
+		if(confirm('确定关闭窗口?!')){
+			box.remove();
+		}
 	});	
+	
 	
 });
 
-$(window).bind('group.change', groupChangeCall);
 
-
+////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////
 //init
-////////////////////////////////////////////////////////////////////////////////////
 
 
-window.classifyList = window[window.classifyBy[classifyByIndex]];
 
 
-groupWrap(groupList);
 
 
-$(template('groupListTemp',{list:groupList})).appendTo($('body'));
+
+
+
+
+
 
 
 
