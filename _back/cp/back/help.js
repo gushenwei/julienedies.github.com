@@ -29,15 +29,9 @@ function isAlloddOrEven( arr ){
 /*
  * 
  */
-function getArrayUnique(g){
-	var g = g.slice();
-	if(B){
-		i=o;
-		g.sort(B);
-	if(i)
-		for(var h=1;h<g.length;h++)g[h]===g[h-1]&&g.splice(h--,1)
-	}
-	return g
+function getArrayUnique( arr ){
+	var arr = arr.slice();
+	return $.unique(arr);
 } 
 
 /*
@@ -46,7 +40,7 @@ function getArrayUnique(g){
 function cc(obj,prefix){
 	var prefix = prefix || '';
 	if(typeof obj == 'object'){
-		console.log(prefix +  ' => ' + JSON.stringify(obj));
+		console.log(prefix +  ' = ' + JSON.stringify(obj) + ';');
 	}else{
 		console.log(prefix + ' : ' + obj);
 	}
@@ -428,11 +422,12 @@ function combineWrap(classifyListMap, groupScheme) {
 
 function numSelFilter( numSelObj ){
 	
-	var locaCount = numSelObj.locaCount;
-	var colCount = numSelObj.colCount;
-	var upMargin = numSelObj.upMargin;
-	var downMargin = numSelObj.downMargin;
-	var singleDigit = numSelObj.singleDigit;
+	var details = numSelObj.details;
+	var locaCount = details.locaCount;
+	var colCount = details.colCount;
+	var upMargin = details.upMargin;
+	var downMargin = details.downMargin;
+	var singleDigit = details.singleDigit;
 	
 	var i
 	var item;
@@ -576,19 +571,20 @@ function redBlueBallModel(arr) {
 				digitLoca : JSON.stringify(digitLoca),
 				
 				redBall: item,
-				locaCount: locaCount,
-				colCountRef: colCountRefLast,
-				colCount: colCount,
-				upMarginRef: upMarginRefLast,
-				upMargin: upMargin,
-				downMarginRef: downMarginRefLast,
-				downMargin: downMargin,
-				singleDigitRef: singleDigitRefLast,
-				singleDigit: singleDigit
-				
+				details:{
+					locaCount: locaCount,
+					colCountRef: colCountRefLast,
+					colCount: colCount,
+					upMarginRef: upMarginRefLast,
+					upMargin: upMargin,
+					downMarginRef: downMarginRefLast,
+					downMargin: downMargin,
+					singleDigitRef: singleDigitRefLast,
+					singleDigit: singleDigit					
+				}
 		};	
 		
-		//if( numSelFilter(obj) )
+		if( numSelFilter(obj) )
 			result.push(obj);
 				
 	}
@@ -658,6 +654,8 @@ function groupListModel(arr){
 			return a-b;
 		});
 		
+		if( window.groupFilter(group,unique,loca) === false ) continue;
+		
 		result.push({
 			group: item,
 			loca: JSON.stringify(loca),
@@ -702,5 +700,30 @@ function groupRefListModel(arr){
 	
 	//cc(result,'refList');
 	return result;
-	
 }
+
+
+///////////////////////////////////////////////////
+///////////////////////////////////////////////////
+//回调函数
+
+function groupCall(groupnum,patch) {
+	//var groupnum = [ 1, 2, 3, 0, 0 ];
+
+	//window.patch = [ 20 ];
+	var size = patch && 6 - patch.length || 6;
+
+	var q = group(groupnum, size);
+
+	q = groupWrap(q,patch);
+
+	q = groupListModel(q);
+
+	$(template('boxTemp', {
+		list : q,
+		info : q.length,
+		id : 'groupList',
+		embedTemp : ''
+	})).appendTo('body');
+}
+

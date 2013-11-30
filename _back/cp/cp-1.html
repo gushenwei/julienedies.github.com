@@ -30,17 +30,24 @@
     <%}%>
 </script>
 <script id="numSelListItemTemp" type="text/html">
-    <% for (var i in list) { var obj = list[i]; %>
+    <% for (var i in list) { var obj = list[i]; var details = obj.details; var redBall = obj.redBall; %>
         <li optional=1 data-col="<%= obj.col %>" data-up="<%= obj.up %>" data-down="<%= obj.down %>" data-digit="<%= obj.digit %>"  data-up-loca="<%= obj.upLoca %>" data-down-loca="<%= obj.downLoca %>" data-digit-loca="<%= obj.digitLoca %>">
-				<input type="checkbox" name="" />
-				<% delete obj.col; delete obj.up; delete obj.down; delete obj.digit; delete obj.upLoca; delete obj.downLoca; delete obj.digitLoca; %>
-				<% for (var j in obj) { var item = obj[j] %>
-                		<p class="<%= (j == 'redBall'? j : j+' details') %>" >
+				
+             <p class="redBall" >
+					<% for (var k in redBall) { %>
+							<b><%=redBall[k]%></b>
+					<%}%>
+             </p>
+			<input type="checkbox" name="" />
+           <div class="details">
+				<%  for (var j in details) { var item = details[j] %>
+                		<p class="<%= j %>" >
 							<% for (var k in item) {  %>
 									<b><%=item[k]%></b>
 							<%}%>
                 		</p>
 				<%}%>
+			<div>
 		</li>
     <%}%>
 </script>
@@ -89,6 +96,30 @@
 		</li>
     <%}%>
 </script>
+
+<script id="objTemp" type="text/html">
+<div id="<%= id && id+'Box' %>" class="dobjBox">
+<span class="name"><%= name %></span>
+<button class="make" data-name="<%= name %>" >make</button>
+<ul class="dobj" id="<%= id %>">
+    <% for (var k in dobj) { var item = dobj[k]; %>
+		<li>
+        	<div class="key">
+				<a href="#" class="lessen">—</a>
+				<span><i><%= k %></i> <input type="checkbox" value="<%=k %>" /> </span>
+				<a href="#" class="add">+</a>
+			</div>
+			<span>
+				<% for (var i in item) {  %>
+					<em> <%=item[i]%> </em>
+					<input type="checkbox" value="<%=item[i]%>" data-key="<%= k %>" name="<%= name %>" checked />
+				<%}%>
+			</span>
+		</li>
+    <%}%>
+</ul>
+</div>
+</script>
 <!-- template
   	================================================== 
     ================================================== -->
@@ -105,52 +136,82 @@
 	window.classifyList = window[window.classifyBy[classifyByIndex]];
 	
 
-	classifyList = {"0":[4,15,16,24,27,28],"1":[17,19,23],"2":[6,14,18,26],"3":[9,31],"4":[1],"5":[7,12,22],"6":[20,21],"8":[3,33],"9":[5,10],"10":[13],"11":[2],"13":[8],"14":[30],"15":[11],"19":[32]} 
+	//classifyList = {"0":[13,21],"1":[4,15,16,24],"2":[17,23],"3":[6,14,26],"4":[25,31],"5":[1],"6":[12,22],"7":[20],"9":[3,33],"10":[5,10],"12":[2],"15":[30],"20":[32]} ;
+	
 	
 	
 	window.filter = function(loca, col, upMargin, downMargin, singleDigit) {
-		//if(loca[1] != 2) return false;
+		//if(loca[1] != 1) return false;
 		//if(compare(col,colNumberRef[colNumberRef.length-1],2)) return false;
 		//if(compare(upMargin,upMarginRef[upMarginRef.length-1],1)) return false;
 		//if(compare(downMargin,downMarginRef[downMarginRef.length-1],1)) return false;
 		//if(compare(singleDigit,singleDigitRef[singleDigitRef.length-1],2)) return false;
 		//if(singleDigit[5] != 7 ) return false;
 	};
+	
+	window.groupFilter = function(group,unique,loca){
+		//if(loca[1] != 2) return false;
+		
+	}
 
 	//window.blues = [ '04', '14' ]; 
 
-	//var groupnum = [5,10,10,0,1,6];
-	var groupnum = [2,5,3,9];
-
-	window.patch = [ 0 ,3];
-
-	window.groupList = group(groupnum, 4);
 	
-	q = groupWrap(groupList);
 
+	////////////////////////////////////////////////////////////
+	
+		$(template('objTemp', {
+			dobj : classifyByDownMargin,
+			name: 'classifyByDownMargin',
+			id : 'classifyByDownMarginList',
+			embedTemp : ''
+		})).appendTo('body');	
+	
+	
+	
+		$(template('objTemp', {
+			dobj : classifyByUpMargin,
+			name: 'classifyByUpMargin',
+			id : 'classifyByUpMarginList',
+			embedTemp : ''
+		})).appendTo('body');	
+	
+	
+	
+		
+		$(template('objTemp', {
+			dobj : classifyByColCount,
+			name: 'classifyByColCount',
+			id : 'classifyByColCountList',
+			embedTemp : ''
+		})).appendTo('body');		
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
-	q = groupListModel(q);
-
-
-
-$( template('boxTemp',{list:q, info: q.length, id:'groupList', embedTemp:''}) ).appendTo('body');
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 </script>
 <script src="back/init.js" type="text/javascript"></script>
 </body>
