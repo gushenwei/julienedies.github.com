@@ -16,41 +16,59 @@
 $(function(){
 	
 	$('body')
+	//设定编组补丁及编组长度
+	.delegate('.dobjBox .set','click',function(){
+		var th = $(this);
+		var box = th.closest('.dobjBox');
+		box.find('.setBox').toggle();
+	})		
 	//
 	.delegate('.dobjBox .make','click',function(){
 		var th = $(this);
-		var arr = [];
 		var dobjBox = th.closest('.dobjBox');
 		var name = th.attr('data-name');
-		dobjBox.find('i+input:checked').each(function(){
+		var groupNum = [];
+		var patch = [];
+		var gruopSize = dobjBox.find('.setBox input[type="number"]').val()*1 || 6;
+		
+		dobjBox.find('.dobj .key input:checked').each(function(){
 			var $th = $(this);
 			var val = $th.val() * 1;
-			arr.push(val);
+			groupNum.push(val);
 		});
 		
+		dobjBox.find('.setBox .key input:checked').each(function(){
+			var $th = $(this);
+			var val = $th.val() * 1;
+			patch.push(val);
+		});		
+		
 		window.classifyList = window[name];
+		cg(patch);
 		//cc(classifyList,'debug')
-		groupCall(arr);
+		groupCall(groupNum,patch,gruopSize);
 	})		
 	//
-	.delegate('.dobj i','click',function(){
+	.delegate('.key i','click',function(){
 		var $th = $(this);
 		var checkbox = $th.next('input:checkbox');
 		$th.toggleClass('selected');
 		checkbox.trigger('click');
 	})
 	//
-	.delegate('.dobj .key .add','click',function(){
+	.delegate('.key .add','click',function(){
 		var th = $(this);
 		var prev = th.prev('span').clone(true).insertBefore(th);
+		return false;
 	})
 	//
-	.delegate('.dobj .key .lessen','click',function(){
+	.delegate('.key .lessen','click',function(){
 		var th = $(this);
 		var nextAll = th.nextAll('span');
 		if(nextAll.length > 1){
 			nextAll.eq(nextAll.length-1).remove();
 		}
+		return false;
 	})		
 	//
 	.delegate('.dobj em','click',function(){
@@ -61,20 +79,34 @@ $(function(){
 		checkbox.trigger('change');
 	})	
 	//
-	.delegate('.dobj input[data-key]:checkbox','change',function(){
-		var $th = $(this);
-		var name = $th.attr('name');
-		var dobj = $th.closest('.dobj');
-		var obj = {};
-		dobj.find('input[name="'+ name + '"]:checked').each(function(i,v){
-			var th = $(this);
-			var val = th.val()*1;
-			var key = th.attr('data-key');
-			obj[key] = obj[key] || [];
-			obj[key].push(val);
-		});
+	.delegate('.dobj input:checkbox','change',function(){
+		var th = $(this);
+		var name = th.attr('name');
+		var dobj = th.closest('.dobj');
+		var obj;
+		var call;
 		
-		//cc(obj,name);
+		if(th.attr('data-key')){
+			obj = {};
+			call = function(i){
+				var th = $(this);
+				var val = th.val()*1;
+				var key = th.attr('data-key');
+				obj[key] = obj[key] || [];
+				obj[key].push(val);
+			};
+		}else{
+			obj = [];
+			call = function(i){
+				var th = $(this);
+				var val = th.val()*1;
+				obj.push(val);
+			};			
+		}
+		
+		dobj.find('input[name="'+ name + '"]:checked').each(call);
+		
+		cc(obj,name);
 		window[name] = obj;
 	})	
 	//
@@ -97,6 +129,7 @@ $(function(){
 	})
 	//
 	.delegate('#groupList li', 'mouseover', function() {
+		$('#refList li.ls:last').remove();
 		var $th = $(this);
 		var group = JSON.parse( $th.attr('data-group') );
 		var unique = JSON.parse( $th.attr('data-unique') ); 
@@ -130,7 +163,6 @@ $(function(){
 	//
 	.delegate('#numSelListBox .toggle','click',function() {
 		var box = $(this).closest('.box');
-		//box.find('.locaCount, .colCount, .upMargin, .downMargin, .singleDigit, .locaCountRef, .colCountRef, .upMarginRef, .downMarginRef, .singleDigitRef').toggle();	
 		box.find('.details').toggle();
 	})	
 	//
@@ -174,17 +206,51 @@ $(function(){
 	.delegate('#numSelList li', 'mouseout', function() {
 		$('#numSelRefList li.ls:last').remove();
 	})
-	
+	//
+	.delegate('#numSelList .details .sortBtn', 'click', function() { 
+		$('#sortBox ').remove();
+		var th = $(this);
+		var name = th.attr('data-name');
+		var val = th.attr('data-value');
+		$( template('sortTemp',{name:name,val:val}) ).insertAfter(th);
+		return false;
+	})	
+	//分类排序筛选
+	.delegate('#sortBox button', 'click', function() {
+		var numSelList = $('#numSelList');
+		var box = $(this).closest('.box');
+		
+		var th = $(this);
+		var name = th.attr('data-name');
+		var val = th.prev('input').val();
+		var attr = '[data-' + name + val +'"]';
+		
+		var list = box.find('li' + attr);
+		var size = list.length;
+		box.find('.sortInfo b').text(size);
+		
+		list.each(function(){
+			var th = $(this);
+			th.find('input:checkbox').attr('checked',true).trigger('change');
+			th.prependTo( th.parent() );
+		});
+		
+		$('body').scrollTop(0);
+		
+		$('#sortBox ').remove();
+		
+		return false;
+	})		
 	/////////////////////////////////////////////////////////////////////
 	//选中
 	.delegate('li[optional=1]', 'click', function() {
 		var $th = $(this);
 		var input = $th.find('input:checkbox');
-
+		
 		if (input.attr('checked')) {
-			input.attr('checked', false);
+			input.attr('checked', false).trigger('change');
 		} else {
-			input.attr('checked', true);
+			input.attr('checked', true).trigger('change');
 		}
 	})
 	//删除所选
@@ -193,19 +259,46 @@ $(function(){
 		box.find('li input:checked').each(function() {
 			$(this).closest('li').remove();
 		});
-		box.find('.info').html(box.find('li[optional=1]').length);
+		box.find('.info b').text(box.find('li[optional=1]').length);
 	})
 	//反选
 	.delegate('.reset','click',function() {
 		var box = $(this).closest('.box');
+		
 		box.find('li input:checkbox').each(function() {
 			var input = $(this);
 			if (input.attr('checked')) {
-				input.attr('checked', false);
+				input.attr('checked', false).trigger('change');
 			} else {
-				input.attr('checked', true);
+				input.attr('checked', true).trigger('change');
 			}
 		});
+	})
+	//全不选
+	.delegate('.not','click',function() {
+		var box = $(this).closest('.box');
+		box.find('li[optional=1] input:checked').each(function() {
+			var input = $(this);
+			input.attr('checked', false).trigger('change');;
+		});
+	})	
+	/////////////////////////////////////////////////////////////////////
+	//选中样式
+	.delegate('li[optional=1] input:checkbox', 'change', function() { 
+		var th = $(this);
+		var li = th.closest('li');
+		
+		if (th.attr('checked')) {
+			li.addClass('selected');
+		} else {
+			li.removeClass('selected');
+		}
+		
+		/*
+		var box = th.closest('.box');
+		var size = box.find('li[optional=1] input:checked').length;
+		box.find('.sortInfo b').text(size);
+		*/
 	})	
 	//关闭box
 	.delegate('.close','click',function() {

@@ -65,7 +65,7 @@ blockquote:before, blockquote:after, q:before, q:after {
 	content: none;
 }
 button{
-	padding:2px 5px;
+	padding:2px;
 }
 b{
 	font-weight:normal;
@@ -136,13 +136,20 @@ b{
 	font-weight:bold;
 	color:#fff;
 	font-size:16px;
-	padding:0 20px 0 0;
+	padding:0 20px;
 }
+.sortInfo{
+	padding:0 20px;
+	color:#fff;
+	font-size:16px;
+}
+/*****************************************************/
 
 .dobjBox{
 	position:absolute;
 	top:48px;
 	font: 12px/1.5 tahoma,arial,simsun,sans-serif;
+	border:solid 1px blue;
 }
 .dobjBox .name{
 	position:absolute;
@@ -153,6 +160,30 @@ b{
 	position:absolute;
 	top:-28px;
 	right:0;	
+}
+.dobjBox .set{
+	position:absolute;
+	top:-28px;
+	right:64px;
+}
+.dobjBox .setBox{
+	display:none;
+	position:absolute;
+	width:240px;
+	top:-1px;
+	right:-1px;
+	background:#fff;
+	border:solid 1px gray;
+}
+.dobjBox .setBox .key{
+	margin:7px 5px;
+}
+.dobjBox .setBox input[type="number"]{
+	position:absolute;
+	top:-1px;
+	right:-1px;
+	width:36px;
+	padding:3px 0;
 }
 .dobj li{
 	margin:7px 5px;
@@ -174,7 +205,7 @@ b{
  .dobj .key .lessen{
  	left:0px;
 }
-.dobj i, .dobj em{
+.key i, .dobj em{
 	display:inline-block;
 	width:24px;
 	margin:0 2px;
@@ -184,13 +215,13 @@ b{
 	border-radius:12px;
 	cursor:pointer;	
 }
-.dobj i{
+.key i{
 	margin:0 0 0 3px;
 	font-style:normal;
 	color: #4B4B4B;
 	background: #E2E2E2;	
 }
-.dobj i.selected{
+.key i.selected{
 	color:#fff;
 	background:blue;
 }
@@ -203,41 +234,66 @@ b{
 	color: #4B4B4B;
 	background: #E2E2E2;
 }
-.dobj input[type="checkbox"]{
+.dobjBox input[type="checkbox"]{
 	display:none;
+}
+
+.dobj2 li{
+	display:inline-block;
+}
+.dobj2 em{
+	background:blue;
 }
 
 /* 模块类 */
 /**********************************************************************/
 /**********************************************************************/
 /* 具体模块  */
-
+#bluesBox{
+	top:800px;
+	left:40px;
+	width:700px;
+}
 #classifyByDownMarginListBox{
-	position:absolute;
 	top:40px;
 	left:40px;
 	width:360px;
-	border:solid 1px blue;
+}
+#classifyByDownMarginLocaMapListBox{
+	top:520px;
+	left:40px;
+	width:360px;	
 }
 #classifyByUpMarginListBox{
-	position:absolute;
 	top:40px;
 	left:440px;
 	width:420px;
-	border:solid 1px blue;	
+}
+#classifyBySingleDigitListBox{
+	top:40px;
+	left:920px;
+	width:320px;	
+}
+#classifyBySingleDigitListBox .dobj .key{
+	width:120px;
+}
+#classifyBySingleDigitLocaMapListBox{
+	top:420px;
+	left:920px;
+	width:360px;	
 }
 #classifyByColCountListBox{
-	position:absolute;
-	top:40px;
-	left:900px;
-	width:360px;
-	border:solid 1px blue;		
+	top:520px;
+	left:440px;
+	width:420px;
 }
 #classifyByColCountListBox .dobj .key{
-	width:72px;
+	width:110px;
 }
 
+/******************************************/
 /*  */
+
 #numSelListBox{
 	position:absolute;
 	z-index:100;
@@ -254,41 +310,70 @@ b{
 	height:48px;
 	position:relative;
 }
-#numSelList li input{
+#numSelList li.selected{
+	background:#FADCDE;
+}
+#numSelList li input[type="checkbox"]{
 	position:absolute;
 	left:187px;
 	top:26px;
 }
 .details{
-	display:none;
+	display:;
 }
-.locaCount, .colCount, .upMargin, .downMargin, .singleDigit, .locaCountRef, .colCountRef, .upMarginRef, .downMarginRef, .singleDigitRef{
+.details .sortBtn{
+	position:absolute;
+	top:4px;
+	right:-24px;
+	font-size: 0.8em;
+	opacity: 0.4;
+	border: none;
+	background: none;	
+}
+#numSelList .loca, #numSelList .col, #numSelList .up, #numSelList .down, #numSelList .digit, 
+#numSelList .locaRef, #numSelList .colRef, #numSelList .upRef, .downRef, .digitRef{
 	position:absolute;
 	top:44px;
 	color: #777;
 }
-.locaCountRef, .colCountRef, .upMarginRef, .downMarginRef, .singleDigitRef{
+#numSelList .locaRef, #numSelList .colRef, #numSelList .upRef, #numSelList .downRef, #numSelList .digitRef{
 	top:20px;
 }
-.locaCount, .locaCountRef{
+#numSelList .loca, #numSelList .locaRef{
 	left:230px;
 }
-.colCount, .colCountRef{
+#numSelList .col, #numSelList .colRef{
 	left:310px;
 }
-.upMargin, .upMarginRef{
+#numSelList .up, #numSelList .upRef{
 	left:450px;
 }
-.downMargin, .downMarginRef{
+#numSelList .down, #numSelList .downRef{
 	left:640px;
 }
-.singleDigit, .singleDigitRef{
+#numSelList .digit, #numSelList .digitRef{
 	left:820px;
 }
-.locaCount b, .colCount b, .singleDigit b, .locaCountRef b, .colCountRef b, .singleDigitRef b{
+#numSelList .loca b, #numSelList .col b, #numSelList .digit b,
+#numSelList .locaRef b, #numSelList .colRef b, #numSelList .digitRef b{
 	width:10px;
 }
 
+#sortBox{
+	background:#fff;
+	width:228px;
+	padding:0 0 0 2px;
+	border:solid 1px silver;
+	position: absolute;
+	top: 0;
+	right: -240px;
+	z-index:10000;
+}
+#sortBox input[type="text"]{
+	width:170px;
+}
+/******************************************/
+/*  */
 #numSelRefList{
 	position:fixed;
 	z-index:101;
@@ -327,7 +412,8 @@ b{
 	width:18px;
 }
 
-
+/******************************************/
+/*  */
 
 #groupListBox{
 	position:fixed;
@@ -360,7 +446,8 @@ b{
 	background-color:#eee;
 }
 
-
+/******************************************/
+/*  */
 
 #refList{
 	position:fixed;

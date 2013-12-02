@@ -30,8 +30,8 @@
     <%}%>
 </script>
 <script id="numSelListItemTemp" type="text/html">
-    <% for (var i in list) { var obj = list[i]; var details = obj.details; var redBall = obj.redBall; %>
-        <li optional=1 data-col="<%= obj.col %>" data-up="<%= obj.up %>" data-down="<%= obj.down %>" data-digit="<%= obj.digit %>"  data-up-loca="<%= obj.upLoca %>" data-down-loca="<%= obj.downLoca %>" data-digit-loca="<%= obj.digitLoca %>">
+    <% for (var i in list) { var obj = list[i]; var redBall = obj.redBall;  var details = obj.details;  var data = obj.data; %>
+        <li optional=1 data-loca="<%= data.loca %>" data-col="<%= data.col %>" data-up="<%= data.up %>" data-down="<%= data.down %>" data-digit="<%= data.digit %>"  data-up-loca="<%= data.upLoca %>" data-down-loca="<%= data.downLoca %>" data-digit-loca="<%= data.digitLoca %>">
 				
              <p class="redBall" >
 					<% for (var k in redBall) { %>
@@ -45,11 +45,19 @@
 							<% for (var k in item) {  %>
 									<b><%=item[k]%></b>
 							<%}%>
+							<% if(data[j]){ %>
+								<button class="sortBtn" data-name="<%= j %>" data-value="<%= data[j] %>" > &gt;&gt; </button>
+							<%}%>
                 		</p>
 				<%}%>
-			<div>
+			</div>
 		</li>
     <%}%>
+</script>
+<script id="sortTemp" type="text/html">
+    <div id="sortBox" >
+		<input type="text" value=" ^=&quot;<%= val %>" > <button data-name="<%=name%>" >sort</button>
+    </div>
 </script>
 <script id="numSelRefListItemTemp" type="text/html">
     <% for (var i in list) { var obj = list[i]; %>
@@ -69,7 +77,9 @@
 	<% include( 'listTemp' ) %>
 
 	<div class="operateBar">
-		<span class="info"><%= info %></span>
+		<span class="sortInfo">选择: <b></b></span>
+		<span class="info"><b><%= info %></b></span>
+		<button class="not">取消所选</button>
 		<button class="reset">反选</button>
 		<button class="del">删除所选</button>
 		<button class="showRef">显示参照</button>
@@ -97,9 +107,10 @@
     <%}%>
 </script>
 
-<script id="objTemp" type="text/html">
+<script id="dobjTemp" type="text/html">
 <div id="<%= id && id+'Box' %>" class="dobjBox">
 <span class="name"><%= name %></span>
+<button class="set">set</button>
 <button class="make" data-name="<%= name %>" >make</button>
 <ul class="dobj" id="<%= id %>">
     <% for (var k in dobj) { var item = dobj[k]; %>
@@ -115,6 +126,31 @@
 					<input type="checkbox" value="<%=item[i]%>" data-key="<%= k %>" name="<%= name %>" checked />
 				<%}%>
 			</span>
+		</li>
+    <%}%>
+</ul>
+<div class="setBox">
+    <% for (var k in dobj) { var item = dobj[k]; %>
+        	<div class="key">
+				<a href="#" class="lessen">—</a>
+				<span><i><%= k %></i> <input type="checkbox" value="<%=k %>" /> </span>
+				<a href="#" class="add">+</a>
+			</div>
+    <%}%>
+	<input type="number" value="6" />
+</div>
+</div>
+</script>
+
+<script id="dobj2Temp" type="text/html">
+<div id="<%= id && id+'Box' %>" class="dobjBox dobj2Box">
+<span class="name"><%= name %></span>
+<button class="set">set</button>
+<ul class="dobj dobj2" id="<%= id %>">
+    <% for (var i in dobj) { %>
+		<li>
+			<em> <%=dobj[i]%> </em>
+			<input type="checkbox" value="<%=dobj[i]%>" name="<%= name %>" checked />
 		</li>
     <%}%>
 </ul>
@@ -160,7 +196,7 @@
 
 	////////////////////////////////////////////////////////////
 	
-		$(template('objTemp', {
+		$(template('dobjTemp', {
 			dobj : classifyByDownMargin,
 			name: 'classifyByDownMargin',
 			id : 'classifyByDownMarginList',
@@ -169,7 +205,16 @@
 	
 	
 	
-		$(template('objTemp', {
+		$(template('dobjTemp', {
+			dobj : classifyByDownMarginLocaMap,
+			name: 'classifyByDownMarginLocaMap',
+			id : 'classifyByDownMarginLocaMapList',
+			embedTemp : ''
+		})).appendTo('body');	
+		
+		
+	
+		$(template('dobjTemp', {
 			dobj : classifyByUpMargin,
 			name: 'classifyByUpMargin',
 			id : 'classifyByUpMarginList',
@@ -179,7 +224,7 @@
 	
 	
 		
-		$(template('objTemp', {
+		$(template('dobjTemp', {
 			dobj : classifyByColCount,
 			name: 'classifyByColCount',
 			id : 'classifyByColCountList',
@@ -189,15 +234,30 @@
 	
 	
 	
+		$(template('dobjTemp', {
+			dobj : classifyBySingleDigit,
+			name: 'classifyBySingleDigit',
+			id : 'classifyBySingleDigitList',
+			embedTemp : ''
+		})).appendTo('body');			
+	
+	
+		$(template('dobjTemp', {
+			dobj : classifyBySingleDigitLocaMap,
+			name: 'classifyBySingleDigitLocaMap',
+			id : 'classifyBySingleDigitLocaMapList',
+			embedTemp : ''
+		})).appendTo('body');		
 	
 	
 	
 	
-	
-	
-	
-	
-	
+		$(template('dobj2Temp', {
+			dobj : blues,
+			name: 'blues',
+			id : 'blues',
+			embedTemp : ''
+		})).appendTo('body');		
 	
 	
 	

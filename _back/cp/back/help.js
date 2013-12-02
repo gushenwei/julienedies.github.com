@@ -45,7 +45,9 @@ function cc(obj,prefix){
 		console.log(prefix + ' : ' + obj);
 	}
 }
-
+function cg(obj){
+	cc(obj,'debug =>');
+}
 /*
  * 以参数为参照，取得1-60的数字的相对位置;
  * 返回一个映射数组;
@@ -423,11 +425,11 @@ function combineWrap(classifyListMap, groupScheme) {
 function numSelFilter( numSelObj ){
 	
 	var details = numSelObj.details;
-	var locaCount = details.locaCount;
-	var colCount = details.colCount;
-	var upMargin = details.upMargin;
-	var downMargin = details.downMargin;
-	var singleDigit = details.singleDigit;
+	var locaCount = details.loca;
+	var colCount = details.col;
+	var upMargin = details.up;
+	var downMargin = details.down;
+	var singleDigit = details.digit;
 	
 	var i
 	var item;
@@ -562,26 +564,29 @@ function redBlueBallModel(arr) {
 		digitLoca = locaCompare( singleDigitRefLast, singleDigit);
 		
 		obj = {
-				col : JSON.stringify(colCount),
-				up : JSON.stringify(upMargin),
-				down : JSON.stringify(downMargin),
-				digit : JSON.stringify(singleDigit),
-				upLoca : JSON.stringify(upLoca),
-				downLoca : JSON.stringify(downLoca),
-				digitLoca : JSON.stringify(digitLoca),
-				
 				redBall: item,
 				details:{
-					locaCount: locaCount,
-					colCountRef: colCountRefLast,
-					colCount: colCount,
-					upMarginRef: upMarginRefLast,
-					upMargin: upMargin,
-					downMarginRef: downMarginRefLast,
-					downMargin: downMargin,
-					singleDigitRef: singleDigitRefLast,
-					singleDigit: singleDigit					
+					loca: locaCount,
+					colRef: colCountRefLast,
+					col: colCount,
+					upRef: upMarginRefLast,
+					up: upMargin,
+					downRef: downMarginRefLast,
+					down: downMargin,
+					digitRef: singleDigitRefLast,
+					digit: singleDigit					
+				},
+				data:{
+					loca: JSON.stringify(locaCount),
+					col : JSON.stringify(colCount),
+					up : JSON.stringify(upMargin),
+					down : JSON.stringify(downMargin),
+					digit : JSON.stringify(singleDigit),
+					upLoca : JSON.stringify(upLoca),
+					downLoca : JSON.stringify(downLoca),
+					digitLoca : JSON.stringify(digitLoca)				
 				}
+				
 		};	
 		
 		if( numSelFilter(obj) )
@@ -707,11 +712,9 @@ function groupRefListModel(arr){
 ///////////////////////////////////////////////////
 //回调函数
 
-function groupCall(groupnum,patch) {
-	//var groupnum = [ 1, 2, 3, 0, 0 ];
-
-	//window.patch = [ 20 ];
-	var size = patch && 6 - patch.length || 6;
+function groupCall(groupnum,patch,size) {
+	
+	var size = patch && size - patch.length || size;
 
 	var q = group(groupnum, size);
 
