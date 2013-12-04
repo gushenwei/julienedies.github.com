@@ -16,6 +16,7 @@
 $(function(){
 	
 	$('body')
+	
 	//设定编组补丁及编组长度
 	.delegate('.dobjBox .set','click',function(){
 		var th = $(this);
@@ -27,6 +28,7 @@ $(function(){
 		var th = $(this);
 		var dobjBox = th.closest('.dobjBox');
 		var name = th.attr('data-name');
+		var refName = th.attr('data-refName');
 		var groupNum = [];
 		var patch = [];
 		var gruopSize = dobjBox.find('.setBox input[type="number"]').val()*1 || 6;
@@ -43,8 +45,8 @@ $(function(){
 			patch.push(val);
 		});		
 		
+		refName && ( window.groupRefList = window[refName] );
 		window.classifyList = window[name];
-		cg(patch);
 		//cc(classifyList,'debug')
 		groupCall(groupNum,patch,gruopSize);
 	})		
@@ -110,12 +112,6 @@ $(function(){
 		window[name] = obj;
 	})	
 	//
-	.delegate('#groupList li','click',function(){
-		var $th = $(this);
-		$th.siblings().removeClass('bg');
-		$th.addClass('bg');
-	})
-	//
 	.delegate('#groupList li .make','click',function(){
 		var $th = $(this);
 		
@@ -125,11 +121,14 @@ $(function(){
 		
 		q = redBlueBallModel(q);
 		
-		$( template('boxTemp',{list:q, id: 'numSelList', embedTemp: 'numSelListItemTemp', info:q.length}) ).prependTo('body');		
+		$( template('boxTemp',{list:q, id: 'numSelList', embedTemp: 'numSelListItemTemp', info:q.length}) ).prependTo('body');	
+		return false;
 	})
 	//
 	.delegate('#groupList li', 'mouseover', function() {
+		if( !$('#refList:visible').length) return;
 		$('#refList li.ls:last').remove();
+		
 		var $th = $(this);
 		var group = JSON.parse( $th.attr('data-group') );
 		var unique = JSON.parse( $th.attr('data-unique') ); 
@@ -161,11 +160,6 @@ $(function(){
 	
 	/////////////////////////////////////////////////////////////////////
 	//
-	.delegate('#numSelListBox .toggle','click',function() {
-		var box = $(this).closest('.box');
-		box.find('.details').toggle();
-	})	
-	//
 	.delegate('#numSelListBox .showRef','click',function() {
 		var numSelRefList = $('#numSelRefList');
 		
@@ -179,15 +173,17 @@ $(function(){
 	//
 	.delegate('#numSelList li', 'mouseover', function() {
 		if( !$('#numSelRefList:visible').length) return;
+		$('#numSelRefList li.ls:last').remove();
+		
 		var $th = $(this);
 		var list= [];
 		var col = $th.attr('data-col');
 		var up = $th.attr('data-up');
 		var down = $th.attr('data-down');
 		var digit = $th.attr('data-digit');
-		var upLoca = $th.attr('data-up-loca');
-		var downLoca = $th.attr('data-down-loca');
-		var digitLoca = $th.attr('data-digit-loca');		
+		var upLoca = $th.attr('data-upLoca');
+		var downLoca = $th.attr('data-downLoca');
+		var digitLoca = $th.attr('data-digitLoca');		
 		var obj = {
 					col : JSON.parse(col),
 					up : JSON.parse(up),
@@ -207,7 +203,7 @@ $(function(){
 		$('#numSelRefList li.ls:last').remove();
 	})
 	//
-	.delegate('#numSelList .details .sortBtn', 'click', function() { 
+	.delegate('.details .sortBtn', 'click', function() { 
 		$('#sortBox ').remove();
 		var th = $(this);
 		var name = th.attr('data-name');
@@ -217,9 +213,7 @@ $(function(){
 	})	
 	//分类排序筛选
 	.delegate('#sortBox button', 'click', function() {
-		var numSelList = $('#numSelList');
 		var box = $(this).closest('.box');
-		
 		var th = $(this);
 		var name = th.attr('data-name');
 		var val = th.prev('input').val();
@@ -227,6 +221,7 @@ $(function(){
 		
 		var list = box.find('li' + attr);
 		var size = list.length;
+		
 		box.find('.sortInfo b').text(size);
 		
 		list.each(function(){
@@ -256,11 +251,18 @@ $(function(){
 	//删除所选
 	.delegate('.del','click',function() {
 		var box = $(this).closest('.box');
-		box.find('li input:checked').each(function() {
-			$(this).closest('li').remove();
+		var delBox = $('#delBox').empty();
+		box.find('li[optional=1] input:checked').each(function() {
+			$(this).closest('li').appendTo(delBox);
 		});
 		box.find('.info b').text(box.find('li[optional=1]').length);
 	})
+	//撤销删除
+	.delegate('.cancel','click',function() {
+		var box = $(this).closest('.box');
+		var optionalList = box.find('.optionalList');
+		$('#delBox li').prependTo(optionalList);
+	})	
 	//反选
 	.delegate('.reset','click',function() {
 		var box = $(this).closest('.box');
@@ -293,19 +295,18 @@ $(function(){
 		} else {
 			li.removeClass('selected');
 		}
-		
-		/*
-		var box = th.closest('.box');
-		var size = box.find('li[optional=1] input:checked').length;
-		box.find('.sortInfo b').text(size);
-		*/
+	})
+	//切换细节
+	.delegate('.toggle','click',function() {
+		var box = $(this).closest('.box');
+		box.find('.details').toggle();
 	})	
 	//关闭box
 	.delegate('.close','click',function() {
 		var box = $(this).closest('.box');
-		//if(confirm('确定关闭窗口?!')){
+		if(confirm('确定关闭窗口?!')){
 			box.remove();
-		//}
+		}
 	});	
 	
 	

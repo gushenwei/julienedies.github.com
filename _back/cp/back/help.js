@@ -298,7 +298,7 @@ function classify_(index){
 	for(var i = 1; i< length; i++){
 		item = arr[i];
 		key = item[index]; 
-		key = typeof key !== 'undefined' ? key : (i+'').slice(-1);
+		key = typeof key !== 'undefined' ? key : (i+'').slice(-1) != 0 ? (i+'').slice(-1) : '10';
 		result[key] = result[key] || [];
 		result[key].push(i);
 	}
@@ -604,7 +604,7 @@ function numSelRefListModel(){
 	var downArr = downMarginRef.slice();
 	var digitArr = singleDigitRef.slice();
 	
-	var length = Math.min(colArr.length, upArr.length, downArr.length, digitArr.length);
+	var length = Math.min(colArr.length, upArr.length, downArr.length, digitArr.length, 10);
 	var result = [];
 	var prev = [];
 	var obj;
@@ -663,9 +663,16 @@ function groupListModel(arr){
 		
 		result.push({
 			group: item,
-			loca: JSON.stringify(loca),
-			unique : JSON.stringify(unique),
-			groupStr: JSON.stringify(item)
+			data: {
+				loca: JSON.stringify(loca),
+				unique : JSON.stringify(unique),
+				group: JSON.stringify(item)				
+			},
+			details:{
+				group: item,
+				loca: loca,
+				unique : unique				
+			}
 		});		
 	}
 	
@@ -674,18 +681,16 @@ function groupListModel(arr){
 //
 function groupRefListModel(arr){
 	var arr = arr.slice();
-	var length = arr.length;
+	var length = Math.min(arr.length, 10);
 	var result = [];
-	var prev = [];
 	var current;
 	var unique;
 	var obj;
 	var loca;
 	
-	for(var i = 0; i < length; i++){
-		obj = {};
-		current = arr[i];
-		loca = locaCompare(prev,current);
+	for(var i = length; i > 0; i--){
+		current = arr.pop();
+		loca = locaCompare(getArrayLast(arr),current);
 		
 		unique = $.unique( current.slice() );
 		unique.sort(function(a,b){
@@ -698,9 +703,8 @@ function groupRefListModel(arr){
 				loca: loca
 		};
 		
-		result.push(obj);
+		result.unshift(obj);
 		
-		prev = current;
 	}
 	
 	//cc(result,'refList');

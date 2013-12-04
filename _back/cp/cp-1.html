@@ -9,29 +9,43 @@
 <script src="back/33.js" type="text/javascript"></script>
 <script src="back/help.js" type="text/javascript"></script>
 <script src="back/doc.js" type="text/javascript"></script>
-
+<script src="back/init.js" type="text/javascript"></script>
 <!-- template
   	================================================== 
     ================================================== -->
     
 <script id="groupListItemTemp" type="text/html">
-    <% for (var i in list) { var item = list[i]; var group = item.group %>
-        <li data-group="<%= item.groupStr %>" data-loca="<%= item.loca %>" data-unique="<%= item.unique %>"  optional=1>
-			<input type="checkbox" name="" />&nbsp;
-
-            <span> 
-				<% for ( var k in group ) {  %>
-					<b><%=group[k]%></b>
+    <% var i, j, k, obj, group, data, details, item;
+	for ( i in list ) { obj = list[i]; group = obj.group; data = obj.data; details = obj.details; %>
+        <li optional=1  <% for( j in data ) { %> data-<%=j%>="<%= data[j] %>" <% } %> >
+			<p>
+				<input type="checkbox" name="" />&nbsp;
+            	<span> 
+					<% for ( k in group ) {  %>
+						<b><%=group[k]%></b>
+					<%}%>
+           		</span>
+				&nbsp;&nbsp;
+				<button class="make"  data-group="<%= data.group %>">make</button>
+			</p>
+			<div class="details">
+				<%  for (j in details) { item = details[j] %>
+                		<p class="<%= j %>" >
+							<% for (k in item) {  %>
+									<b><%=item[k]%></b>
+							<%}%>
+							<% if(data[j]){ %>
+								<button class="sortBtn" data-name="<%= j %>" data-value="<%= data[j] %>" > &gt;&gt; </button>
+							<%}%>
+                		</p>
 				<%}%>
-           </span>
-			&nbsp;
-			<button class="make"  data-group="<%= item.groupStr %>">make</button>
+			</div>
 		</li>
     <%}%>
 </script>
 <script id="numSelListItemTemp" type="text/html">
     <% for (var i in list) { var obj = list[i]; var redBall = obj.redBall;  var details = obj.details;  var data = obj.data; %>
-        <li optional=1 data-loca="<%= data.loca %>" data-col="<%= data.col %>" data-up="<%= data.up %>" data-down="<%= data.down %>" data-digit="<%= data.digit %>"  data-up-loca="<%= data.upLoca %>" data-down-loca="<%= data.downLoca %>" data-digit-loca="<%= data.digitLoca %>">
+        <li optional=1 <% for( i in data ) { %> data-<%=i%>="<%= data[i] %>" <% } %> >
 				
              <p class="redBall" >
 					<% for (var k in redBall) { %>
@@ -79,6 +93,7 @@
 	<div class="operateBar">
 		<span class="sortInfo">选择: <b></b></span>
 		<span class="info"><b><%= info %></b></span>
+		<button class="cancel">撤消删除</button>
 		<button class="not">取消所选</button>
 		<button class="reset">反选</button>
 		<button class="del">删除所选</button>
@@ -89,7 +104,7 @@
 </div>
 </script>
 <script id="listTemp" type="text/html">
-    <ul id="<%= id || '' %>" >
+    <ul id="<%= id || '' %>" class="optionalList">
 			<% include( embedTemp || 'groupListItemTemp') %>
     </ul>
 </script>
@@ -111,13 +126,13 @@
 <div id="<%= id && id+'Box' %>" class="dobjBox">
 <span class="name"><%= name %></span>
 <button class="set">set</button>
-<button class="make" data-name="<%= name %>" >make</button>
+<button class="make" data-name="<%= name %>" data-refName="<%= refName %>" >make</button>
 <ul class="dobj" id="<%= id %>">
     <% for (var k in dobj) { var item = dobj[k]; %>
 		<li>
         	<div class="key">
 				<a href="#" class="lessen">—</a>
-				<span><i><%= k %></i> <input type="checkbox" value="<%=k %>" /> </span>
+				<span><i class="selected"><%= k %></i> <input type="checkbox" value="<%=k %>" checked /> </span>
 				<a href="#" class="add">+</a>
 			</div>
 			<span>
@@ -161,7 +176,7 @@
     ================================================== -->
 </head>
 <body>
-
+<div id="delBox"></div>
 <script>
 	
 	window.classifyByIndex = 2;
@@ -172,9 +187,8 @@
 	window.classifyList = window[window.classifyBy[classifyByIndex]];
 	
 
-	//classifyList = {"0":[13,21],"1":[4,15,16,24],"2":[17,23],"3":[6,14,26],"4":[25,31],"5":[1],"6":[12,22],"7":[20],"9":[3,33],"10":[5,10],"12":[2],"15":[30],"20":[32]} ;
 	
-	
+	////////////////////////////////////////////////////////////
 	
 	window.filter = function(loca, col, upMargin, downMargin, singleDigit) {
 		//if(loca[1] != 1) return false;
@@ -190,7 +204,6 @@
 		
 	}
 
-	//window.blues = [ '04', '14' ]; 
 
 	
 
@@ -200,7 +213,7 @@
 			dobj : classifyByDownMargin,
 			name: 'classifyByDownMargin',
 			id : 'classifyByDownMarginList',
-			embedTemp : ''
+			refName : 'downMarginRef'
 		})).appendTo('body');	
 	
 	
@@ -209,7 +222,7 @@
 			dobj : classifyByDownMarginLocaMap,
 			name: 'classifyByDownMarginLocaMap',
 			id : 'classifyByDownMarginLocaMapList',
-			embedTemp : ''
+			refName : ''
 		})).appendTo('body');	
 		
 		
@@ -218,7 +231,7 @@
 			dobj : classifyByUpMargin,
 			name: 'classifyByUpMargin',
 			id : 'classifyByUpMarginList',
-			embedTemp : ''
+			refName : 'upMarginRef'
 		})).appendTo('body');	
 	
 	
@@ -228,7 +241,7 @@
 			dobj : classifyByColCount,
 			name: 'classifyByColCount',
 			id : 'classifyByColCountList',
-			embedTemp : ''
+			refName : 'colCountRef'
 		})).appendTo('body');		
 	
 	
@@ -238,15 +251,17 @@
 			dobj : classifyBySingleDigit,
 			name: 'classifyBySingleDigit',
 			id : 'classifyBySingleDigitList',
-			embedTemp : ''
+			refName : 'singleDigitRef'
 		})).appendTo('body');			
 	
 	
+		
+		
 		$(template('dobjTemp', {
 			dobj : classifyBySingleDigitLocaMap,
 			name: 'classifyBySingleDigitLocaMap',
 			id : 'classifyBySingleDigitLocaMapList',
-			embedTemp : ''
+			refName : ''
 		})).appendTo('body');		
 	
 	
@@ -256,7 +271,7 @@
 			dobj : blues,
 			name: 'blues',
 			id : 'blues',
-			embedTemp : ''
+			refName : ''
 		})).appendTo('body');		
 	
 	
@@ -273,6 +288,5 @@
 	
 	
 </script>
-<script src="back/init.js" type="text/javascript"></script>
 </body>
 </html>
