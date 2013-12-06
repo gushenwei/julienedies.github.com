@@ -441,9 +441,9 @@ function numSelFilter( numSelObj ){
 		if( colCount[i] > 3) return false;
 	}
 	
-	if( getArrayUnique(upMargin).length < 4 ) return false;
-	if( getArrayUnique(downMargin).length < 4 ) return false;
-	if( getArrayUnique(singleDigit).length < 4 ) return false;
+	//if( getArrayUnique(upMargin).length < 3 ) return false;
+	//if( getArrayUnique(downMargin).length < 3 ) return false;
+	//if( getArrayUnique(singleDigit).length < 3 ) return false;
 	
 	//upMargin check
 	if( isAlloddOrEven(upMargin) ) return false;	
@@ -681,7 +681,7 @@ function groupListModel(arr){
 //
 function groupRefListModel(arr){
 	var arr = arr.slice();
-	var length = Math.min(arr.length, 10);
+	var length = Math.min(arr.length, 14);
 	var result = [];
 	var current;
 	var unique;

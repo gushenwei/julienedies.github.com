@@ -154,7 +154,7 @@ $(function(){
 		}else{
 			var q = groupRefListModel(window.groupRefList);
 			
-			$( template('listTemp', {list: q, id: 'refList', embedTemp:'refListItemTemp'}) ).appendTo('#groupListBox');			
+			$( template('list2Temp', {list: q, id: 'refList', embedTemp:'refListItemTemp'}) ).appendTo('#groupListBox');			
 		}
 	})	
 	
@@ -167,7 +167,7 @@ $(function(){
 			numSelRefList.toggle();
 		}else{
 			var q = numSelRefListModel();
-			$( template('listTemp',{list:q, id:'numSelRefList',  embedTemp: 'numSelRefListItemTemp'}) ).appendTo('#numSelListBox');			
+			$( template('list2Temp',{list:q, id:'numSelRefList',  embedTemp: 'numSelRefListItemTemp'}) ).appendTo('#numSelListBox');			
 		}
 	})		
 	//
