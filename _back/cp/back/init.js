@@ -49,7 +49,64 @@ $(function(){
 		window.classifyList = window[name];
 		//cc(classifyList,'debug')
 		groupCall(groupNum,patch,gruopSize);
-	})		
+	})	
+	//
+	.delegate('.dobjBox .make2','click',function(){
+		var th = $(this);
+		var dobjBox = th.closest('.dobjBox');
+		var name = th.attr('data-name');
+		var refName = th.attr('data-refName');
+		var groupNum = [];
+		var gruopSize = dobjBox.find('.setBox input[type="number"]').val()*1 || 6;
+		var q;
+		
+		dobjBox.find('.dobj .key input:checked').each(function(){
+			var $th = $(this);
+			var val = $th.val() * 1;
+			groupNum.push(val);
+		});
+		
+		refName && ( window.groupRefList = window[refName] );
+		window.classifyList = window[name];
+		//cc(classifyList,'debug')
+		
+		q = combineWrap(window.classifyList,groupNum);
+		q = groupWrap(q);
+
+		q = groupListModel(q);
+
+		$(template('boxTemp', {
+			list : q,
+			info : q.length,
+			id : 'groupList',
+			embedTemp : ''
+		})).appendTo('body');
+	})	
+	//
+	.delegate('.dobj2Box .invert','click',function(){
+		var th = $(this);
+		var dobjBox = th.closest('.dobj2Box');
+		
+		dobjBox.find('.dobj2 li em').each(function(){
+			var $th = $(this).click();
+		});		
+		
+	})
+	//
+	.delegate('#redsBox .combine','click',function(){
+		if(reds.length > 14) {
+			if(!confirm('组合数量太大,是否继续')){
+				return false;
+			}; 
+		}
+		
+		var q = group(window.reds,6); 
+		
+		q = redBlueBallModel(q);
+		
+		$( template('boxTemp',{list:q, id: 'numSelList', embedTemp: 'numSelListItemTemp', info:q.length}) ).prependTo('body');	
+		return false;
+	})	
 	//
 	.delegate('.key i','click',function(){
 		var $th = $(this);
@@ -102,6 +159,7 @@ $(function(){
 			call = function(i){
 				var th = $(this);
 				var val = th.val()*1;
+				val = val > 9 ? val : '0'+val;
 				obj.push(val);
 			};			
 		}

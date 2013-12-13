@@ -74,7 +74,7 @@
 			<button>^</button><input type="radio" name="regxp" value="^">
 			<button>$</button><input type="radio" name="regxp" value="$">
 			<button>*</button><input type="radio" name="regxp" value="*">
-		<p/>
+		</p>
 		<input type="text" value=" ^=&quot;<%= val %>" > <button data-name="<%=name%>" >sort</button>
     </div>
 </script>
@@ -135,8 +135,9 @@
 <script id="dobjTemp" type="text/html">
 <div id="<%= id && id+'Box' %>" class="dobjBox">
 <span class="name"><%= name %></span>
-<button class="set">set</button>
-<button class="make" data-name="<%= name %>" data-refName="<%= refName %>" >make</button>
+
+<% include( embedTemp || 'btnGroup1Temp') %>
+
 <ul class="dobj" id="<%= id %>">
     <% for (var k in dobj) { var item = dobj[k]; %>
 		<li>
@@ -170,7 +171,9 @@
 <script id="dobj2Temp" type="text/html">
 <div id="<%= id && id+'Box' %>" class="dobjBox dobj2Box">
 <span class="name"><%= name %></span>
-<button class="set">set</button>
+
+<% include( embedTemp || 'btnGroup3Temp') %>
+
 <ul class="dobj dobj2" id="<%= id %>">
     <% for (var i in dobj) { %>
 		<li>
@@ -181,6 +184,20 @@
 </ul>
 </div>
 </script>
+
+<script id="btnGroup1Temp" type="text/html">
+<button class="set">set</button>
+<button class="make" data-name="<%= name %>" data-refName="<%= refName %>" >make</button>
+</script>
+<script id="btnGroup2Temp" type="text/html">
+<button class="set">set</button>
+<button class="make2" data-name="<%= name %>" data-refName="<%= refName %>" >make2</button>
+</script>
+<script id="btnGroup3Temp" type="text/html">
+<button class="invert">invert</button>
+<button class="combine">combine</button>
+</script>
+
 <!-- template
   	================================================== 
     ================================================== -->
@@ -210,7 +227,8 @@
 	};
 	
 	window.groupFilter = function(group,unique,loca){
-		//if(loca[1] != 2) return false;
+		//if(loca[0] > 2) return false;
+		//if(loca[1] == 2) return false;
 		
 	}
 
@@ -232,7 +250,8 @@
 			dobj : classifyByDownMarginLocaMap,
 			name: 'classifyByDownMarginLocaMap',
 			id : 'classifyByDownMarginLocaMapList',
-			refName : ''
+			embedTemp: 'btnGroup2Temp',
+			refName : 'downMarginRef'
 		})).appendTo('body');	
 		
 		
@@ -271,7 +290,8 @@
 			dobj : classifyBySingleDigitLocaMap,
 			name: 'classifyBySingleDigitLocaMap',
 			id : 'classifyBySingleDigitLocaMapList',
-			refName : ''
+			embedTemp: 'btnGroup2Temp',
+			refName : 'singleDigitRef'
 		})).appendTo('body');		
 	
 	
@@ -286,7 +306,12 @@
 	
 	
 	
-
+		$(template('dobj2Temp', {
+			dobj : reds,
+			name: 'reds',
+			id : 'reds',
+			refName : ''
+		})).appendTo('body');	
 	
 	
 	

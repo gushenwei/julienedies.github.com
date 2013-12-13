@@ -75,8 +75,9 @@ b{
 /**********************************************************************/
 /* 基本设置  */
 body{
-	min-height:800px;
-	/* font: 12px/1.5 tahoma,arial,simsun,sans-serif; */
+	/*min-height:1200px;
+	 font: 12px/1.5 tahoma,arial,simsun,sans-serif; */
+	min-height:1400px;
 }
 pre{
 	font-size:1.2em;
@@ -115,7 +116,7 @@ b{
 /* 模块类 */
 .box{
 	width:100%;
-	min-height:100%;
+	min-height:1200px;
 	background:#fff;
 }
 .box li[optional=1]:hover{
@@ -174,12 +175,12 @@ b{
 	top:-32px;
 	font-size:1.4em;
 }
-.dobjBox .make{
+.dobjBox .make, .dobjBox .make2, .dobjBox .combine{
 	position:absolute;
 	top:-28px;
 	right:0;	
 }
-.dobjBox .set{
+.dobjBox .set, .dobj2Box .invert{
 	position:absolute;
 	top:-28px;
 	right:64px;
@@ -250,7 +251,7 @@ b{
 }
 .dobj em.cancel{
 	color: #4B4B4B;
-	background: #E2E2E2;
+	background: #E2E2E2!important;
 }
 .dobjBox input[type="checkbox"]{
 	display:none;
@@ -268,8 +269,16 @@ b{
 /**********************************************************************/
 /**********************************************************************/
 /* 具体模块  */
+#redsBox{
+	top:1000px;
+	left:40px;
+	width:480px;
+}
+#reds em{
+	background:red;
+}
 #bluesBox{
-	top:800px;
+	top:900px;
 	left:40px;
 	width:700px;
 }
@@ -279,7 +288,7 @@ b{
 	width:360px;
 }
 #classifyByDownMarginLocaMapListBox{
-	top:520px;
+	top:560px;
 	left:40px;
 	width:360px;	
 }
@@ -302,7 +311,7 @@ b{
 	width:360px;	
 }
 #classifyByColCountListBox{
-	top:520px;
+	top:560px;
 	left:440px;
 	width:420px;
 }

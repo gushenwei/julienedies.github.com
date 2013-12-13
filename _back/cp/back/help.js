@@ -376,7 +376,6 @@ function locaCompare(arr1,arr2){
  * 
  */
 function groupWrap(groupList, patch) {
-	var patch = patch || window.patch;
 	var item;
 
 	for ( var i in groupList) {
@@ -681,7 +680,7 @@ function groupListModel(arr){
 //
 function groupRefListModel(arr){
 	var arr = arr.slice();
-	var length = Math.min(arr.length, 14);
+	var length = Math.min(arr.length, 18);
 	var result = [];
 	var current;
 	var unique;
@@ -718,11 +717,11 @@ function groupRefListModel(arr){
 
 function groupCall(groupnum,patch,size) {
 	
-	var size = patch && size - patch.length || size;
+	var size = patch ? size - patch.length : size;
 
-	var q = group(groupnum, size);
+	var q = size ? group(groupnum, size) : false;
 
-	q = groupWrap(q,patch);
+	q = q ? groupWrap(q,patch) : groupWrap([patch]);
 
 	q = groupListModel(q);
 
