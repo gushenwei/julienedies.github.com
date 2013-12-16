@@ -70,12 +70,13 @@
 </script>
 <script id="sortTemp" type="text/html">
     <div id="sortBox" >
-		<p style="display:none">
-			<button>^</button><input type="radio" name="regxp" value="^">
-			<button>$</button><input type="radio" name="regxp" value="$">
-			<button>*</button><input type="radio" name="regxp" value="*">
-		</p>
-		<input type="text" value=" ^=&quot;<%= val %>" > <button data-name="<%=name%>" >sort</button>
+		<div>
+			<label> ^ </label><input type="radio" name="reg" value="^" checked>&nbsp;&nbsp;
+			<label> $ </label><input type="radio" name="reg" value="$">&nbsp;&nbsp;
+			<label> * </label><input type="radio" name="reg" value="*">&nbsp;&nbsp;
+			<label> ! </label><input type="radio" name="reg" value="!">&nbsp;&nbsp;
+		</div>
+		<input type="text" value="<%= val %>" > <button data-name="<%=name%>" >sort</button>
     </div>
 </script>
 <script id="numSelRefListItemTemp" type="text/html">

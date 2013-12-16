@@ -298,7 +298,7 @@ function classify_(index){
 	for(var i = 1; i< length; i++){
 		item = arr[i];
 		key = item[index]; 
-		key = typeof key !== 'undefined' ? key : (i+'').slice(-1) != 0 ? (i+'').slice(-1) : '10';
+		key = typeof key !== 'undefined' ? key : (i+'').slice(-1) != 0 ? (i+'').slice(-1) : '0';
 		result[key] = result[key] || [];
 		result[key].push(i);
 	}

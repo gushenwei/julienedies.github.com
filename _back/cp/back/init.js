@@ -268,14 +268,19 @@ $(function(){
 		var val = th.attr('data-value');
 		$( template('sortTemp',{name:name,val:val}) ).insertAfter(th);
 		return false;
+	})
+	//分类排序筛选
+	.delegate('#sortBox input[type="redio"]', 'click', function(e) {
+		 e.stopPropagation();
 	})	
 	//分类排序筛选
 	.delegate('#sortBox button', 'click', function() {
-		var box = $(this).closest('.box');
 		var th = $(this);
+		var box = th.closest('.box');
+		var reg = th.closest('#sortBox').find('input[name="reg"]:checked').val();
 		var name = th.attr('data-name');
 		var val = th.prev('input').val();
-		var attr = '[data-' + name + val +'"]';
+		var attr = '[data-' + name + reg + '="'+ val +'"]';
 		
 		var list = box.find('li' + attr);
 		var size = list.length;
