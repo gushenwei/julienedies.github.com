@@ -1,4 +1,4 @@
-/**
+﻿/**
  * 
  * 全局变量声明与设置
  * 
@@ -7,7 +7,7 @@ window.loadingFigure = '<span style="position:fixed;top:40%;left:50%;margin:25px
 
 window.blueBallIsRandom = 0;
 
-window.blues = [ '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15' ]; 
+window.blues = [ '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16' ]; 
 
 window.reds = (function(){
 	var arr = [];

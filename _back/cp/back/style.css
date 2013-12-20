@@ -436,7 +436,7 @@ b{
 	position:absolute;
 	top:32px;
 	left:0;
-	border: solid 1px #c2c5d8;
+	border: solid 0px #c2c5d8;
 }
 #groupList{
 	margin:15px 0 0 30px;

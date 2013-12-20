@@ -445,13 +445,13 @@ function numSelFilter( numSelObj ){
 	//if( getArrayUnique(singleDigit).length < 3 ) return false;
 	
 	//upMargin check
-	if( isAlloddOrEven(upMargin) ) return false;	
+	//if( isAlloddOrEven(upMargin) ) return false;	
 	
 	//downMargin check
-	if( isAlloddOrEven(downMargin) ) return false;
+	//if( isAlloddOrEven(downMargin) ) return false;
 	
 	//singDigit check
-	if( isAlloddOrEven(singleDigit) ) return false;
+	//if( isAlloddOrEven(singleDigit) ) return false;
 	
 	//custom check
 	if( filter(locaCount, colCount, upMargin, downMargin, singleDigit) === false ) return false;
