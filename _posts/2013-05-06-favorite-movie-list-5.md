@@ -7,7 +7,7 @@ tags: [movie]
 ---
 {% include JB/setup %}
 
-<ul class="inline">
+<ul>
 <li>萤火虫之墓</li>
 <li>红猪</li>
 <li>幽灵公主</li>
@@ -27,6 +27,7 @@ tags: [movie]
 <li>吸血鬼猎人</li>
 <li>父与女 Father and Daughter</li>
 <li>回忆积木小屋 </li>
-<li>三国志@《英雄的黎明》、《燃烧的长江》、《遥远的大地》</li>
+<li>三国志#《英雄的黎明》、《燃烧的长江》、《遥远的大地》</li>
 
+<li>阿修罗 </li>
 </ul>

@@ -7,7 +7,7 @@ tags: [movie]
 ---
 {% include JB/setup %}
 
-<ul class="inline">
+<ul>
 
 <li>饮食男女</li>
 <li>童年往事</li>

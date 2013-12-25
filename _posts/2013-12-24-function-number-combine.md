@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "实现一个数字组合函数"
+title: "实现另一个数字组合函数"
 description: ""
 category: 
 tags: [code,js]
@@ -8,11 +8,11 @@ brushs: [jscript]
 ---
 {% include JB/setup %}
 
-<p></p>
+<p>此函数接受任意个参数，将其进行相乘组合.</p>
 
 <pre>
-举个例子：
-function combine(a, b){
+示例：
+function combine(a, b, ..){
 /*
 具体代码
 */
@@ -26,7 +26,7 @@ JSON.stringify(r) == "[[1,0,9],[2,0,9],[3,0,9]]";
 <pre class="brush: jscript;">
 
 /*
- * 
+ * 参数为任意个数字数组
  */
 function combine(){
 	var  args = Array.prototype.slice.call(arguments, 0);

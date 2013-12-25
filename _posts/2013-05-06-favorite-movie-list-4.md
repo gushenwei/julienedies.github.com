@@ -7,7 +7,7 @@ tags: [movie]
 ---
 {% include JB/setup %}
 
-<ul class="inline">
+<ul>
 <li>那山、那人、那狗</li>
 <li>阳光灿烂的日子</li>
 </ul>

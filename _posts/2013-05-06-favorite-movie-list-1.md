@@ -7,7 +7,7 @@ tags: [movie]
 ---
 {% include JB/setup %}
 
-<ul class="inline">
+<ul>
 <li>教父I,II</li>
 <li>肖申克的救赎</li>
 <li>从海底出击</li>
@@ -20,7 +20,7 @@ tags: [movie]
 <li>摩托日记</li>
 <li>杀手蝴蝶梦</li>
 <li>V字仇杀队</li>
-<li>爱德华大夫@希区柯克/派克/英格丽·褒曼</li>
+<li>爱德华大夫#希区柯克/派克/英格丽·褒曼</li>
 <li>宾虚</li>
 
 </ul>
