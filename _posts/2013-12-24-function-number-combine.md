@@ -4,7 +4,7 @@ title: "实现另一个数字组合函数"
 description: ""
 category: 
 tags: [code,js]
-brushs: [jscript]
+brushs: [Jscript]
 ---
 {% include JB/setup %}
 
