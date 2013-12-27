@@ -4,7 +4,7 @@ title: "实现一个数字编组函数"
 description: ""
 category: 
 tags: [code,js]
-brushs: [Jscript]
+brushs: [JScript]
 ---
 {% include JB/setup %}
 <p>之前有同学在网上提问，希望得到一个函数，用于完成数字编组。我主要是利用js本身的一些功能实现了它。跟平常的思路不一样，所以值得记录一下。</p>
