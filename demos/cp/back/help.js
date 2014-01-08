@@ -440,7 +440,7 @@ function numSelFilter( numSelObj ){
 		if( colCount[i] > 3) return false;
 	}
 	
-	if( getArrayUnique(upMargin).length < 3 ) return false;
+	if( getArrayUnique(upMargin).length < 4 ) return false;
 	if( getArrayUnique(downMargin).length < 4 ) return false;
 	if( getArrayUnique(singleDigit).length < 4 ) return false;
 	
