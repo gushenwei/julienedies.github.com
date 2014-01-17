@@ -364,6 +364,24 @@ $(function(){
 		var box = $(this).closest('.box');
 		box.find('.details').toggle();
 	})	
+	//层展开或收缩
+	.delegate('.expandable','click',function() {
+		var th = $(this);
+		var box = th.closest('.box');
+		var operateBar = box.find('.operateBar');
+		
+		if(!th.attr('expandable')){
+			th.css({'position':'absolute','left':0, 'top':0}).text('展开');
+			box.addClass('collapse');
+			operateBar.css({'position':'static'});
+			th.attr('expandable',1);
+		}else{
+			th.css('position','').text('收缩');
+			box.removeClass('collapse');
+			operateBar.css({'position':'fixed'});
+			th.removeAttr('expandable');
+		}
+	})		
 	//关闭box
 	.delegate('.close','click',function() {
 		var box = $(this).closest('.box');
