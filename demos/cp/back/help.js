@@ -437,12 +437,12 @@ function numSelFilter( numSelObj ){
 	if(JSON.stringify(colCount) === '[1,1,1,1,1,1]') return false;
 	
 	for(i in colCount){
-		if( colCount[i] > 3) return false;
+		//if( colCount[i] > 3) return false;
 	}
 	
-	if( getArrayUnique(upMargin).length < 3 ) return false;
-	if( getArrayUnique(downMargin).length < 3 ) return false;
-	if( getArrayUnique(singleDigit).length < 3 ) return false;
+	//if( getArrayUnique(upMargin).length < 3 ) return false;
+	//if( getArrayUnique(downMargin).length < 3 ) return false;
+	//if( getArrayUnique(singleDigit).length < 3 ) return false;
 	
 	//upMargin check
 	//if( isAlloddOrEven(upMargin) ) return false;	
