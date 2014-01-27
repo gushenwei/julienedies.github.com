@@ -441,7 +441,7 @@ function numSelFilter( numSelObj ){
 	}
 	
 	if( getArrayUnique(upMargin).length < 4 ) return false;
-	if( getArrayUnique(downMargin).length < 5 ) return false;
+	if( getArrayUnique(downMargin).length < 4 ) return false;
 	if( getArrayUnique(singleDigit).length < 4 ) return false;
 	
 	//upMargin check
