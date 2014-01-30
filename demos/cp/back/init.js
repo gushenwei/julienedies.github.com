@@ -369,16 +369,19 @@ $(function(){
 		var th = $(this);
 		var box = th.closest('.box');
 		var operateBar = box.find('.operateBar');
+		var refList = box.find('#refList,#numSelRefList');
 		
 		if(!th.attr('expandable')){
 			th.css({'position':'absolute','left':0, 'top':0}).text('展开');
 			box.addClass('collapse');
 			operateBar.css({'position':'static'});
+			refList.css({'position':'static'});
 			th.attr('expandable',1);
 		}else{
 			th.css('position','').text('收缩');
 			box.removeClass('collapse');
 			operateBar.css({'position':'fixed'});
+			refList.css({'position':'fixed'});
 			th.removeAttr('expandable');
 		}
 	})		

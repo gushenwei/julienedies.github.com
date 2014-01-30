@@ -342,7 +342,7 @@ b{
 #numSelList li{
 	padding:20px 5px 5px 5px;
 	border-bottom:1px #eee solid;
-	height:48px;
+	height:72px;
 	position:relative;
 }
 #numSelList li input[type="checkbox"]{
@@ -352,7 +352,8 @@ b{
 }
 
 #numSelList .loca, #numSelList .col, #numSelList .up, #numSelList .down, #numSelList .digit, 
-#numSelList .locaRef, #numSelList .colRef, #numSelList .upRef, .downRef, .digitRef{
+#numSelList .locaRef, #numSelList .colRef, #numSelList .upRef, .downRef, .digitRef
+{
 	position:absolute;
 	top:44px;
 	color: #777;
@@ -375,9 +376,37 @@ b{
 #numSelList .digit, #numSelList .digitRef{
 	left:820px;
 }
+
+/** **/
+#numSelList .upLoca,
+#numSelList .downLoca,
+#numSelList .digitLoca
+{
+	position:absolute;
+	top:68px;
+	color: #c7c7c7;
+}
+#numSelList .upLoca{
+	left:450px;
+}
+#numSelList .downLoca{
+	left:640px;
+}
+#numSelList .digitLoca{
+	left:820px;
+}
+#numSelList .upLoca b,
+#numSelList .downLoca b,
+#numSelList .digitLoca b
+{
+	width:7px;
+}
+/** **/
+
 #numSelList .loca b, #numSelList .col b, #numSelList .digit b,
-#numSelList .locaRef b, #numSelList .colRef b, #numSelList .digitRef b{
-	width:10px;
+#numSelList .locaRef b, #numSelList .colRef b, #numSelList .digitRef b
+{
+	width:8px;
 }
 
 #sortBox{

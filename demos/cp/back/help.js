@@ -573,7 +573,10 @@ function redBlueBallModel(arr) {
 					downRef: downMarginRefLast,
 					down: downMargin,
 					digitRef: singleDigitRefLast,
-					digit: singleDigit					
+					digit: singleDigit,
+					upLoca: upLoca,
+					downLoca: downLoca,
+					digitLoca: digitLoca
 				},
 				data:{
 					loca: JSON.stringify(locaCount),
