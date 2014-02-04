@@ -15,6 +15,8 @@
 
 $(function(){
 	
+	window.MYCP = {};
+	
 	$('body')
 	
 	//设定编组补丁及编组长度
@@ -261,12 +263,13 @@ $(function(){
 		$('#numSelRefList li.ls:last').remove();
 	})
 	//
-	.delegate('.details .sortBtn', 'click', function() { 
+	.delegate('.sortBtn', 'click', function() { 
 		$('#sortBox ').remove();
 		var th = $(this);
+		var size = th.closest('li[optional=1]').filter('.selected').length;
 		var name = th.attr('data-name');
 		var val = th.attr('data-value');
-		$( template('sortTemp',{name:name,val:val}) ).insertAfter(th);
+		$( template('sortTemp',{name:name, val:val, filterPattern: size}) ).insertAfter(th);
 		return false;
 	})
 	//分类排序筛选
@@ -276,34 +279,55 @@ $(function(){
 	//分类排序筛选
 	.delegate('#sortBox button', 'click', function() {
 		var th = $(this);
-		var box = th.closest('.box');
-		var reg = th.closest('#sortBox').find('input[name="reg"]:checked').val();
+		var box = th.closest('.layer');
+		var sortBox = th.closest('#sortBox');
+		var filterPattern = sortBox.find('input[name="filterPattern"]').attr('checked');
+		var reg = sortBox.find('input[name="reg"]:checked').val();
 		var name = th.attr('data-name');
 		var val = th.prev('input').val();
 		var attr = '[data-' + name + reg + '="'+ val +'"]';
 		
-		var list = box.find('li' + attr);
+		var limit = box.find('li');
+		
+		if(filterPattern){
+			limit = box.find('li.selected');
+			limit.find('input[name="itemIsSelected"]:checkbox').attr('checked',false).trigger('change');
+		}
+		
+		var list = limit.filter('li' + attr);
 		var size = list.length;
 		
 		box.find('.sortInfo b').text(size);
 		
-		list.each(function(){
+		list.prependTo( list.parent() ).find('input[name="itemIsSelected"]:checkbox').attr('checked',true).trigger('change');
+		
+		/*list.each(function(){
 			var th = $(this);
-			th.find('input:checkbox').attr('checked',true).trigger('change');
+			th.find('input[name="itemIsSelected"]:checkbox').attr('checked',true).trigger('change');
 			th.prependTo( th.parent() );
-		});
+		});*/
 		
 		$('body').scrollTop(0);
 		
-		$('#sortBox ').remove();
+		sortBox.remove();
 		
 		return false;
-	})		
+	})
+	//单列细节隐藏或显示
+	.delegate('.tabBar strong[data-tab]', 'click', function() {
+		var th = $(this);
+		var box = th.closest('.layer');
+		var tab = th.attr('data-tab');
+		
+		th.toggleClass('black');
+		box.find('#numSelList li[optional=1] .' + tab).toggle();
+	})	
 	/////////////////////////////////////////////////////////////////////
 	//选中
+	/*
 	.delegate('li[optional=1]', 'click', function() {
 		var $th = $(this);
-		var input = $th.find('input:checkbox');
+		var input = $th.find('input[name="itemIsSelected"]:checkbox');
 		
 		if (input.attr('checked')) {
 			input.attr('checked', false).trigger('change');
@@ -311,26 +335,39 @@ $(function(){
 			input.attr('checked', true).trigger('change');
 		}
 	})
+	*/
+	//拷贝
+	.delegate('.copy','click',function() {
+		var box = $(this).closest('.layer');
+		var copyBox = box.find('.copyBox').empty().toggle();
+		var textarea = $('<textarea></textarea>');
+		var red = $('#numSelList .redBall').clone().appendTo(copyBox);
+		
+		$('body').scrollTop(0);
+		
+		//textarea.text(copyBox[0].innerText).appendTo(copyBox);
+		//red.remove();
+	})	
 	//删除所选
 	.delegate('.del','click',function() {
-		var box = $(this).closest('.box');
+		var box = $(this).closest('.layer');
 		var delBox = $('#delBox').empty();
-		box.find('li[optional=1] input:checked').each(function() {
+		box.find('li[optional=1] input[name="itemIsSelected"]:checked').each(function() {
 			$(this).closest('li').appendTo(delBox);
 		});
 		box.find('.info b').text(box.find('li[optional=1]').length);
 	})
 	//撤销删除
 	.delegate('.cancel','click',function() {
-		var box = $(this).closest('.box');
+		var box = $(this).closest('.layer');
 		var optionalList = box.find('.optionalList');
 		$('#delBox li').prependTo(optionalList);
 	})	
 	//反选
 	.delegate('.reset','click',function() {
-		var box = $(this).closest('.box');
+		var box = $(this).closest('.layer');
 		
-		box.find('li input:checkbox').each(function() {
+		box.find('li input[name="itemIsSelected"]:checkbox').each(function() {
 			var input = $(this);
 			if (input.attr('checked')) {
 				input.attr('checked', false).trigger('change');
@@ -341,15 +378,15 @@ $(function(){
 	})
 	//全不选
 	.delegate('.not','click',function() {
-		var box = $(this).closest('.box');
-		box.find('li[optional=1] input:checked').each(function() {
+		var box = $(this).closest('.layer');
+		box.find('li[optional=1] input[name="itemIsSelected"]:checked').each(function() {
 			var input = $(this);
 			input.attr('checked', false).trigger('change');;
 		});
 	})	
 	/////////////////////////////////////////////////////////////////////
 	//选中样式
-	.delegate('li[optional=1] input:checkbox', 'change', function() { 
+	.delegate('li[optional=1] input[name="itemIsSelected"]:checkbox', 'change', function() { 
 		var th = $(this);
 		var li = th.closest('li');
 		
@@ -361,14 +398,14 @@ $(function(){
 	})
 	//切换细节
 	.delegate('.toggle','click',function() {
-		var box = $(this).closest('.box');
+		var box = $(this).closest('.layer');
 		box.find('.details').toggle();
 	})	
 	//层展开或收缩
 	.delegate('.expandable','click',function() {
 		var th = $(this);
-		var box = th.closest('.box');
-		var operateBar = box.find('.operateBar');
+		var box = th.closest('.layer');
+		var operateBar = box.find('.operateBar,.tabBar');
 		var refList = box.find('#refList,#numSelRefList');
 		
 		if(!th.attr('expandable')){
@@ -384,10 +421,28 @@ $(function(){
 			refList.css({'position':'fixed'});
 			th.removeAttr('expandable');
 		}
+	})
+	//文档滚动
+	.delegate('#tScroll','click',function() {
+		$('body').scrollTop(0);
+	})
+	.delegate('#bScroll','click',function() {
+		var h = $('#numSelList').height() - $(window).height();
+		$('body').scrollTop(h);
+	})
+	.delegate('#lScroll','click',function() {
+		$('body').scrollLeft(0);
+	})
+	.delegate('#rScroll','click',function() {
+		$('body').scrollLeft(1287);
 	})		
+	//删除模块
+	.delegate('.remove','click',function() {
+		 $(this).parent().remove();
+	})	
 	//关闭box
 	.delegate('.close','click',function() {
-		var box = $(this).closest('.box');
+		var box = $(this).closest('.layer');
 		if(confirm('确定关闭窗口?!')){
 			box.remove();
 		}

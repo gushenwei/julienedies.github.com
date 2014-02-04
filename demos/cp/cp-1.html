@@ -17,9 +17,9 @@
 <script id="groupListItemTemp" type="text/html">
     <% var i, j, k, obj, group, data, details, item;
 	for ( i in list ) { obj = list[i]; group = obj.group; data = obj.data; details = obj.details; %>
-        <li optional=1  <% for( j in data ) { %> data-<%=j%>="<%= data[j] %>" <% } %> >
+        <li optional="1"  <% for( j in data ) { %> data-<%=j%>="<%= data[j] %>" <% } %> >
 			<p>
-				<input type="checkbox" name="" />&nbsp;
+				<input type="checkbox" name="itemIsSelected" />&nbsp;&nbsp;
             	<span> 
 					<% for ( k in group ) {  %>
 						<b><%=group[k]%></b>
@@ -45,14 +45,14 @@
 </script>
 <script id="numSelListItemTemp" type="text/html">
     <% for (var i in list) { var obj = list[i]; var redBall = obj.redBall;  var details = obj.details;  var data = obj.data; %>
-        <li optional=1 <% for( i in data ) { %> data-<%=i%>="<%= data[i] %>" <% } %> >
-				
+        <li optional="1" <% for( i in data ) { %> data-<%=i%>="<%= data[i] %>" <% } %> >
+			 <input type="checkbox" name="itemIsSelected" />&nbsp;&nbsp;
              <p class="redBall" >
 					<% for (var k in redBall) { %>
 							<b><%=redBall[k]%></b>
 					<%}%>
              </p>
-			<input type="checkbox" name="" />
+			
            <div class="details">
 				<%  for (var j in details) { var item = details[j] %>
                 		<p class="<%= j %>" >
@@ -71,12 +71,19 @@
 <script id="sortTemp" type="text/html">
     <div id="sortBox" >
 		<div>
-			<label> ^ </label><input type="radio" name="reg" value="^" checked>&nbsp;&nbsp;
-			<label> $ </label><input type="radio" name="reg" value="$">&nbsp;&nbsp;
-			<label> * </label><input type="radio" name="reg" value="*">&nbsp;&nbsp;
-			<label> ! </label><input type="radio" name="reg" value="!">&nbsp;&nbsp;
+			<label> ^ </label><input type="radio" name="reg" value="^" checked />&nbsp;&nbsp;
+			<label> $ </label><input type="radio" name="reg" value="$" />&nbsp;&nbsp;
+			<label> * </label><input type="radio" name="reg" value="*" />&nbsp;&nbsp;
+			<label> ! </label><input type="radio" name="reg" value="!" />&nbsp;&nbsp;&nbsp;
+			
+			<% if(filterPattern){ %>
+				<label> P- </label><input type="checkbox" name="filterPattern" checked />
+			<%}%>
 		</div>
-		<input type="text" value="<%= val %>" > <button data-name="<%=name%>" >sort</button>
+		<label><%= name %></label>
+		<input type="text" value="<%= val %>" />&nbsp;
+		<button data-name="<%= name %>" >sort</button>
+		<span class="remove"> X </span>
     </div>
 </script>
 <script id="numSelRefListItemTemp" type="text/html">
@@ -93,7 +100,7 @@
     <%}%>
 </script>
 <script id="boxTemp" type="text/html">
-<div  id="<%= id && id+'Box' || '' %>" class="box">
+<div  id="<%= id && id+'Box' || '' %>" class="layer">
 	<% include( 'listTemp' ) %>
 
 	<div class="operateBar">
@@ -106,8 +113,22 @@
 		<button class="expandable">收缩</button>
 		<button class="showRef">显示参照</button>
 		<button class="toggle">切换细节</button>
+		<button class="copy">拷贝</button>
 		<button class="close">关闭窗口</button>
 	</div>
+	<div class="tabBar">
+		<strong id="lScroll"> &lt; </strong>
+		<strong data-tab="red">红球</strong>
+		<strong data-tab="loca">loca</strong>
+		<strong data-tab="col">列间隔</strong>
+		<strong data-tab="up">上间隔</strong>
+		<strong data-tab="down">下间隔</strong>
+		<strong data-tab="digit">数位</strong>
+		<strong id="tScroll"> ▲ </strong>
+		<strong id="bScroll"> ▼ </strong>
+		<strong id="rScroll"> &gt; </strong>
+	</div>
+	<div class="copyBox"></div>
 </div>
 </script>
 <script id="listTemp" type="text/html">

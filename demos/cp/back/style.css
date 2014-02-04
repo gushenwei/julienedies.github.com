@@ -109,20 +109,29 @@ b{
 	background-color:#eee!important;
 }
 
-
+input[name="itemIsSelected"]{
+	width:24px;
+	height:24px;
+}
+input[name="reg"]{
+	width:16px;
+	height:16px;
+}
 /* 通用类 */
 /**********************************************************************/
 /**********************************************************************/
 /* 模块类 */
-.box{
+.layer{
 	width:100%;
 	min-height:1200px;
 	background:#fff;
 }
-.box li[optional=1]:hover{
+.layer li[optional=1]:hover{
 	background-color:#eee!important;
 }
-.operateBar{
+.operateBar,
+.tabBar
+{
 	position:fixed;
 	width:100%;
 	height:32px;
@@ -132,7 +141,47 @@ b{
 	background:blue;
 	text-align:right;
 }
+.tabBar{
+	top:32px;
+	background:#E7E7E7;
+	background:rgba(175, 175, 175, 0.82);
+	font-size:0.8em;
+	text-align:left;
+}
 
+.tabBar strong[data-tab]{
+	margin-left:55px;
+	color:#fff;
+	cursor:pointer;
+}
+.tabBar strong:nth-child(2){
+	margin-left:305px;
+}
+.tabBar strong[data-tab]:after{
+	content:' :show';
+}
+.tabBar strong.black[data-tab]{
+	color:#000;
+}
+.tabBar strong.black[data-tab]:after{
+	content:' :hide';
+}
+.copyBox{
+	position:absolute;
+	top:32px;
+	left:0;
+	z-index:2000;
+	display:none;
+	width:290px;
+	padding:10px;
+	background:#fff;
+	border:solid 1px gray;
+}
+.copyBox textarea{
+	width:280px;
+	height:240px;
+	border:solid 1px gray;
+}
 .info{
 	font-weight:bold;
 	color:#fff;
@@ -145,20 +194,6 @@ b{
 	font-size:16px;
 }
 
-
-.details{
-	display:;
-}
-.details .sortBtn{
-	position:absolute;
-	top:4px;
-	right:-24px;
-	font-size: 0.8em;
-	opacity: 0.4;
-	border: none;
-	background: none;	
-}
-
 .selected{
 	background:#FADCDE;
 }
@@ -169,6 +204,57 @@ b{
 	min-height:26px!important;
 	overflow:hidden!important;
 }
+
+.remove{
+	position:absolute;
+	right:0;
+	top:0;
+	padding:0 6px;
+	background:#E7E7E7;
+	line-height:1.2;
+	cursor:pointer;
+}
+
+.optionalList{
+	margin:64px 0 0 0;
+}
+
+.optionalList li[optional="1"]{
+	
+}
+.optionalList p,
+.optionalList .details
+{
+	display:inline-block;
+}
+
+.optionalList .details{
+	margin:0 0 0 30px;
+}
+
+.optionalList .details p{
+	position:relative;
+	margin:0 45px 0 25px;
+	color:#777;
+}
+
+.details .red,
+.details .col
+{
+}
+
+.optionalList .details .sortBtn{
+	position:absolute;
+	top:4px;
+	right:-28px;
+	font-size: 0.8em;
+	opacity: 0.4;
+	border: none;
+	background: none;	
+}
+
+
+
 /*****************************************************/
 
 .dobjBox{
@@ -332,68 +418,54 @@ b{
 #numSelListBox{
 	position:absolute;
 	z-index:100;
+	width:2400px;
 	background:#fff;
-	width:100%;
-	margin:32px 0 0 0;
+	border-bottom: 8px solid #2CAA2C;
 }
 #numSelList{
-	margin:0 0 0 40px;
 }
 #numSelList li{
-	padding:20px 5px 5px 5px;
+	padding:20px 5px 5px 30px;
 	border-bottom:1px #eee solid;
 	height:72px;
 	position:relative;
-}
-#numSelList li input[type="checkbox"]{
-	position:absolute;
-	left:187px;
-	top:26px;
 }
 
 #numSelList .loca, #numSelList .col, #numSelList .up, #numSelList .down, #numSelList .digit, 
 #numSelList .locaRef, #numSelList .colRef, #numSelList .upRef, .downRef, .digitRef
 {
-	position:absolute;
-	top:44px;
+	position:relative;
 	color: #777;
 }
 #numSelList .locaRef, #numSelList .colRef, #numSelList .upRef, #numSelList .downRef, #numSelList .digitRef{
-	top:20px;
-}
-#numSelList .loca, #numSelList .locaRef{
-	left:230px;
-}
-#numSelList .col, #numSelList .colRef{
-	left:310px;
-}
-#numSelList .up, #numSelList .upRef{
-	left:450px;
-}
-#numSelList .down, #numSelList .downRef{
-	left:640px;
-}
-#numSelList .digit, #numSelList .digitRef{
-	left:820px;
+	display:none;
 }
 
-/** **/
+
+#numSelList .loca, #numSelList .locaRef{
+}
+#numSelList .col, #numSelList .colRef{
+}
+#numSelList .up, #numSelList .upRef{
+}
+#numSelList .down, #numSelList .downRef{
+}
+#numSelList .digit, #numSelList .digitRef{
+}
+
+
 #numSelList .upLoca,
 #numSelList .downLoca,
 #numSelList .digitLoca
 {
-	position:absolute;
-	top:68px;
-	color: #c7c7c7;
+	margin: 0 75px 0 -15px;
+	color: #ADADAD;
 }
 #numSelList .upLoca{
-	left:450px;
 }
 #numSelList .downLoca{
-	left:640px;
 }
 #numSelList .digitLoca{
-	left:820px;
 }
 #numSelList .upLoca b,
 #numSelList .downLoca b,
@@ -411,12 +483,12 @@ b{
 
 #sortBox{
 	background:#fff;
-	width:228px;
-	padding:0 0 0 2px;
+	width:328px;
+	padding:2px 0 2px 4px;
 	border:solid 1px silver;
 	position: absolute;
 	top: 0;
-	right: -240px;
+	right: -348px;
 	z-index:10000;
 }
 #sortBox input[type="text"]{
@@ -470,26 +542,25 @@ b{
 
 #groupListBox{
 	position:absolute;
-	top:32px;
 	left:0;
 	border: solid 0px #c2c5d8;
 }
+#groupListBox .tabBar{
+	display:none;
+}
 #groupList{
-	margin:15px 0 0 30px;
 }
 #groupList li{
 	cursor:pointer;
 	line-height:1.6;
-	padding:5px;
+	height:48px;
+	padding: 5px 5px 5px 30px;
 	border-bottom:1px #eee solid;
 }
 #groupList li:hover{
 	background-color:#eee;
 }
 
-#groupList .details{
-	margin:0 0 0 240px;
-}
 #groupList .details p{
 	display:inline-block;
 	margin:0 30px;
@@ -535,7 +606,34 @@ b{
 #delBox{
 	display:none;
 }
-/*  */
+#tScroll,
+#bScroll,
+#lScroll,
+#rScroll{
+	position:absolute;
+	width:32px;
+	height:32px;
+	text-align:center;
+	vertical-align:middle;
+	background:rgba(0,0,0,0);
+	cursor:pointer;
+	color: #fff;
+	font-size: large;
+	font-weight: bold;
+}
+#tScroll{
+	right:84px;
+}
+#bScroll{
+	right:42px;
+}
+#lScroll{
+	left:0;
+}
+#rScroll{
+	right:0;
+}
+/* ▲△☆★□ ■○●▽▼◇◆ */
 /**********************************************************************/
 /**********************************************************************/
 /* 滚动条样式

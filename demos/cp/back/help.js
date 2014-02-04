@@ -473,6 +473,7 @@ function numSelFilter( numSelObj ){
 function redBlueBallModel(arr) {
 	var result = [];
 	var item;
+	var red;
 	var blue;
 	var ri;
 	var inLoca;
@@ -514,6 +515,8 @@ function redBlueBallModel(arr) {
 		item.sort(function(a, b) {
 			return a - b;
 		});
+		
+		red = item.slice();
 
 		$.each(item, function(index, val) {
 			item[index] = val < 10 ? '0' + val : val;
@@ -536,17 +539,6 @@ function redBlueBallModel(arr) {
 		if ( filter(locaCount, colCount, upMargin, downMargin, singleDigit) === false )
 			continue;
 
-		if(window.blueBallIsRandom){
-			// 随机提取篮球
-			blue = blues[Math.round(Math.random() * (blues.length - 1))];			
-		}else{
-			// 顺序提取篮球
-			blue = blues.shift();
-			blues.push(blue);
-		}
-
-		blue = blue ? ':' + blue : '';
-		item.push(blue);
 		
 		var colCountRefLast = getArrayLast(window.colCountRef);
 		
@@ -565,20 +557,22 @@ function redBlueBallModel(arr) {
 		obj = {
 				redBall: item,
 				details:{
+					red: red,
 					loca: locaCount,
 					colRef: colCountRefLast,
 					col: colCount,
 					upRef: upMarginRefLast,
 					up: upMargin,
+					upLoca: upLoca,
 					downRef: downMarginRefLast,
 					down: downMargin,
+					downLoca: downLoca,
 					digitRef: singleDigitRefLast,
 					digit: singleDigit,
-					upLoca: upLoca,
-					downLoca: downLoca,
 					digitLoca: digitLoca
 				},
 				data:{
+					red: JSON.stringify(red),
 					loca: JSON.stringify(locaCount),
 					col : JSON.stringify(colCount),
 					up : JSON.stringify(upMargin),
@@ -591,9 +585,21 @@ function redBlueBallModel(arr) {
 				
 		};	
 		
-		if( numSelFilter(obj) )
+		if( numSelFilter(obj) ){
+			if(window.blueBallIsRandom){
+				// 随机提取篮球
+				blue = blues[Math.round(Math.random() * (blues.length - 1))];			
+			}else{
+				// 顺序提取篮球
+				blue = blues.shift();
+				blues.push(blue);
+			}
+
+			blue = blue ? ':' + blue : '';
+			obj.redBall.push(blue);
 			result.push(obj);
-				
+		}
+		
 	}
 	
 	return result;
