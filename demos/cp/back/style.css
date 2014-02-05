@@ -150,21 +150,21 @@ input[name="reg"]{
 }
 
 .tabBar strong[data-tab]{
-	margin-left:55px;
-	color:#fff;
+	margin-left:10px;
+	color:#000;
 	cursor:pointer;
 }
-.tabBar strong:nth-child(2){
-	margin-left:305px;
+.tabBar strong:nth-child(5){
+	margin-left:45px;
 }
 .tabBar strong[data-tab]:after{
-	content:' :show';
+	content:':hide';
 }
-.tabBar strong.black[data-tab]{
-	color:#000;
+.tabBar strong.white[data-tab]{
+	color:#fff;
 }
-.tabBar strong.black[data-tab]:after{
-	content:' :hide';
+.tabBar strong.white[data-tab]:after{
+	content:':show';
 }
 .copyBox{
 	position:absolute;
@@ -222,28 +222,48 @@ input[name="reg"]{
 .optionalList li[optional="1"]{
 	
 }
+.optionalList li[optional="1"] .redBall{
+	color:#000;
+}
 .optionalList p,
 .optionalList .details
 {
 	display:inline-block;
+	/*font-family: Arial, 'Microsoft Yahei', Simsun, sans-serif;*/
 }
 
-.optionalList .details{
+.details{
 	margin:0 0 0 30px;
 }
 
-.optionalList .details p{
+.details p{
 	position:relative;
 	margin:0 45px 0 25px;
-	color:#777;
+	color:#4E4E4E;
+	display:none;
 }
-
+.details p.show{
+	display:inline-block;
+}
 .details .red,
 .details .col
 {
 }
-
-.optionalList .details .sortBtn{
+.details .upUnique,
+.details .downUnique,
+.details .digitUnique{
+	width:136px;
+	margin: 0 45px 0 -15px;
+	color: #ADADAD;
+}
+.details .upLoca,
+.details .downLoca,
+.details .digitLoca
+{
+	margin: 0 75px 0 -15px;
+	color: #ADADAD;
+}
+.details .sortBtn{
 	position:absolute;
 	top:4px;
 	right:-28px;
@@ -427,20 +447,17 @@ input[name="reg"]{
 #numSelList li{
 	padding:20px 5px 5px 30px;
 	border-bottom:1px #eee solid;
-	height:72px;
+	height:48px;
 	position:relative;
 }
 
 #numSelList .loca, #numSelList .col, #numSelList .up, #numSelList .down, #numSelList .digit, 
 #numSelList .locaRef, #numSelList .colRef, #numSelList .upRef, .downRef, .digitRef
 {
-	position:relative;
-	color: #777;
 }
 #numSelList .locaRef, #numSelList .colRef, #numSelList .upRef, #numSelList .downRef, #numSelList .digitRef{
 	display:none;
 }
-
 
 #numSelList .loca, #numSelList .locaRef{
 }
@@ -453,14 +470,6 @@ input[name="reg"]{
 #numSelList .digit, #numSelList .digitRef{
 }
 
-
-#numSelList .upLoca,
-#numSelList .downLoca,
-#numSelList .digitLoca
-{
-	margin: 0 75px 0 -15px;
-	color: #ADADAD;
-}
 #numSelList .upLoca{
 }
 #numSelList .downLoca{

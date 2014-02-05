@@ -30,7 +30,7 @@ function isAlloddOrEven( arr ){
  * 
  */
 function getArrayUnique( arr ){
-	var arr = arr.slice();
+	var arr = arr.slice().reverse();
 	return $.unique(arr);
 } 
 
@@ -536,39 +536,43 @@ function redBlueBallModel(arr) {
 		});
 
 		// 过滤
-		if ( filter(locaCount, colCount, upMargin, downMargin, singleDigit) === false )
-			continue;
-
+		//if ( filter(locaCount, colCount, upMargin, downMargin, singleDigit) === false ) continue;
 		
-		var colCountRefLast = getArrayLast(window.colCountRef);
-		
+		var colCountRefLast = getArrayLast(colCountRef);
 		var upMarginRefLast = getArrayLast(upMarginRef);
-		
 		var downMarginRefLast = getArrayLast(downMarginRef);
-		
 		var singleDigitRefLast = getArrayLast(singleDigitRef);
 		
-		var upLoca,downLoca,digitLoca;
+		var upLoca, downLoca, digitLoca;
 		
 		upLoca = locaCompare( upMarginRefLast, upMargin);
 		downLoca = locaCompare( downMarginRefLast, downMargin);
 		digitLoca = locaCompare( singleDigitRefLast, singleDigit);
+		
+		var upUnique, downUnique, digitUnique;
+		
+		upUnique = getArrayUnique(upMargin);
+		downUnique = getArrayUnique(downMargin);
+		digitUnique = getArrayUnique(singleDigit);
 		
 		obj = {
 				redBall: item,
 				details:{
 					red: red,
 					loca: locaCount,
-					colRef: colCountRefLast,
+					//colRef: colCountRefLast,
 					col: colCount,
-					upRef: upMarginRefLast,
+					//upRef: upMarginRefLast,
 					up: upMargin,
+					upUnique: upUnique,
 					upLoca: upLoca,
-					downRef: downMarginRefLast,
-					down: downMargin,
+					//downRef: downMarginRefLast,
+					down: downMargin, 
+					downUnique: downUnique,
 					downLoca: downLoca,
-					digitRef: singleDigitRefLast,
+					//digitRef: singleDigitRefLast,
 					digit: singleDigit,
+					digitUnique: digitUnique,
 					digitLoca: digitLoca
 				},
 				data:{
@@ -576,10 +580,13 @@ function redBlueBallModel(arr) {
 					loca: JSON.stringify(locaCount),
 					col : JSON.stringify(colCount),
 					up : JSON.stringify(upMargin),
-					down : JSON.stringify(downMargin),
-					digit : JSON.stringify(singleDigit),
+					upUnique: JSON.stringify(upUnique),
 					upLoca : JSON.stringify(upLoca),
+					down : JSON.stringify(downMargin),
+					downUnique: JSON.stringify(downUnique),
 					downLoca : JSON.stringify(downLoca),
+					digit : JSON.stringify(singleDigit),
+					digitUnique: JSON.stringify(digitUnique),
 					digitLoca : JSON.stringify(digitLoca)				
 				}
 				

@@ -49,13 +49,13 @@ layout: default
         <div class="post-full">
             <div class="span12">
                 <div class="article_meta">
-                	<span>发布： {{ page.date | date: '%Y-%m-%d' }}</span>
-					&nbsp; | &nbsp;
+                	<span> {{ page.date | date: '%Y-%m-%d' }}</span>
+					&nbsp;&nbsp;&nbsp;
 					
                 	{% if page.tags contains 'translated' %}
                 		<span>译：
 					{% else %}
-						<span>by：
+						<span>
 					{% endif %}
 						<a href="http://julienedies.github.io/contact.html" >{{ site.author.name }}</a></span>					
 					

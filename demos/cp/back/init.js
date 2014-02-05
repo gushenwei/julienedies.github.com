@@ -319,8 +319,8 @@ $(function(){
 		var box = th.closest('.layer');
 		var tab = th.attr('data-tab');
 		
-		th.toggleClass('black');
-		box.find('#numSelList li[optional=1] .' + tab).toggle();
+		th.toggleClass('white');
+		box.find('#numSelList li[optional=1] .' + tab).toggleClass('show');
 	})	
 	/////////////////////////////////////////////////////////////////////
 	//选中
