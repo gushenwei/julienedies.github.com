@@ -150,11 +150,11 @@ input[name="reg"]{
 }
 
 .tabBar strong[data-tab]{
-	margin-left:10px;
+	margin-left:16px;
 	color:#000;
 	cursor:pointer;
 }
-.tabBar strong:nth-child(5){
+.tabBar strong:nth-child(1){
 	margin-left:45px;
 }
 .tabBar strong[data-tab]:after{
@@ -494,11 +494,13 @@ input[name="reg"]{
 	background:#fff;
 	width:328px;
 	padding:2px 0 2px 4px;
-	border:solid 1px silver;
+	border:solid 2px silver;
 	position: absolute;
 	top: 0;
 	right: -348px;
 	z-index:10000;
+	box-shadow: 2px 2px 1px #D3D3D3;
+	font-family: Arial, 'Microsoft Yahei', Simsun, sans-serif;
 }
 #sortBox input[type="text"]{
 	width:170px;
@@ -631,16 +633,16 @@ input[name="reg"]{
 	font-weight: bold;
 }
 #tScroll{
-	right:84px;
+	left:42px;
 }
 #bScroll{
-	right:42px;
+	left:84px;
 }
 #lScroll{
 	left:0;
 }
 #rScroll{
-	right:0;
+	left:130px;
 }
 /* ▲△☆★□ ■○●▽▼◇◆ */
 /**********************************************************************/

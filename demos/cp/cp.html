@@ -80,7 +80,7 @@
 				<label> P- </label><input type="checkbox" name="filterPattern" checked />
 			<%}%>
 		</div>
-		<label><%= name %></label>
+		<label> <%= name %> </label>
 		<input type="text" value="<%= val %>" />&nbsp;
 		<button data-name="<%= name %>" >sort</button>
 		<span class="remove"> X </span>
@@ -104,6 +104,11 @@
 	<% include( 'listTemp' ) %>
 
 	<div class="operateBar">
+		<strong id="lScroll"> &lt; </strong>
+		<strong id="tScroll"> ▲ </strong>
+		<strong id="bScroll"> ▼ </strong>
+		<strong id="rScroll"> &gt; </strong>
+
 		<span class="sortInfo">选择: <b></b></span>
 		<span class="info"><b><%= info %></b></span>
 		<button class="cancel">撤消删除</button>
@@ -117,16 +122,10 @@
 		<button class="close">关闭窗口</button>
 	</div>
 	<div class="tabBar">
-		<strong id="lScroll"> &lt; </strong>
-		<strong id="tScroll"> ▲ </strong>
-		<strong id="bScroll"> ▼ </strong>
-		<strong id="rScroll"> &gt; </strong>
-
 		<% var map = {}; var detailss = list[0].details; %>
 		<% for (var ii in detailss) { %>
 			<strong data-tab="<%= ii %>"><%= ii %></strong>
 		<%}%>
-
 	</div>
 	<div class="copyBox"></div>
 </div>
@@ -335,14 +334,6 @@
 			id : 'reds',
 			refName : ''
 		})).appendTo('body');	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 </script>

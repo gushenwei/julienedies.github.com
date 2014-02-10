@@ -15,8 +15,6 @@
 
 $(function(){
 	
-	window.MYCP = {};
-	
 	$('body')
 	
 	//设定编组补丁及编组长度
@@ -104,7 +102,7 @@ $(function(){
 		
 		var q = group(window.reds,6); 
 		
-		q = redBlueBallModel(q);
+		q = window.NUMLIST = redBlueBallModel(q);
 		
 		$( template('boxTemp',{list:q, id: 'numSelList', embedTemp: 'numSelListItemTemp', info:q.length}) ).prependTo('body');	
 		return false;
@@ -179,7 +177,7 @@ $(function(){
 		
 		var q = combineWrap(window.classifyList,group);
 		
-		q = redBlueBallModel(q);
+		q = window.NUMLIST = redBlueBallModel(q);
 		
 		$( template('boxTemp',{list:q, id: 'numSelList', embedTemp: 'numSelListItemTemp', info:q.length}) ).prependTo('body');	
 		return false;
@@ -262,7 +260,7 @@ $(function(){
 	.delegate('#numSelList li', 'mouseout', function() {
 		$('#numSelRefList li.ls:last').remove();
 	})
-	//
+	//显示筛选框
 	.delegate('.sortBtn', 'click', function() { 
 		$('#sortBox ').remove();
 		var th = $(this);
@@ -317,10 +315,10 @@ $(function(){
 	.delegate('.tabBar strong[data-tab]', 'click', function() {
 		var th = $(this);
 		var box = th.closest('.layer');
-		var tab = th.attr('data-tab');
+		var tab = th.attr('data-tab').substr(0,2);
 		
 		th.toggleClass('white');
-		box.find('#numSelList li[optional=1] .' + tab).toggleClass('show');
+		box.find('#numSelList li[optional=1] p[class^="' + tab + '"]').toggleClass('show');
 	})	
 	/////////////////////////////////////////////////////////////////////
 	//选中
