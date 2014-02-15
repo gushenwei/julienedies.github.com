@@ -93,6 +93,15 @@ $(function(){
 		
 	})
 	//
+	.delegate('#filterByRefArr .add','click',function(){
+		var str, arr;
+		str = $('#filterByRefArr input:text').val().trim();
+		str = str.replace(/\(/,'').replace(/\)/,' ');
+		arr = str.split(/\s+/);
+		filterByRefArr.push(arr);
+		cc(filterByRefArr, 'filterByRefArr')
+	})		
+	//
 	.delegate('#redsBox .combine','click',function(){
 		if(reds.length > 14) {
 			if(!confirm('组合数量太大,是否继续')){
@@ -102,9 +111,13 @@ $(function(){
 		
 		var q = group(window.reds,6); 
 		
+		q = filterByRef(q, window.filterByRefArr);
 		q = window.NUMLIST = redBlueBallModel(q);
 		
-		$( template('boxTemp',{list:q, id: 'numSelList', embedTemp: 'numSelListItemTemp', info:q.length}) ).prependTo('body');	
+		if(q.length){
+			$( template('boxTemp',{list:q, id: 'numSelList', embedTemp: 'numSelListItemTemp', info:q.length}) ).prependTo('body');
+		}
+			
 		return false;
 	})	
 	//

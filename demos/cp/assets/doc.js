@@ -20,6 +20,7 @@ window.reds = (function(){
 window.filter = function(loca, col, upMargin, downMargin, singleDigit){};
 
 window.q = [];
+window.filterByRefArr = [];
 
 window.refMap = {
 		'0' :  'colCountRef',

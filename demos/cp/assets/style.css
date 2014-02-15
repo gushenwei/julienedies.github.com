@@ -421,7 +421,7 @@ input[name="reg"]{
 #classifyBySingleDigitLocaMapListBox{
 	top:420px;
 	left:920px;
-	width:360px;	
+	width:320px;	
 }
 #classifyByColCountListBox{
 	top:560px;
@@ -504,6 +504,10 @@ input[name="reg"]{
 }
 #sortBox input[type="text"]{
 	width:170px;
+}
+
+#filterByRefArr input[type="text"]{
+	width:420px;
 }
 /******************************************/
 /*  */

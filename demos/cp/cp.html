@@ -202,8 +202,13 @@
 			<em> <%=dobj[i]%> </em>
 			<input type="checkbox" value="<%=dobj[i]%>" name="<%= name %>" checked />
 		</li>
-    <%}%>
+    <% } %>
 </ul>
+<% if (name == 'reds') { %>
+	<div id="filterByRefArr">
+		<input type="text" name="" /> <button class="add">add</button>
+	</div>
+<% } %>
 </div>
 </script>
 

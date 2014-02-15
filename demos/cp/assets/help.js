@@ -460,17 +460,61 @@ function numSelFilter( numSelObj ){
 	return true;
 }
 
-
-//筛选
-
-function numListSelect(per, val, p){
+//计算两个数组相似度
+function getMatchSize(arr1, arr2){
 	
-	var list = window.NUMLIST;
-	var length = list.length;
+	var length = arr1.length;
+	var length2 = arr2.length;
+	
+	var val1, val2;
+	var size = 0;
+	
 	for(var i = 0; i < length; i++){
+		
+		val1 = arr1[i];
+		
+		for(var j = 0; j < length2; j++){
+			val2 = arr2[j];
+			
+			if (val1 == val2) {
+				size+=1;
+				break;
+			}
+		}
 		
 	}
 	
+	return size;
+}
+
+//根据提供的参考数组进行过滤
+function filterByRef(filterArr, refArr, limit){
+	
+	if(!refArr || refArr.length==0 ) return filterArr;
+	
+	limit = limit || 4;
+	
+	var result = [];
+	var length = filterArr.length;
+	var length2 = refArr.length;
+	
+	var filterItem, refItem;
+	
+	for(var i = 0; i < length; i++){
+		
+		filterItem = filterArr[i];
+		
+		for(var j = 0; j < length2; j++){
+			refItem = refArr[j];
+			
+			if(getMatchSize(filterItem, refItem) < limit){
+				result.push(filterItem);
+			}
+		}
+		
+	}
+	
+	return result;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -546,6 +590,7 @@ function redBlueBallModel(arr) {
 
 		// 过滤
 		//if ( filter(locaCount, colCount, upMargin, downMargin, singleDigit) === false ) continue;
+		
 		
 		var colCountRefLast = getArrayLast(colCountRef);
 		var upMarginRefLast = getArrayLast(upMarginRef);
