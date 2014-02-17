@@ -1,7 +1,7 @@
 _site/*
 _theme_packages/*
 _pim_
-\~*.xlsx
+~*.xlsx
 
 Thumbs.db
 .DS_Store

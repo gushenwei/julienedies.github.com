@@ -185,15 +185,16 @@ $(function(){
 	//
 	.delegate('#groupList li .make','click',function(){
 		var $th = $(this);
-		
 		var group = JSON.parse( $th.attr('data-group') );
+		var q;
 		
-		var q = combineWrap(window.classifyList,group);
+		$('title').text(group.join(''));
+		
+		q = combineWrap(window.classifyList,group);
 		
 		q = window.NUMLIST = redBlueBallModel(q);
 		
 		$( template('boxTemp',{list:q, id: 'numSelList', embedTemp: 'numSelListItemTemp', info:q.length}) ).prependTo('body');	
-		return false;
 	})
 	//
 	.delegate('#groupList li', 'mouseover', function() {
