@@ -192,6 +192,7 @@ $(function(){
 		
 		q = combineWrap(window.classifyList,group);
 		
+		q = filterByRef(q, window.filterByRefArr);
 		q = window.NUMLIST = redBlueBallModel(q);
 		
 		$( template('boxTemp',{list:q, id: 'numSelList', embedTemp: 'numSelListItemTemp', info:q.length}) ).prependTo('body');	

@@ -503,12 +503,14 @@ function filterByRef(filterArr, refArr, limit){
 	for(var i = 0; i < length; i++){
 		
 		filterItem = filterArr[i];
+		result.push(filterItem);
 		
 		for(var j = 0; j < length2; j++){
 			refItem = refArr[j];
 			
-			if(getMatchSize(filterItem, refItem) < limit){
-				result.push(filterItem);
+			if(getMatchSize(filterItem, refItem) > limit){
+				result.pop();
+				break;
 			}
 		}
 		
