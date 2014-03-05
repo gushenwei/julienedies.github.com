@@ -47,8 +47,24 @@ $(function(){
 		
 		refName && ( window.groupRefList = window[refName] );
 		window.classifyList = window[name];
-		//cc(classifyList,'debug')
-		groupCall(groupNum,patch,gruopSize);
+		
+		//groupCall(groupNum,patch,gruopSize);
+		var size = patch ? gruopSize - patch.length : gruopSize;
+
+		var q = size ? group(groupNum, size) : false;
+
+		q = q ? groupWrap(q,patch) : groupWrap([patch]);
+
+		q = groupListModel(q);
+
+		$(template('boxTemp', {
+			list : q,
+			info : q.length,
+			id : 'groupList',
+			type: refName,
+			embedTemp : ''
+		})).appendTo('body');	
+		
 	})	
 	//
 	.delegate('.dobjBox .make2','click',function(){
@@ -197,6 +213,21 @@ $(function(){
 		
 		$( template('boxTemp',{list:q, id: 'numSelList', embedTemp: 'numSelListItemTemp', info:q.length}) ).prependTo('body');	
 	})
+	//
+	.delegate('#groupList li .visual','click',function(){
+		var $th = $(this);
+		var group =  $th.attr('data-group');
+		var type = $th.attr('data-type');
+		
+		var url = 'd3.html?type='+type+'&push='+group;
+		
+		if(CPGLOBAL.win){
+			CPGLOBAL.win.location = url;
+			CPGLOBAL.win.focus();
+		}else{
+			CPGLOBAL.win = window.open('d3.html?type='+type+'&push='+group);
+		}
+	})	
 	//
 	.delegate('#groupList li', 'mouseover', function() {
 		if( !$('#refList:visible').length) return;

@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta charset="utf-8" />
 <title>方案-1</title>
 <link href="assets/style.css" rel="stylesheet" type="text/css" media="all" />
+<script src="assets/d3.min.js"></script>
 <script src="assets/jquery.min.js" type="text/javascript"></script>
 <script src="assets/template.js" type="text/javascript"></script>
 <script src="assets/33.js" type="text/javascript"></script>
@@ -27,6 +28,8 @@
            		</span>
 				&nbsp;&nbsp;
 				<button class="make"  data-group="<%= data.group %>">make</button>
+				&nbsp;&nbsp;
+				<button class="visual"  data-group="<%= data.group %>" data-type="<%= type %>">visual</button>
 			</p>
 			<div class="details">
 				<%  for (j in details) { item = details[j] %>
@@ -100,7 +103,7 @@
     <%}%>
 </script>
 <script id="boxTemp" type="text/html">
-<div  id="<%= id && id+'Box' || '' %>" class="layer">
+<div  id="<%= id && id+'Box' || '' %>" class="layer" data-type="<%= type %>" >
 	<% include( 'listTemp' ) %>
 
 	<div class="operateBar">
@@ -116,7 +119,7 @@
 		<button class="reset">反选</button>
 		<button class="del">删除所选</button>
 		<button class="expandable">收缩</button>
-		<button class="showRef">显示参照</button>
+		<button class="showRef" data-type="<%= type %>">显示参照</button>
 		<button class="toggle">切换细节</button>
 		<button class="copy">拷贝</button>
 		<button class="close">关闭窗口</button>

@@ -4,6 +4,14 @@
  * 
  */
 
+function getUrlParam(param){
+    var reg = new RegExp("(^|&)" + param + "=([^&]*)(&|$)", "i");
+    var r = window.location.search.substr(1).match(reg);
+    if (r != null) 
+        return decodeURIComponent(r[2]);
+    return null;
+}
+
 /*
  * 获取数组最后一个元素
  */
@@ -340,6 +348,28 @@ function count(arr){
 	
 	return result;	
 }
+
+/*
+ * 计算数组元素Unique值得数量
+ */
+function getArrUniqueSize(arr){
+	var length = arr.length;
+	var result = {};
+	var r = [];
+	var item;
+	
+	for(var i = 0; i< length; i++){
+		item = arr[i];
+		result[item] = result[item] ? result[item]+1 : 1;
+	}	
+	
+	for(var j in result){
+		r.push( [j , result[j]] );
+	}
+	
+	return r;		
+}
+
 
 /*
  * 

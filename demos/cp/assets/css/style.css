@@ -402,8 +402,8 @@ input[name="reg"]{
 }
 #classifyByDownMarginLocaMapListBox{
 	top:560px;
-	left:40px;
-	width:360px;	
+	left:20px;
+	width:400px;	
 }
 #classifyByUpMarginListBox{
 	top:40px;
@@ -421,7 +421,7 @@ input[name="reg"]{
 #classifyBySingleDigitLocaMapListBox{
 	top:420px;
 	left:920px;
-	width:320px;	
+	width:340px;	
 }
 #classifyByColCountListBox{
 	top:560px;
