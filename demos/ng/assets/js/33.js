@@ -1,8 +1,12 @@
+
+//全局变量命名空间
+window.NGCLOBAL = window.NGCLOBAL || {};
+
 //
-window.opnRedBall = [7, 9, 13, 17, 21, 22];
+NGCLOBAL.opnRedBall = window.opnRedBall = [7, 9, 13, 17, 21, 22];
 
 //列间隔
-window.colCountRef = [ 
+NGCLOBAL.colCountRef = window.colCountRef = [ 
                    [ 1, 2, 1, 1, 1, 0 ],
                    [ 0, 0, 1, 2, 3, 0 ],
                    [ 2, 0, 2, 0, 2, 0 ],
@@ -53,7 +57,7 @@ window.colCountRef = [
                  ];
 
 //上间隔
-window.upMarginRef = [ 
+NGCLOBAL.upMarginRef = window.upMarginRef = [ 
                    [ 0, 0, 1, 2, 3, 4 ],
                    [ 1, 2, 2, 3, 7, 7 ],
                    [ 2, 3, 4, 4, 5, 13 ],
@@ -104,7 +108,7 @@ window.upMarginRef = [
                  ];
 
 //下间隔
-window.downMarginRef = [ 
+NGCLOBAL.upMarginRef = window.downMarginRef = [ 
                    [0, 2, 3, 4, 7, 7 ],
                    [0, 1, 1, 2, 4, 5 ],
                    [0, 2, 2, 3, 7, 28 ],
@@ -159,7 +163,7 @@ window.downMarginRef = [
                  ];
 
 //数尾
-window.singleDigitRef = [ 
+NGCLOBAL.singleDigitRef = window.singleDigitRef = [ 
                   [ 1, 1, 3, 3, 5, 6 ], 
                   [ 2, 4, 6, 6, 7, 9 ],
                   [ 0, 1, 2, 3, 5, 7 ], 
@@ -211,7 +215,7 @@ window.singleDigitRef = [
                  ];
 
 //
-window.colMap = [ 
+NGCLOBAL.colMap = window.colMap = [ 
                   [         ], //0
                   [ 1, 7, 11 ], //1
                   [ 1, 2, 4 ], //2

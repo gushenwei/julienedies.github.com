@@ -219,13 +219,13 @@ $(function(){
 		var group =  $th.attr('data-group');
 		var type = $th.attr('data-type');
 		
-		var url = 'd3.html?type='+type+'&push='+group;
+		var url = 'visual.html?type='+type+'&push='+group;
 		
-		if(CPGLOBAL.win){
-			CPGLOBAL.win.location = url;
-			CPGLOBAL.win.focus();
+		if(NGCLOBAL.win){
+			NGCLOBAL.win.location = url;
+			NGCLOBAL.win.focus();
 		}else{
-			CPGLOBAL.win = window.open('d3.html?type='+type+'&push='+group);
+			NGCLOBAL.win = window.open(url);
 		}
 	})	
 	//
