@@ -454,11 +454,11 @@ function combineWrap(classifyListMap, groupScheme) {
 function numSelFilter( numSelObj ){
 	
 	var details = numSelObj.details;
-	var locaCount = details.loca;
-	var colCount = details.col;
-	var upMargin = details.up;
-	var downMargin = details.down;
-	var singleDigit = details.digit;
+	var locaCount = details.loca.loca;
+	var colCount = details.col.col;
+	var upMargin = details.upMarginRef.up;
+	var downMargin = details.downMarginRef.down;
+	var singleDigit = details.singleDigitRef.digit;
 	
 	var i
 	var item;
@@ -644,22 +644,30 @@ function redBlueBallModel(arr) {
 		obj = {
 				redBall: item,
 				details:{
-					red: red,
-					loca: locaCount,
-					//colRef: colCountRefLast,
-					col: colCount,
-					//upRef: upMarginRefLast,
-					up: upMargin,
-					upUnique: upUnique,
-					upLoca: upLoca,
-					//downRef: downMarginRefLast,
-					down: downMargin, 
-					downUnique: downUnique,
-					downLoca: downLoca,
-					//digitRef: singleDigitRefLast,
-					digit: singleDigit,
-					digitUnique: digitUnique,
-					digitLoca: digitLoca
+					red:{
+						red: red
+					},
+					loca:{
+						loca: locaCount
+					},
+					col:{
+						col: colCount
+					},
+					upMarginRef:{
+						up: upMargin,
+						upUnique: upUnique,
+						upLoca: upLoca					
+					},
+					downMarginRef:{
+						down: downMargin, 
+						downUnique: downUnique,
+						downLoca: downLoca					
+					},
+					singleDigitRef:{
+						digit: singleDigit,
+						digitUnique: digitUnique,
+						digitLoca: digitLoca						
+					}
 				},
 				data:{
 					red: JSON.stringify(red),
@@ -782,7 +790,7 @@ function groupListModel(arr){
 //
 function groupRefListModel(arr){
 	var arr = arr.slice();
-	var length = Math.min(arr.length, 18);
+	var length = arr.length-1;
 	var result = [];
 	var current;
 	var unique;

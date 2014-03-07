@@ -88,6 +88,8 @@
 		});
 		
 		em.exit().remove();		
+		
+		$('body').scrollTop((data.length-20) * 21);
 	};
 	
 	////////////////////////////////////////////
@@ -112,7 +114,7 @@
 	var type = getUrlParam('type') || 'upMarginRef';
 	var push = getUrlParam('push');
 
-	var data = window[type].slice(-28);
+	var data = window[type].slice();
 	
 	if(push){
 		data.push(JSON.parse(push));

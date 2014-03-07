@@ -66,6 +66,7 @@ blockquote:before, blockquote:after, q:before, q:after {
 }
 button{
 	padding:2px;
+	cursor:pointer;
 }
 b{
 	font-weight:normal;
@@ -225,8 +226,10 @@ input[name="reg"]{
 .optionalList li[optional="1"] .redBall{
 	color:#000;
 }
-.optionalList p,
-.optionalList .details
+
+.optionalList .details,
+.optionalList .wraper,
+.optionalList p
 {
 	display:inline-block;
 	/*font-family: Arial, 'Microsoft Yahei', Simsun, sans-serif;*/
@@ -240,9 +243,11 @@ input[name="reg"]{
 	position:relative;
 	margin:0 45px 0 25px;
 	color:#4E4E4E;
+}
+.details .wraper{
 	display:none;
 }
-.details p.show{
+.details .wraper.show{
 	display:inline-block;
 }
 .details .red,
@@ -438,7 +443,6 @@ input[name="reg"]{
 #numSelListBox{
 	position:absolute;
 	z-index:100;
-	width:2400px;
 	background:#fff;
 	border-bottom: 8px solid #2CAA2C;
 }
@@ -487,7 +491,6 @@ input[name="reg"]{
 #numSelList .loca b, #numSelList .col b, #numSelList .digit b,
 #numSelList .locaRef b, #numSelList .colRef b, #numSelList .digitRef b
 {
-	width:8px;
 }
 
 #sortBox{

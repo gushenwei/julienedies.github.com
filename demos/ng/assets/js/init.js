@@ -214,9 +214,9 @@ $(function(){
 		$( template('boxTemp',{list:q, id: 'numSelList', embedTemp: 'numSelListItemTemp', info:q.length}) ).prependTo('body');	
 	})
 	//
-	.delegate('#groupList li .visual','click',function(){
+	.delegate('li .visual','click',function(){
 		var $th = $(this);
-		var group =  $th.attr('data-group');
+		var group =  $th.attr('data-push');
 		var type = $th.attr('data-type');
 		
 		var url = 'visual.html?type='+type+'&push='+group;
@@ -257,6 +257,8 @@ $(function(){
 			refList.toggle();
 		}else{
 			var q = groupRefListModel(window.groupRefList);
+			
+			q = q.slice(-18);
 			
 			$( template('list2Temp', {list: q, id: 'refList', embedTemp:'refListItemTemp'}) ).appendTo('#groupListBox');			
 		}
@@ -363,8 +365,10 @@ $(function(){
 		var box = th.closest('.layer');
 		var tab = th.attr('data-tab').substr(0,2);
 		
+		th.siblings('.white').click();
+		
 		th.toggleClass('white');
-		box.find('#numSelList li[optional=1] p[class^="' + tab + '"]').toggleClass('show');
+		box.find('#numSelList li[optional=1] div[class^="' + tab + '"]').toggleClass('show');
 	})	
 	/////////////////////////////////////////////////////////////////////
 	//选中
