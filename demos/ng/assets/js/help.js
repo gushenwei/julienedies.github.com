@@ -686,7 +686,7 @@ function redBlueBallModel(arr) {
 				
 		};	
 		
-		if( numSelFilter(obj) ){
+		if(1|| numSelFilter(obj) ){
 			if(window.blueBallIsRandom){
 				// 随机提取篮球
 				blue = blues[Math.round(Math.random() * (blues.length - 1))];			
@@ -813,10 +813,8 @@ function groupRefListModel(arr){
 		};
 		
 		result.unshift(obj);
-		
 	}
 	
-	//cc(result,'refList');
 	return result;
 }
 

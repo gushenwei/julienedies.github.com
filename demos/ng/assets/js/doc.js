@@ -75,9 +75,17 @@ cc(redBallLocaMap,'redBallLocaMap');
 window.downMarginLocaMap = getLocation(getArrayLast(window.downMarginRef),classifyByDownMargin);
 cc(downMarginLocaMap,'downMarginLocaMap');
 
+//upMargin location map
+window.upMarginLocaMap = getLocation(getArrayLast(window.upMarginRef),classifyByUpMargin);
+cc(upMarginLocaMap,'upMarginLocaMap');
+
 //classify by DownMarginLocaMap
 window.classifyByDownMarginLocaMap = classify(downMarginLocaMap);
 cc(classifyByDownMarginLocaMap,'classifyByDownMarginLocaMap');
+
+//classify by upMarginLocaMap
+window.classifyByUpMarginLocaMap = classify(upMarginLocaMap);
+cc(classifyByUpMarginLocaMap,'classifyByUpMarginLocaMap');
 
 //singleDigit location map
 window.singleDigitLocaMap = getLocation(getArrayLast(window.singleDigitRef),classifyBySingleDigit);

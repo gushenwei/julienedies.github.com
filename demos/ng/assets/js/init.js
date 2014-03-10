@@ -95,6 +95,7 @@ $(function(){
 			list : q,
 			info : q.length,
 			id : 'groupList',
+			type: refName,
 			embedTemp : ''
 		})).appendTo('body');
 	})	
@@ -211,7 +212,12 @@ $(function(){
 		q = filterByRef(q, window.filterByRefArr);
 		q = window.NUMLIST = redBlueBallModel(q);
 		
-		$( template('boxTemp',{list:q, id: 'numSelList', embedTemp: 'numSelListItemTemp', info:q.length}) ).prependTo('body');	
+		if(q){
+			$( template('boxTemp',{list:q, id: 'numSelList', embedTemp: 'numSelListItemTemp', info:q.length}) ).prependTo('body');	
+		}else{
+			alert('没有组合数据,可能都被过滤掉了.')
+		}
+		
 	})
 	//
 	.delegate('li .visual','click',function(){
@@ -221,11 +227,11 @@ $(function(){
 		
 		var url = 'visual.html?type='+type+'&push='+group;
 		
-		if(NGCLOBAL.win){
-			NGCLOBAL.win.location = url;
-			NGCLOBAL.win.focus();
+		if(NGGLOBAL.win){
+			NGGLOBAL.win.location = url;
+			NGGLOBAL.win.focus();
 		}else{
-			NGCLOBAL.win = window.open(url);
+			NGGLOBAL.win = window.open(url);
 		}
 	})	
 	//
@@ -246,19 +252,26 @@ $(function(){
 		
 		$( template('refListItemTemp',{list: list, className: 'ls'}) ).appendTo('#refList');
 	})
-
+	//
 	.delegate('#groupList li', 'mouseout', function() {
 		$('#refList li.ls:last').remove();
-	})		
+	})
+	//
 	.delegate('#groupListBox .showRef','click',function() {
 		var refList = $('#refList');
+		var refName, q;
 		
 		if( refList.length ){
 			refList.toggle();
 		}else{
-			var q = groupRefListModel(window.groupRefList);
+			refName = $(this).attr('data-type');
+			if(!refName){
+				alert('没有确定参照类型，请在up，down，digit之间选择');
+				return;
+			}
+			q = NGGLOBAL[refName].slice(-18);
 			
-			q = q.slice(-18);
+			q = groupRefListModel(q);
 			
 			$( template('list2Temp', {list: q, id: 'refList', embedTemp:'refListItemTemp'}) ).appendTo('#groupListBox');			
 		}
@@ -268,12 +281,22 @@ $(function(){
 	//
 	.delegate('#numSelListBox .showRef','click',function() {
 		var numSelRefList = $('#numSelRefList');
+		var refName, q;
 		
 		if( numSelRefList.length ){
 			numSelRefList.toggle();
 		}else{
-			var q = numSelRefListModel();
-			$( template('list2Temp',{list:q, id:'numSelRefList',  embedTemp: 'numSelRefListItemTemp'}) ).appendTo('#numSelListBox');			
+			refName = $(this).attr('data-type');
+			if(!refName){
+				alert('没有确定参照类型，请在up，down，digit之间选择');
+				return;
+			}
+			q = NGGLOBAL[refName].slice(-18);
+			q = groupRefListModel(q);
+			
+			//var q = numSelRefListModel();
+			//$( template('list2Temp',{list:q, id:'numSelRefList',  embedTemp: 'numSelRefListItemTemp'}) ).appendTo('#numSelListBox');
+			$( template('list2Temp', {list: q, id: 'numSelRefList', embedTemp:'refListItemTemp'}) ).appendTo('#numSelListBox');
 		}
 	})		
 	//
@@ -281,28 +304,18 @@ $(function(){
 		if( !$('#numSelRefList:visible').length) return;
 		$('#numSelRefList li.ls:last').remove();
 		
+		var list = [], obj = {}, map = ['group','unique','loca'];
 		var $th = $(this);
-		var list= [];
-		var col = $th.attr('data-col');
-		var up = $th.attr('data-up');
-		var down = $th.attr('data-down');
-		var digit = $th.attr('data-digit');
-		var upLoca = $th.attr('data-upLoca');
-		var downLoca = $th.attr('data-downLoca');
-		var digitLoca = $th.attr('data-digitLoca');		
-		var obj = {
-					col : JSON.parse(col),
-					up : JSON.parse(up),
-					upLoca : JSON.parse(upLoca),
-					down : JSON.parse(down),
-					downLoca : JSON.parse(downLoca),
-					digit : JSON.parse(digit),
-					digitLoca : JSON.parse(digitLoca)					
-				};
+		var layer = $th.closest('.layer');
+		var refName = layer.find('.operateBar .showRef').attr('data-type');
+		$th.find('.details .'+refName+' p button').each(function(i){
+			var val = $(this).attr('data-value');
+			obj[map[i]] = JSON.parse(val);
+		})
 		
 		list.push(obj);
 		
-		$( template('numSelRefListItemTemp',{list: list, className: 'ls'}) ).appendTo('#numSelRefList');
+		$( template('refListItemTemp',{list: list, className: 'ls'}) ).appendTo('#numSelRefList');
 	})
 	//
 	.delegate('#numSelList li', 'mouseout', function() {
@@ -363,12 +376,14 @@ $(function(){
 	.delegate('.tabBar strong[data-tab]', 'click', function() {
 		var th = $(this);
 		var box = th.closest('.layer');
-		var tab = th.attr('data-tab').substr(0,2);
+		var tab = th.attr('data-tab');
 		
 		th.siblings('.white').click();
 		
 		th.toggleClass('white');
 		box.find('#numSelList li[optional=1] div[class^="' + tab + '"]').toggleClass('show');
+		box.find('.operateBar .showRef').attr('data-type',tab);
+		box.find('#numSelRefList').remove();
 	})	
 	/////////////////////////////////////////////////////////////////////
 	//选中

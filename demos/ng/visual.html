@@ -15,7 +15,7 @@
 </head>
 <body>
 <aside>
-<button data-type="upMarginRef">上间隔</button>
+<button data-type="upMarginRef" class="current">上间隔</button>
 <button data-type="downMarginRef">下间隔</button>
 <button data-type="singleDigitRef">数尾</button>
 </aside>
@@ -31,6 +31,7 @@
 		var h = 20;
 		
 		//////////////////////////////////////////////////
+		
 		var i = d3.select('.title').selectAll('i')
 		.data(d3.range(0, 36));
 		
@@ -43,8 +44,6 @@
 		.style('left', function(d) {
 					return (d) * m + (d + 1) * 1 + 'px';
 				});
-
-		
 		//////////////////////////////////////////////////
 		var p = d3.select(".content").selectAll("p")
 		.data(data);
@@ -55,6 +54,7 @@
 		p.exit().remove();
 		
 		//////////////////////////////////////////////////
+		
 		var em = p.selectAll('em')
 		.data(function(d) {
 			return d;
@@ -81,18 +81,14 @@
 		em.exit().remove();
 		
 		$('body').scrollTop((data.length-18) * 21);
-		
 	};
 	
-	
-	
 	////////////////////////////////////////////
-	//init
 	
 	$('aside button').click(function(){
 		var th = $(this);
 		var type = th.attr('data-type');
-		var data = window[type].slice();
+		var data = NGGLOBAL[type].slice();
 		
 		th.addClass('current');
 		th.siblings().removeClass('current');
@@ -105,12 +101,13 @@
 		view(data);		
 	});
 	
-	
+	////////////////////////////////////////////
+	//init	
 
 	var type = getUrlParam('type') || 'upMarginRef';
 	var push = getUrlParam('push');
 
-	var data = window[type].slice();
+	var data = NGGLOBAL[type].slice();
 	
 	if(push){
 		data.push(JSON.parse(push));

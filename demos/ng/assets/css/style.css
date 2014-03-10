@@ -388,7 +388,7 @@ input[name="reg"]{
 /**********************************************************************/
 /* 具体模块  */
 #redsBox{
-	top:1000px;
+	top:900px;
 	left:40px;
 	width:480px;
 }
@@ -396,7 +396,7 @@ input[name="reg"]{
 	background:red;
 }
 #bluesBox{
-	top:900px;
+	top:760px;
 	left:40px;
 	width:700px;
 }
@@ -415,6 +415,11 @@ input[name="reg"]{
 	left:440px;
 	width:440px;
 }
+#classifyByUpMarginLocaMapListBox{
+	top:560px;
+	left:460px;
+	width:400px;	
+}
 #classifyBySingleDigitListBox{
 	top:40px;
 	left:920px;
@@ -429,8 +434,8 @@ input[name="reg"]{
 	width:340px;	
 }
 #classifyByColCountListBox{
-	top:560px;
-	left:440px;
+	top:760px;
+	left:840px;
 	width:420px;
 }
 #classifyByColCountListBox .dobj .key{
@@ -519,7 +524,6 @@ input[name="reg"]{
 	z-index:101;
 	top:32px;
 	right:0px;
-	width:1000px;
 	padding:10px;
 	color:rgba(20,20,20,1);
 	background-color:rgba(199, 223, 228, 1);
@@ -540,16 +544,15 @@ input[name="reg"]{
 }
 #numSelRefList li p{
 	display:inline-block;
-	width:160px;
-	margin-left:20px;
+	width:180px;
+	margin-left:50px;
 	line-height:2;
 }
-#numSelRefList .upLoca, #numSelRefList .downLoca, #numSelRefList .digitLoca{
-	width:60px;
-	margin-left:10px;
+#numSelRefList li p.loca{
+	width:120px;
 }
-#numSelRefList .upLoca b, #numSelRefList .downLoca b, #numSelRefList .digitLoca b{
-	width:12px;
+#numSelRefList li p:first-child{
+	margin-left:10px;
 }
 #numSelRefList li b{
 	width:18px;
