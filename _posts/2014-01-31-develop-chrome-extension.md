@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "develop chrome extension"
+title: "开发了一个chrome插件，保存html为txt"
 description: "开发一个chrome插件"
-category: 
+category: 技术&amp;开发
 tags: [chrome-extension]
 ---
 {% include JB/setup %}
