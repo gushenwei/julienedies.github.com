@@ -21,5 +21,7 @@ chrome浏览器用的很顺手，但是书签管理器却不得不让人诟病�
 
 时间总是很紧张，有时间的话，这个扩展的实现可以详细记录一下，主要是关于扩展的架构，我觉得还是有点意思的...
 
+
+
 <p><a href="https://github.com/Julienedies/chrome-extension-bookmarkManager">github地址</a>..</p>
 
