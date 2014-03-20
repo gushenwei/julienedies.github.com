@@ -595,7 +595,7 @@ input[name="reg"]{
 	right:0px;
 	width:700px;
 	padding:2px 10px;
-	background-color:rgba(199, 223, 228, 0.7);
+	background-color:rgba(199, 223, 228, 1);
 	pointer-events: none;
 }
 #refList li{
