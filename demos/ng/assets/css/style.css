@@ -527,6 +527,7 @@ input[name="reg"]{
 	padding:10px;
 	color:rgba(20,20,20,1);
 	background-color:rgba(199, 223, 228, 1);
+	pointer-events: none;
 }
 
 #numSelRefList li{

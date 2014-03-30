@@ -9,7 +9,7 @@
 </head>
 
 <body>
-
+<div class="test">position:absolute; top:300px;bottom:0px;width:100%;background:blue;<div class="test">position:fixed;top:0;left:0;height:40px;background:green;</div></div>
 <div id="a" class="test">color:#fff;background:blue;margin:0 -100px 0 -100px;</div>
 <div id="b" class="test">color:#fff;background:red;margin:-10px 0 0 0;text-align:right;</div>
 
@@ -18,7 +18,7 @@ var els = document.querySelectorAll('.test'), el;
 
 for(var i in els){
 	el = els[i];
-	el.style.cssText = el.innerText;
+	el.style.cssText = el.firstChild.nodeValue;
 }
 </script>
 </body>
