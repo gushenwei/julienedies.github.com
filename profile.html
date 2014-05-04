@@ -3,37 +3,11 @@
 <head>
 <title>Julien's profile</title>
 <meta charset="utf-8" />
-<style type="text/css">
-body {
-	padding: 10px 20px;
-	font: 13px/1.8 'DejaVu Sans','Lucida Grande',Tahoma,'Hiragino Sans GB', SimSun,'STHeiti Light', sans-serif;	
-}
-h2{
-	font: 16px/1.2 "Helvetica Neue", "Hiragino Sans GB", "Microsoft Yahei",Helvetica, Arial, sans-serif;
-	font-family: 'Segoe UI', Arial, 'Microsoft Yahei', Simsun, sans-serif;
-	font-weight:bold;
-}
-dt {
-	margin: 20px 0 0 0;
-}
-
-dt b {
-	margin: 0 0 0 10px;
-}
-
-dd {
-	margin: 5px 0 0 30px;
-}
-
-.inline li {
-	width: 24em;
-	display: inline-block;
-}
-</style>
+<link rel="stylesheet" href="assets/css/profile.css">
 </head>
 <body>
 
-<section>
+<section class="base">
 <h2>基本信息</h2>
 <ul>
 	<li>姓名：Julien</li>
@@ -41,22 +15,24 @@ dd {
 </ul>
 </section>
 
-<section>
+<section class="ability">
 <h2>工作能力</h2>
 <ul>
-	<li>精通js，css，html，熟练使用整合各种web前端技术。</li>
-	<li>熟悉前端性能优化，单元测试，w3c规范，主流浏览器兼容性处理等。</li>
-	<li>熟悉移动web端及移动native端开发。</li>
+	<li>精通js，css，html，熟练使用整合各种web前端技术。&#10003;</li>
+	<li>Js方面可以使用原生js进行开发；能够独立完成模块设计，组件开发。&#10003;</li>
+	<li>Html/Css方面能够熟练完成页面设计，符合W3c规范，兼容主流浏览器。&#10003;</li>	
+	<li>熟悉html5, css3, nodeJs, angularJs等新技术。（有使用经验）&#10003;</li>
+	<li>熟悉前端性能优化，单元测试。</li>
+	<li>熟悉移动web端开发。&#10003;</li>
 	<li>对服务器端程序开发非常了解，有php与mysql使用经验。</li>
-	<li>熟悉unix/linux系统使用。</li>
-	<li>关注前端架构及前端开发流程规范。</li>
-	<li>关注前端技术的发展与应用（如angularJs，nodeJs，html5，移动端开发），快速的学习能力。</li>
+	<li>关注前端架构及前端开发流程规范及最佳实践。</li>
+	<li>关注前端技术的发展与应用，快速的学习能力。</li>
 	<li>基础扎实，了解web开发各个环节，实际解决问题能力强。</li>
-	<li>有平面设计经验与基础，对用户需求和用户体验有很好的了解和认识。</li>
+	<li>有一定平面设计经验与基础，对用户需求和用户体验有了解和认识。</li>
 </ul>
 </section>
 
-<section>
+<section class="experience">
 <h2>工作经历</h2>
 <dl>
 	<dt><time>2013/7 -- 2014/4</time></dt>
@@ -79,11 +55,12 @@ dd {
 </dl>
 </section>
 
-<section>
+<section class="character">
 <h2>性格喜好</h2>
 <ul>
+	<li>严肃有余，活泼不足。</li>
 	<li>做事认真，敬业，责任感强。</li>
-	<li>喜欢阅读，思考。</li>
+	<li>喜欢阅读，思考（形而上的东西），远足，摄影。</li>
 	<li>喜欢精益求精，不拘一格。</li>
 	<li>喜欢新事物，爱好钻研。</li>
 	<li>注重做事的方法，追求效率。</li>
@@ -91,21 +68,21 @@ dd {
 </ul>
 </section>
 
-<section>
+<section class="project">
 <h2>最近做的一个项目</h2>
 <p>一个关于书签管理的chrome扩展，github地址： 
-	<a href="https://github.com/Julienedies/chrome-extension-bookmarkManager">https://github.com/Julienedies/chrome-extension-bookmarkManager</a></p>
+	<a target="_blank" href="https://github.com/Julienedies/chrome-extension-bookmarkManager"> https://github.com/Julienedies/chrome-extension-bookmarkManager </a></p>
 </section>
 
-<section>
+<section class="booklist">
 <h2>部分阅读过的技术书籍书目</h2>
-<ul class="inline">
+<ul>
 	<li><b>用angularJs开发下一代web应用</b></li>
 	<li><b>基于MVC的JavaScript web富应用开发</b></li>
 	<li><b>测试驱动的JavaScript开发</b></li>
 	<li><b>html5揭秘</b></li>
 	<li>Pro.Git</li>
-	<li><b>Node.js开发指南</b></li>
+	<li>Node.js开发指南</li>
 	<li>JavaScript宝典</li>
 	<li><b>JavaScript权威指南</b></li>
 	<li><b>CSS权威指南</b></li>
