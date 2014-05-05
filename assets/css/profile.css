@@ -55,6 +55,7 @@ body {
 section {
 	padding: 10px 20px 15px 20px;
 }
+/*
 section:hover {
 	background: #1f77b4;
 	color: #fff;
@@ -63,6 +64,7 @@ section:hover {
 section:hover a, section:hover b {
 	color: #fff;
 }
+*/
 section h2 {
 	margin: 0 0 5px 0;
 	font-size: 32px;
@@ -138,5 +140,4 @@ dd {
 	color: #E21200;	
 }
 section:hover b:after{
-	color:#fff;
 }
