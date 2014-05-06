@@ -51,7 +51,6 @@ body {
 	background: #fff;
 	color: #333;
 }
-
 section {
 	padding: 10px 20px 15px 20px;
 }
@@ -69,25 +68,24 @@ section h2 {
 	margin: 0 0 5px 0;
 	font-size: 32px;
 }
-
 a{
 	padding: 0 4px;
 	color: #6dc2e9;
 	color: #e23300;
 	color: #E21200;
 }
-
 a:hover {
 	background: #E21200;
 	color: #fff;
 }
-
+a img{
+    background: #fff;
+}
 dt b {
 	margin: 0 0 0 10px;
 	font-size: 1.2em;
 	color: #000;
 }
-
 dd {
 	margin: 5px 0 20px 30px;
 	font-size: 0.9em;
@@ -105,34 +103,27 @@ dd {
 	background: #1f77b4;
 	color: #fff;	
 }
-
 .ability {
 	
 }
-
 .experience {
 	
 }
-
 .character {
 	margin: 1px 0 0 0;
 	background: #eeeeee;
 	border-bottom: .4em solid #00bcf2;
 }
-
 .project {
 	
 }
-
 .booklist {
 	
 }
-
 .booklist li {
 	width: 28em;
 	display: inline-block;
 }
-
 .booklist b {
 }
 .booklist b:after{
@@ -140,4 +131,7 @@ dd {
 	color: #E21200;	
 }
 section:hover b:after{
+}
+footer{
+	text-align:right;
 }
