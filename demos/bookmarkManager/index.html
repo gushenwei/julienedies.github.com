@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>书签管理器截图演示</title>
+<style>
+body{
+	margin:0;
+	padding:0;
+	overflow:hidden;
+}
+</style>
+</head>
+<body>
+<div><img src="1.png" id="img"></div>
+<script type="text/javascript">
+(function(){
+	var img = document.getElementById('img');
+	var max = 6;
+	var current = 1;
+	setInterval(function(){
+		current = current > max ? 1 : current;
+		img.src = current + '.png';
+		current += 1;
+	},2000);	
+})();
+
+</script>
+</body>
+</html>
