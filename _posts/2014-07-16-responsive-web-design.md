@@ -3,7 +3,7 @@ layout: post
 title: "关于响应式设计"
 description: ""
 category: 技术&amp;开发
-tags: [css]
+tags: ["css"]
 ---
 {% include JB/setup %}
 
