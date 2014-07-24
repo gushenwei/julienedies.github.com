@@ -3,7 +3,7 @@ layout: post
 title: "想做个图片相关的问答网站"
 description: "想做个图片相关的问答网站"
 category: 记录&amp;备忘
-tags: ['创业']
+tags: []
 ---
 {% include JB/setup %}
 
