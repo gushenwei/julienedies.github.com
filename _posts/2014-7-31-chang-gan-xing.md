@@ -7,7 +7,6 @@ tags: []
 ---
 {% include JB/setup %}
 
-<blockquote>
 <pre>
 长干行
 
@@ -27,5 +26,4 @@ tags: []
 早晚下三巴，预将书报家。
 相迎不道远，直至长风沙。 
 </pre>
-</blockquote>
 
