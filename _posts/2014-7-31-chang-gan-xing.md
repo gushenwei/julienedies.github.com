@@ -8,7 +8,7 @@ tags: []
 {% include JB/setup %}
 
 <blockquote>
-
+<pre>
 长干行
 
 妾发初覆额，折花门前剧。
@@ -26,6 +26,6 @@ tags: []
 感此伤妾心，坐愁红颜老！
 早晚下三巴，预将书报家。
 相迎不道远，直至长风沙。 
-
+</pre>
 </blockquote>
 
