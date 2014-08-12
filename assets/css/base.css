@@ -138,7 +138,7 @@ hr{
 	font-size: 2em;
 	line-height: 2;
 	@border-bottom: solid 4px #51829c;	
-	opacity:0.4;
+	opacity:0.5;
 }
 #top:hover{
 	opacity:1;
@@ -161,7 +161,7 @@ hr{
 	overflow: hidden;
 	border-right: solid 0.4em rgba(255, 0, 0, 0);
 	border-left: solid 0.4em rgba(0, 128, 0, 0);
-	border-bottom: solid 0.4em #fff;
+	border-bottom: solid 0.4em #f7f7f7;
 }
 
 #top nav li a:hover {
