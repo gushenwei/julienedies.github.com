@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html ng-app="dbApp">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="underscore-1.6.0.min.js"></script>
+    <script src="jquery.min.js"></script>
+    <script src="angular.min.js"></script>
+    <script src="angular-route.js"></script>
+    <script src="33.js"></script>
+    <style>
+
+        #view {
+            padding: 3em 1em 0 1em;
+            position: relative;
+        }
+
+        #view li {
+            display: inline-block;
+            width: 1.6em;
+        }
+
+        #view li:hover{
+            background:#efefef;
+        }
+
+        #view em, #view i {
+            display: inline-block;
+            width: 100%;
+            text-align: center;
+            font-family: 'Segoe UI', Arial, 'Microsoft Yahei', 'Simsun', 'sans-serif';
+        }
+
+        #view i {
+            position: fixed;
+            top: 0;
+            background: green;
+            color: #fff;
+            width: 1.6em;
+        }
+    </style>
+</head>
+<body>
+
+<div id="view">
+
+</div>
+<ul ng-controller="marginCtrl">
+    <li ng-if="list.length" ng-repeat="i in list" ng-bind="i">
+
+    </li>
+</ul>
+<script>
+
+    var dbApp = angular.module('dbApp', ['ngRoute', 'ctrls', 'servs']);
+
+    var ctrls = angular.module('ctrls',[]);
+
+    var servs = angular.module('servs',[]);
+
+    ctrls.controller('marginCtrl', function($scope){
+
+        $scope.list = [];
+
+    });
+
+
+
+    function f() {
+
+        var rsto = {};
+        var bsto = {};
+        var rtop = [];
+
+        for (var i = 0, ngl = ng.length; i < ngl; i++) {
+
+            var num = ng[i];
+            var rs = num.red;
+            var bs = num.blue;
+
+            //red
+            for (var k = 1; k < 34; k++) {
+
+                for (var j = 0; j < 6; j++) {
+
+                    var r = rs[j];
+
+                    if (k === r) {
+
+                        var rstoItem = rsto[k] = rsto[k] || { margin: [] };
+
+                        if ('start' in rstoItem) {
+
+                            rstoItem.margin.push(i - rstoItem.start - 1);
+
+
+                            var rtopItem = rtop[i] = rtop[i] || {};
+
+                            rtopItem[k] = rstoItem.margin.length-1;
+
+                        }
+
+                        rstoItem.start = i;
+
+                    }
+
+                }
+
+
+                if (i === ngl - 1) {
+
+                    var rstoItem = rsto[k] = rsto[k] || { margin: [] };
+                    rstoItem.margin.push( i - (rstoItem.start || 0) );
+				
+                }
+
+            }
+
+
+            //blue
+            for (var k = 1; k < 17; k++) {
+
+                if (k === bs) {
+
+                    var bstoItem = bsto[k] = bsto[k] || { margin: [] };
+
+                    if ('start' in bstoItem) {
+                        bstoItem.margin.push(i - bstoItem.start - 1);
+                    }
+
+                    bstoItem.start = i;
+
+                }
+
+
+                if (i === ngl - 1) {
+
+                    var bstoItem = bsto[k] = bsto[k] || { margin: [] };
+                    bstoItem.margin.push(i - (bstoItem.start || 0) );
+                }
+
+            }
+
+        }
+
+
+        console.log(rsto, rtop);
+
+
+        _.each(rtop, function(v, k, list){
+            var result = [];
+            for(var i in v){
+                var margin = rsto[i].margin
+                result.push(margin[v[i]+1]);
+            }
+            console.log(JSON.stringify(result));
+        });
+
+        var tmpl = _.template($('#tmpl').html());
+
+        $('#view').html(tmpl({reds: rsto}));
+
+    }
+
+    $(f);
+
+</script>
+<script id="tmpl" type="text/tmpl">
+    <ul>
+        <% for(var i = 1, item; item = reds[i]; i++) {  %>
+            <li>
+                <i>
+                    <%= i %>
+                </i>
+                <span>
+                    <% for(var j in item.margin) {  %>
+                    <em>
+                        <%= item.margin[j] %>
+                    </em>
+                    <% } %>
+                </span>
+            </li>
+        <% } %>
+    </ul>
+
+</script>
+
+
+</body>
+</html>
