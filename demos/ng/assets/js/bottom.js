@@ -1,56 +1,3 @@
-<!DOCTYPE html>
-<html ng-app="dbApp">
-<head>
-    <meta charset="UTF-8">
-    <title></title>
-    <script src="underscore-1.6.0.min.js"></script>
-    <script src="jquery.min.js"></script>
-    <script src="angular.min.js"></script>
-    <script src="angular-route.js"></script>
-    <script src="33.js"></script>
-    <style>
-
-        #view {
-            padding: 3em 1em 0 1em;
-            position: relative;
-        }
-
-        #view li {
-            display: inline-block;
-            width: 1.6em;
-        }
-
-        #view li:hover{
-            background:#efefef;
-        }
-
-        #view em, #view i {
-            display: inline-block;
-            width: 100%;
-            text-align: center;
-            font-family: 'Segoe UI', Arial, 'Microsoft Yahei', 'Simsun', 'sans-serif';
-        }
-
-        #view i {
-            position: fixed;
-            top: 0;
-            background: green;
-            color: #fff;
-            width: 1.6em;
-        }
-    </style>
-</head>
-<body>
-
-<div id="view">
-
-</div>
-<ul ng-controller="marginCtrl">
-    <li ng-if="list.length" ng-repeat="i in list" ng-bind="i">
-
-    </li>
-</ul>
-<script>
 
     var dbApp = angular.module('dbApp', ['ngRoute', 'ctrls', 'servs']);
 
@@ -58,9 +5,9 @@
 
     var servs = angular.module('servs',[]);
 
-    ctrls.controller('marginCtrl', function($scope){
+    ctrls.controller('bottomCtrl', function($scope){
 
-        $scope.list = [];
+        $scope.list = f();
 
     });
 
@@ -143,48 +90,30 @@
 
         }
 
+        //console.log(rsto, rtop);
 
-        console.log(rsto, rtop);
-
+        var result = [];
 
         _.each(rtop, function(v, k, list){
-            var result = [];
+            var arr = [];
             for(var i in v){
                 var margin = rsto[i].margin
-                result.push(margin[v[i]+1]);
+                var index = v[i]+1;
+                var ob = {v: margin[index]};
+                if(index+1 === margin.length){
+                	ob.over = 1;
+                }
+                arr.push(ob);
             }
-            console.log(JSON.stringify(result));
+            console.log(arr);
+            
+            result.push(arr);
         });
+        
 
-        var tmpl = _.template($('#tmpl').html());
-
-        $('#view').html(tmpl({reds: rsto}));
+        
+        return result;
+        
 
     }
 
-    $(f);
-
-</script>
-<script id="tmpl" type="text/tmpl">
-    <ul>
-        <% for(var i = 1, item; item = reds[i]; i++) {  %>
-            <li>
-                <i>
-                    <%= i %>
-                </i>
-                <span>
-                    <% for(var j in item.margin) {  %>
-                    <em>
-                        <%= item.margin[j] %>
-                    </em>
-                    <% } %>
-                </span>
-            </li>
-        <% } %>
-    </ul>
-
-</script>
-
-
-</body>
-</html>

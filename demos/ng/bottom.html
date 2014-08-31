@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html ng-app="dbApp">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link href="assets/css/style.css" rel="stylesheet" type="text/css" media="all"/>
+    <link href="assets/css/visual.css" rel="stylesheet" type="text/css" media="all"/>
+
+    <script src="assets/js/libs/underscore-1.6.0.min.js"></script>
+    <script src="assets/js/libs/jquery.min.js"></script>
+    <script src="assets/js/libs/angular.min.js"></script>
+    <script src="assets/js/libs/angular-route.js"></script>
+    <script src="33.js"></script>
+    <script src="assets/js/bottom.js"></script>
+    <style>
+        body {
+            line-height: 2;
+            font-size: 1em;
+            font-family: 'Segoe UI', Arial, 'Microsoft Yahei', 'Simsun', 'sans-serif';
+        }
+
+        dl {
+            display: inline-block;
+            width: 24em;
+        }
+
+        .f-red {
+            color: red;
+        }
+
+        em {
+            display: inline-block;
+            width: 1.4em;
+            text-align: center;
+            font-style: normal;
+            margin: 0 0.5em;
+        }
+    </style>
+</head>
+<body>
+<div ng-controller="bottomCtrl">
+    <dl>
+        <li ng-repeat="item in list">
+            <em ng-repeat="obj in item" ng-bind="obj.v" ng-class="obj.over && 'f-red'"></em>
+        </li>
+    </dl>
+
+    <dl>
+        <li ng-repeat="item in list">
+            <em ng-if="!obj.over" ng-repeat="obj in item" ng-bind="obj.v"></em>
+        </li>
+    </dl>
+</div>
+</body>
+</html>
