@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title></title>
-    <link href="assets/css/style.css" rel="stylesheet" type="text/css" media="all"/>
-    <link href="assets/css/visual.css" rel="stylesheet" type="text/css" media="all"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/libs/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="assets/css/libs/main.css" />
+    <link rel="stylesheet" type="text/css" href="assets/css/base.css" />
 
     <script src="assets/js/libs/underscore-1.6.0.min.js"></script>
     <script src="assets/js/libs/jquery.min.js"></script>
@@ -13,41 +14,42 @@
     <script src="33.js"></script>
     <script src="assets/js/bottom.js"></script>
     <style>
-        body {
-            line-height: 2;
-            font-size: 1em;
-            font-family: 'Segoe UI', Arial, 'Microsoft Yahei', 'Simsun', 'sans-serif';
-        }
-
-        dl {
-            display: inline-block;
-            width: 24em;
-        }
-
-        .f-red {
-            color: red;
-        }
-
-        em {
-            display: inline-block;
-            width: 1.4em;
-            text-align: center;
-            font-style: normal;
-            margin: 0 0.5em;
+        body{
+            padding:0em 0em 0em 2em;
         }
     </style>
 </head>
 <body>
-<div ng-controller="bottomCtrl">
-    <dl>
-        <li ng-repeat="item in list">
+<div class="wraper-4 bg-4" ng-controller="bottomCtrl">
+
+    <dl class="list-4">
+        <li ng-repeat="item in ng track by $index">
+            <em class="t-r" ng-bind="item.num"></em>
+        </li>
+    </dl>
+
+    <dl class="list-4">
+        <li ng-repeat="item in prevList">
+            <em ng-repeat="v in item track by $index" ng-bind="v"></em>
+        </li>
+    </dl>
+
+
+    <dl class="list-4">
+        <li ng-repeat="item in prevList">
+            <em ng-repeat="v in item | orderBy:vs:false track by $index" ng-bind="v"></em>
+        </li>
+    </dl>
+
+    <dl class="list-4">
+        <li ng-repeat="item in nextList">
             <em ng-repeat="obj in item" ng-bind="obj.v" ng-class="obj.over && 'f-red'"></em>
         </li>
     </dl>
 
-    <dl>
-        <li ng-repeat="item in list">
-            <em ng-if="!obj.over" ng-repeat="obj in item" ng-bind="obj.v"></em>
+    <dl class="list-4">
+        <li ng-repeat="item in nextList">
+            <em ng-if="!obj.over" ng-repeat="obj in item | orderBy:'v'" ng-bind="obj.v"></em>
         </li>
     </dl>
 </div>
