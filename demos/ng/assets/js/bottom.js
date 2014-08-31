@@ -20,6 +20,7 @@
         $scope.ng = ng.slice(ng.length- r.prev.length,ng.length);
         $scope.prevList = r.prev;
         $scope.nextList = r.next;
+        $scope.upList = r.up;
 
     });
 
@@ -105,14 +106,17 @@
 
         var prev = [];
         var next = [];
+        var up = [];
 
         _.each(rtop, function (v, k, list) {
             var arr = [];
+            var arr1 = [];
             var arr2 = [];
             for (var i in v) {
                 var margin = rsto[i].margin;
 
                 arr.push(margin[v[i]]);
+                arr1.push(margin[v[i]-1]);
 
                 var index = v[i] + 1;
                 var ob = {v: margin[index]};
@@ -122,15 +126,16 @@
                 arr2.push(ob);
             }
 
-            prev.push(arr)
+            prev.push(arr);
+            up.push(arr1);
             next.push(arr2);
         });
 
-        console.log(prev)
 
         return {
             prev: prev,
-            next: next
+            next: next,
+            up:up
         };
 
 

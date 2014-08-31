@@ -29,8 +29,8 @@
     </dl>
 
     <dl class="list-4">
-        <li ng-repeat="item in prevList">
-            <em ng-repeat="v in item track by $index" ng-bind="v"></em>
+        <li ng-repeat="item in upList">
+            <em ng-repeat="v in item | orderBy:vs:false track by $index" ng-bind="v"></em>
         </li>
     </dl>
 
