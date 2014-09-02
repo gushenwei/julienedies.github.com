@@ -5,23 +5,23 @@
 
 module.exports = {
 
-    ng:[],
+    ng: [],
 
-    prev:[],
+    prev: [],
 
-    up:[],
+    up: [],
 
-    next:[],
+    next: [],
 
-    rMargin:[],
+    rMargin: [],
 
     bMargin: [],
 
-    resolve: function(ng) {
+    resolve: function (ng) {
 
-        if(typeof ng === 'string') ng = JSON.stringify(ng);
+        if (typeof ng === 'string') ng = JSON.stringify(ng);
 
-        return {x:[1,2,3], y: {a:2, b:2}, c:[{v:[1,3,5,7]}]};
+        // return {x:[1,2,3], y: {a:2, b:2}, c:[{v:[1,3,5,7]}]};
 
         this.ng = ng;
 
@@ -107,13 +107,17 @@ module.exports = {
         var next = [];
         var up = [];
 
-        rsto.forEach( function(v, k, list){
+        for (var i in rsto) {
+            reds[i] = rsto[i];
+        }
 
-            reds[k] = v;
+//        rsto.forEach( function(v, k, list){
+//
+//            reds[k] = v;
+//
+//        });
 
-        });
-
-        rtop.forEach( function (v, k, list) {
+        rtop.forEach(function (v, k, list) {
 
             var arr = [];
             var arr1 = [];
@@ -124,7 +128,7 @@ module.exports = {
                 var margin = rsto[i].margin;
 
                 arr.push(margin[v[i]]);
-                arr1.push(margin[v[i]-1]);
+                arr1.push(margin[v[i] - 1]);
 
                 var index = v[i] + 1;
                 var ob = {v: margin[index]};
@@ -148,7 +152,7 @@ module.exports = {
             rMargin: reds,
             prev: prev,
             next: next,
-            up:up
+            up: up
         };
 
 
