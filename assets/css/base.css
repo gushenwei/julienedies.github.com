@@ -59,6 +59,8 @@ blockquote p {
 	text-rendering: optimizespeed;
 	font-family: 'Segoe UI', Arial, 'Microsoft Yahei', 'Simsun', 'sans-serif';
         font-family: Georgia, serif;
+        font-family: 'Open Sans',sans-serif; 
+	font-family: Consolas,Monaco,'Andale Mono',monospace;
 	display: -webkit-flex;
 	-webkit-flex-flow: row wrap;
 	display: -ms-flexbox;
@@ -120,7 +122,7 @@ blockquote {
 
 code {
 	font: 100% "Courier New", "Andale Mono", monospace;
-	color: blue;
+	font-family: Consolas,Monaco,'Andale Mono',monospace;
 }
 
 small {
